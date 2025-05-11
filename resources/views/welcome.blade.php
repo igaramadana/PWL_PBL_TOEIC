@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon/favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="92x92" href="{{ asset('favicon/favicon-96x96.png') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('favicon/web-app-manifest-192x192.png') }}">
+    <meta name="theme-color" content="#ffffff">
+
     <title>{{ $title }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -13,18 +23,18 @@
 <body class="bg-white dark:bg-gray-900">
     {{-- header --}}
     <header>
-        <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+        <nav class="px-4 py-2.5 bg-white border-gray-200 lg:px-6 dark:bg-gray-800">
             {{-- Navbar --}}
-            <div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
+            <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <a href="{{ url('/') }}" class="flex items-center">
-                    <img src="{{ asset('img/PolinemaLogo.png') }}" class="h-6 mr-3 sm:h-9" alt="PBL TOEIC Logo" />
+                    <img src="{{ asset('img/PolinemaLogo.png') }}" class="mr-3 h-6 sm:h-9" alt="PBL TOEIC Logo" />
                     <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">PBL TOEIC</span>
                 </a>
                 <div class="flex items-center lg:order-2">
                     {{-- Language - Switch --}}
                     <div class="relative">
                         <button type="button" data-dropdown-toggle="language-dropdown-menu"
-                            class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-900 rounded-lg cursor-pointer dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+                            class="inline-flex justify-center items-center px-4 py-2 text-sm font-medium text-gray-900 rounded-lg cursor-pointer dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                             @if (app()->getLocale() == 'en')
                                 <svg class="w-5 h-5 rounded-full me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 3900 3900">
@@ -61,7 +71,7 @@
                             {{ strtoupper(app()->getLocale()) }}
                         </button>
                         <!-- Dropdown -->
-                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow-sm dark:bg-gray-700"
+                        <div class="hidden z-50 my-4 text-base list-none bg-white rounded-lg divide-y divide-gray-100 shadow-sm dark:bg-gray-700"
                             id="language-dropdown-menu">
                             <ul class="py-2 font-medium" role="none">
                                 <li>
@@ -69,7 +79,7 @@
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                                         role="menuitem">
                                         <div class="inline-flex items-center">
-                                            <svg aria-hidden="true" class="h-3.5 w-3.5 rounded-full me-2"
+                                            <svg aria-hidden="true" class="w-3.5 h-3.5 rounded-full me-2"
                                                 xmlns="http://www.w3.org/2000/svg" id="flag-icon-css-us"
                                                 viewBox="0 0 512 512">
                                                 <g fill-rule="evenodd">
@@ -97,7 +107,7 @@
                                         role="menuitem">
                                         <div class="inline-flex items-center">
                                             <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg"
-                                                class="h-3.5 w-3.5 rounded-full me-2" alt="indonesia">
+                                                class="w-3.5 h-3.5 rounded-full me-2" alt="indonesia">
                                             ID
                                         </div>
                                     </a>
@@ -107,7 +117,7 @@
                     </div>
                     {{-- End Language - Switch --}}
                     <a href="{{ route('login') }}"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mx-2">{{ __('landing.login') }}</a>
+                        class="px-5 py-2.5 mx-2 mr-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{ __('landing.login') }}</a>
                     <button data-collapse-toggle="mobile-menu-2" type="button"
                         class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         aria-controls="mobile-menu-2" aria-expanded="false">
@@ -119,20 +129,20 @@
                         </svg>
                     </button>
                 </div>
-                <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
+                <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                         <li>
                             <a href="{{ url('/') }}"
-                                class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded lg:bg-transparent lg:text-blue-700 lg:p-0 dark:text-white"
+                                class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded lg:bg-transparent lg:text-blue-700 lg:p-0 dark:text-white"
                                 aria-current="page">{{ __('landing.homeButton') }}</a>
                         </li>
                         <li>
                             <a href="#test-info"
-                                class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">{{ __('landing.aboutButton') }}</a>
+                                class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">{{ __('landing.aboutButton') }}</a>
                         </li>
                         <li>
                             <a href="#our-team"
-                                class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">{{ __('landing.teamButton') }}</a>
+                                class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">{{ __('landing.teamButton') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -145,16 +155,16 @@
     {{-- content --}}
     {{-- Hero Section --}}
     <section class="bg-white dark:bg-gray-900">
-        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12" data-aos="fade-right">
-            <div class="mr-auto place-self-center lg:col-span-7">
-                <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">
+        <div class="grid px-4 py-8 mx-auto max-w-screen-xl lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12" data-aos="fade-right">
+            <div class="place-self-center mr-auto lg:col-span-7">
+                <h1 class="mb-4 max-w-2xl text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">
                     {{ __('landing.heroTitle') }}</h1>
-                <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                <p class="mb-6 max-w-2xl font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
                     {{ __('landing.heroSubtitle') }}</p>
                 <a href="/register"
-                    class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                    class="inline-flex justify-center items-center px-5 py-3 mr-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                     {{{ __('landing.heroButton') }}}
-                    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"
+                    <svg class="-mr-1 ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
@@ -162,7 +172,7 @@
                     </svg>
                 </a>
                 <a href="#test-info"
-                    class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                    class="inline-flex justify-center items-center px-5 py-3 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                     {{ __('landing.heroButton2') }}
                 </a>
             </div>
@@ -172,43 +182,40 @@
         </div>
     </section>
     {{-- About --}}
-    <section id="test-info" class="bg-gray-50 dark:bg-gray-900 py-16">
-        <div class="max-w-screen-xl px-4 mx-auto" data-aos="fade-up">
-            <div class="text-center mb-12">
+    <section id="test-info" class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="px-4 mx-auto max-w-screen-xl" data-aos="fade-up">
+            <div class="mb-12 text-center">
                 <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
                     {{ __('landing.aboutTitle') }}
                 </h2>
-                <p class="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400 mx-auto">
+                <p class="mx-auto mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400">
                     {{ __('landing.aboutSubtitle') }}
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm
-           hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700
-           transition-all duration-300 ease-in-out"
+            <div class="grid gap-8 md:grid-cols-3">
+                <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-sm transition-all duration-300 ease-in-out hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                     data-aos="fade-right">
                     <div
-                        class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4
-               transition-colors duration-300">
-                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-300 transition-colors duration-300" fill="none"
+                        class="flex justify-center items-center mb-4 w-12 h-12 bg-blue-100 rounded-full transition-colors duration-300 dark:bg-blue-900">
+                        <svg class="w-6 h-6 text-blue-600 transition-colors duration-300 dark:text-blue-300" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="mb-2 text-xl font-bold dark:text-white transition-colors duration-300">
+                    <h3 class="mb-2 text-xl font-bold transition-colors duration-300 dark:text-white">
                         {{ __('landing.card1Title') }}
                     </h3>
-                    <p class="text-gray-500 dark:text-gray-400 transition-colors duration-300">
+                    <p class="text-gray-500 transition-colors duration-300 dark:text-gray-400">
                         {{ __('landing.card1Subtitle') }}
                     </p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                     data-aos="fade-up">
-                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
+                    <div class="flex justify-center items-center mb-4 w-12 h-12 bg-blue-100 rounded-full dark:bg-blue-900">
                         <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -222,9 +229,9 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                     data-aos="fade-left">
-                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
+                    <div class="flex justify-center items-center mb-4 w-12 h-12 bg-blue-100 rounded-full dark:bg-blue-900">
                         <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -242,8 +249,8 @@
     </section>
     {{-- Our Teams --}}
     <section class="bg-white dark:bg-gray-900" id="our-team">
-        <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6 ">
-            <div class="max-w-screen-sm mx-auto mb-8 text-center lg:mb-16">
+        <div class="px-4 py-8 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+            <div class="mx-auto mb-8 max-w-screen-sm text-center lg:mb-16">
                 <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
                     {{ __('landing.teamTitle') }}
                 </h2>
@@ -251,8 +258,8 @@
                     {{ __('landing.teamSubtitle') }}
                 </p>
             </div>
-            <div class="flex justify-center items-center mb-8 max-w-screen-sm mx-auto">
-                <div class="items-center rounded-lg shadow bg-gray-50 sm:flex dark:bg-gray-800 dark:border-gray-700"
+            <div class="flex justify-center items-center mx-auto mb-8 max-w-screen-sm">
+                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
                     data-aos="zoom-in">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
@@ -308,7 +315,7 @@
                 </div>
             </div>
             <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
-                <div class="items-center rounded-lg shadow bg-gray-50 sm:flex dark:bg-gray-800 dark:border-gray-700"
+                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
                     data-aos="fade-right">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
@@ -362,7 +369,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="items-center rounded-lg shadow bg-gray-50 sm:flex dark:bg-gray-800 dark:border-gray-700"
+                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
                     data-aos="fade-left">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
@@ -416,7 +423,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="items-center rounded-lg shadow bg-gray-50 sm:flex dark:bg-gray-800 dark:border-gray-700"
+                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
                     data-aos="fade-right">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
@@ -470,7 +477,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="items-center rounded-lg shadow bg-gray-50 sm:flex dark:bg-gray-800 dark:border-gray-700"
+                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
                     data-aos="fade-left">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
@@ -531,11 +538,11 @@
 
     {{-- footer --}}
     <footer class="p-4 bg-gray-50 sm:p-6 dark:bg-gray-800">
-        <div class="max-w-screen-xl mx-auto">
+        <div class="mx-auto max-w-screen-xl">
             <div class="md:flex md:justify-between">
                 <div class="mb-6 md:mb-0">
                     <a href="https://flowbite.com" class="flex items-center">
-                        <img src="/img/PolinemaLogo.png" class="h-8 mr-3" alt="FlowBite Logo" />
+                        <img src="/img/PolinemaLogo.png" class="mr-3 h-8" alt="FlowBite Logo" />
                         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PBL TOEIC</span>
                     </a>
                 </div>
@@ -555,7 +562,7 @@
                         <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">{{ __('landing.followUs') }}</h2>
                         <ul class="text-gray-600 dark:text-gray-400">
                             <li class="mb-4">
-                                <a href="https://github.com/igaramadana/PWL_PBL-TOEIC" class="hover:underline ">Github</a>
+                                <a href="https://github.com/igaramadana/PWL_PBL-TOEIC" class="hover:underline">Github</a>
                             </li>
                         </ul>
                     </div>
