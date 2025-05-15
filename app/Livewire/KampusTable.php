@@ -25,8 +25,7 @@ final class KampusTable extends PowerGridComponent
         return [
             PowerGrid::header()
                 ->showToggleColumns()
-                ->showSearchInput()
-                ->includeViewOnTop('components.create_button'),
+                ->showSearchInput(),
             PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),

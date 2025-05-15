@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => 'admin'], function () {
             Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.index');
             Route::get('kampus', [KampusController::class, 'index'])->name('kampus.index');
+            Route::get('kampus/create', [KampusController::class, 'create'])->name('kampus.create');
+            Route::post('kampus', [KampusController::class, 'store'])->name('kampus.store');
         });
     });
 
