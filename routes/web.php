@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KampusController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\AdminDashboardController;
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
@@ -25,9 +27,10 @@ Route::middleware('auth')->group(function () {
 
     // Route untuk Admin
     Route::middleware('checkrole:ADM')->group(function () {
-        Route::get('/admin', function () {
-            return view('admin.index');
-        })->name('admin.index');
+        Route::group(['prefix' => 'admin'], function () {
+            Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.index');
+            Route::get('kampus', [KampusController::class, 'index'])->name('kampus.index');
+        });
     });
 
     // Route untuk Mahasiswa
