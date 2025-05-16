@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KampusModel;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class KampusController extends Controller
 {
@@ -31,22 +32,38 @@ class KampusController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'kampus_nama' => 'required|string|max:255',
-            'kampus_alamat' => 'required|string',
-        ]);
-
         try {
+            $request->validate([
+                'kampus_nama' => 'required|string|max:255|unique:kampus,kampus_nama',
+                'kampus_alamat' => 'required|string',
+            ]);
+
             KampusModel::create([
                 'kampus_nama' => $request->kampus_nama,
                 'kampus_alamat' => $request->kampus_alamat,
             ]);
 
             return redirect()->route('kampus.index')
-                ->with('toast_success', 'Data kampus berhasil ditambahkan');
+                ->with('toast_success', __('kampus.successToast'));
+        } catch (ValidationException $e) {
+            $errors = $e->validator->errors()->getMessages();
+
+            // Cek apakah error adalah karena data duplikat
+            if (
+                isset($errors['kampus_nama']) &&
+                str_contains(implode('', $errors['kampus_nama']), 'already been taken')
+            ) {
+                return redirect()->back()
+                    ->with('toast_error', __('kampus.duplicateError', ['name' => $request->kampus_nama]));
+            }
+
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('toast_error', __('kampus.errorToast'));
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('toast_error', 'Gagal menambahkan data kampus: ' . $e->getMessage());
+                ->with('toast_error', __('kampus.errorToast') . $e->getMessage());
         }
     }
 

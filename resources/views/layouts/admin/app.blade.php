@@ -47,7 +47,7 @@
                 gravity: "top",
                 position: "right",
                 style: {
-                    background: "#16a34a",
+                    background: "#0E9F6E",
                     color: "#ffffff",
                     borderRadius: "0.5rem",
                     boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
@@ -70,7 +70,7 @@
                 gravity: "top",
                 position: "right",
                 style: {
-                    background: "#dc2626",
+                    background: "#C81E1E",
                     color: "#ffffff",
                     borderRadius: "0.5rem",
                     boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
