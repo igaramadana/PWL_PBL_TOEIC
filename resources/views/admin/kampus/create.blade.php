@@ -22,7 +22,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5" action="{{ route('kampus.store') }}" method="POST">
+            <form id="kampus-form" class="p-4 md:p-5" action="{{ route('kampus.store') }}" method="POST">
                 @csrf
                 <div class="grid gap-4 mb-4">
                     <div>
@@ -30,14 +30,34 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kampus</label>
                         <input type="text" name="kampus_nama" id="kampus_nama"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="Masukkan nama kampus" required>
+                            placeholder="Masukkan nama kampus">
+                        <p id="nama-error"
+                            class="flex hidden items-start mt-1 text-xs text-red-600 sm:text-sm dark:text-red-400">
+                            <svg class="flex-shrink-0 mt-0.5 mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span></span>
+                        </p>
                     </div>
                     <div>
                         <label for="kampus_alamat"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat Kampus</label>
                         <textarea name="kampus_alamat" id="kampus_alamat" rows="4"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                            placeholder="Masukkan alamat kampus" required></textarea>
+                            placeholder="Masukkan alamat kampus"></textarea>
+                        <p id="alamat-error"
+                            class="flex hidden items-start mt-1 text-xs text-red-600 sm:text-sm dark:text-red-400">
+                            <svg class="flex-shrink-0 mt-0.5 mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span></span>
+                        </p>
                     </div>
                 </div>
                 <button type="submit"
@@ -48,3 +68,59 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('kampus-form');
+        const namaInput = document.getElementById('kampus_nama');
+        const alamatInput = document.getElementById('kampus_alamat');
+        const namaError = document.getElementById('nama-error');
+        const alamatError = document.getElementById('alamat-error');
+
+        const errorMessages = {
+            namaRequired: '{{ __('kampus.nameRequired') }}',
+            alamatRequired: '{{ __('kampus.addressRequired') }}'
+        };
+
+        function showError(element, message) {
+            element.querySelector('span').textContent = message;
+            element.classList.remove('hidden');
+            element.parentElement.querySelector('input, textarea').classList.add('border-red-500');
+        }
+
+        function clearError(element) {
+            element.classList.add('hidden');
+            element.parentElement.querySelector('input, textarea').classList.remove('border-red-500');
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            clearError(namaError);
+            clearError(alamatError);
+
+            let isValid = true;
+
+            if (!namaInput.value.trim()) {
+                showError(namaError, errorMessages.namaRequired);
+                isValid = false;
+            }
+
+            if (!alamatInput.value.trim()) {
+                showError(alamatError, errorMessages.alamatRequired);
+                isValid = false;
+            }
+
+            if (isValid) {
+                form.submit();
+            }
+        });
+
+        namaInput.addEventListener('input', function() {
+            clearError(namaError);
+        });
+
+        alamatInput.addEventListener('input', function() {
+            clearError(alamatError);
+        });
+    });
+</script>
