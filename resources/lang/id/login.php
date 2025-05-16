@@ -10,4 +10,8 @@ return [
     'loginForgot' => 'Lupa Kata Sandi?',
     'loginRegister' => 'Belum punya akun?',
     'loginRegisterButton' => 'Daftar',
+
+    // Invalid credentials
+    'invalidCredentials' => 'Kredensial yang diberikan tidak benar.',
+    'logout' => 'Logout Sukses',
 ];

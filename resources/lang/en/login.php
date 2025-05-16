@@ -10,4 +10,8 @@ return [
     'loginForgot' => 'Forgot Your Password?',
     'loginRegister' => 'Don\'t have an account?',
     'loginRegisterButton' => 'Sign Up',
+
+    // Invalid credentials
+    'invalidCredentials' => 'The provided credentials are incorrect.',
+    'logout' => 'Logout Succesfully',
 ];
