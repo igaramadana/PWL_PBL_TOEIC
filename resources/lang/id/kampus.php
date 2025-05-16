@@ -15,4 +15,10 @@ return [
     'modalFormAddress' => 'Alamat Kampus',
     'formAddressPlaceholder' => 'Masukkan alamat kampus',
     'modalFooter' => 'Simpan',
+
+    'confirmDelete' => 'Apakah Anda yakin ingin menghapus kampus ini?',
+    'deleteBtn' => 'Ya, hapus!',
+    'cancelBtn' => 'Batal',
+    'deleteSuccessToast' => 'Data kampus berhasil dihapus',
+    'deleteErrorToast' => 'Gagal menghapus data kampus: ',
 ];

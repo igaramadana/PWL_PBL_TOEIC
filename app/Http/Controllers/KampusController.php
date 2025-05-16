@@ -48,7 +48,6 @@ class KampusController extends Controller
         } catch (ValidationException $e) {
             $errors = $e->validator->errors()->getMessages();
 
-            // Cek apakah error adalah karena data duplikat
             if (
                 isset($errors['kampus_nama']) &&
                 str_contains(implode('', $errors['kampus_nama']), 'already been taken')
@@ -96,6 +95,16 @@ class KampusController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $check = KampusModel::find($id);
+        if (!$check) {
+            return redirect()->route('kampus.index')->with('toast_error', 'Data tidak ditemukan');
+        }
+
+        try {
+            KampusModel::destroy($id);
+            return redirect()->route('kampus.index')->with('toast_success', __('kampus.deleteSuccessToast'));
+        } catch (\Exception $e) {
+            return redirect()->route('kampus.index')->with('toast_error', __('kampus.deleteErrorToast') . $e->getMessage());
+        }
     }
 }

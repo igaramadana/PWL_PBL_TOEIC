@@ -15,4 +15,10 @@ return [
     'modalFormAddress' => 'Campus Address',
     'formAddressPlaceholder' => 'Enter campus address',
     'modalFooter' => 'Save',
+
+    'confirmDelete' => 'Are you sure you want to delete this campus?',
+    'deleteBtn' => 'Yes, Im sure',
+    'cancelBtn' => 'No, Cancel',
+    'deleteSuccessToast' => 'Campus data deleted successfully',
+    'deleteErrorToast' => 'Failed to delete campus data: ',
 ];

@@ -18,8 +18,6 @@ final class KampusTable extends PowerGridComponent
 
     public function setUp(): array
     {
-        $this->showCheckBox();
-
         return [
             PowerGrid::header()
                 ->showToggleColumns()
@@ -32,7 +30,7 @@ final class KampusTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return KampusModel::query()->orderBy('id');
+        return KampusModel::query();
     }
 
     public function relationSearch(): array
@@ -51,6 +49,10 @@ final class KampusTable extends PowerGridComponent
     public function columns(): array
     {
         return [
+            Column::add()
+                ->title('No')
+                ->field('row_number')
+                ->index(),
             Column::make('Kampus id', 'id')->sortable(),
             Column::make('Kampus nama', 'kampus_nama')
                 ->sortable()
@@ -82,8 +84,17 @@ final class KampusTable extends PowerGridComponent
                 ->slot('Edit: ' . $row->kampus_id)
                 ->id()
                 ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->kampus_id])
+                ->dispatch('edit', ['rowId' => $row->kampus_id]),
+            Button::add('delete')
+                ->slot(view('components.delete-button-kampus', ['kampus_id' => $row->id])->render())
         ];
+    }
+    protected function getListeners()
+    {
+        return array_merge(
+            parent::getListeners(),
+            ['kampus-deleted' => '$refresh']
+        );
     }
 
     /*
