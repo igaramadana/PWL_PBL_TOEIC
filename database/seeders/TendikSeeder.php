@@ -14,7 +14,7 @@ class TendikSeeder extends Seeder
     public function run(): void
     {
         $tendik = [
-            ['tendik_id' => 1, 'nip' => '12345678', 'user_id' => 3, 'tendik_nama' => 'Dosen A', 'no_telp' => '081234567890', 'kampus_id' => 1],
+            ['id' => 1, 'nip' => '12345678', 'user_id' => 3, 'tendik_nama' => 'Dosen A', 'no_telp' => '081234567890', 'kampus_id' => 1],
         ];
         DB::table('tendik')->insert($tendik);
     }

@@ -15,8 +15,6 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 final class KampusTable extends PowerGridComponent
 {
     public string $tableName = 'kampus-table-yh4dwj-table';
-    public string $primaryKey = 'kampus_id';
-    public string $sortField = 'kampus_id';
 
     public function setUp(): array
     {
@@ -34,7 +32,7 @@ final class KampusTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return KampusModel::query()->orderBy('kampus_id', 'asc');
+        return KampusModel::query()->orderBy('id');
     }
 
     public function relationSearch(): array
@@ -45,7 +43,7 @@ final class KampusTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('kampus_id')
+            ->add('id')
             ->add('kampus_nama')
             ->add('kampus_alamat');
     }
@@ -53,7 +51,7 @@ final class KampusTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Kampus id', 'kampus_id')->sortable(),
+            Column::make('Kampus id', 'id')->sortable(),
             Column::make('Kampus nama', 'kampus_nama')
                 ->sortable()
                 ->searchable(),

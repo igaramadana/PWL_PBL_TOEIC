@@ -10,7 +10,7 @@ class ProdiModel extends Model
     use HasFactory;
 
     protected $table = 'prodi';
-    protected $primaryKey = 'prodi_id';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'prodi_kode',
         'prodi_nama',
@@ -19,6 +19,6 @@ class ProdiModel extends Model
 
     public function jurusan()
     {
-        return $this->belongsTo(JurusanModel::class, 'jurusan_id', 'jurusan_id');
+        return $this->belongsTo(JurusanModel::class, 'jurusan_id');
     }
 }

@@ -10,7 +10,7 @@ class JurusanModel extends Model
     use HasFactory;
 
     protected $table = 'jurusan';
-    protected $primaryKey = 'jurusan_id';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'jurusan_kode',
         'jurusan_nama',
@@ -19,6 +19,6 @@ class JurusanModel extends Model
 
     public function kampus()
     {
-        return $this->belongsTo(KampusModel::class, 'kampus_id', 'kampus_id');
+        return $this->belongsTo(KampusModel::class, 'kampus_id');
     }
 }

@@ -14,7 +14,7 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         $admin = [
-            ['admin_id' => 1, 'user_id' => 1, 'admin_nama' => 'Admin UPA']
+            ['user_id' => 1, 'admin_nama' => 'Admin UPA']
         ];
         DB::table('admin')->insert($admin);
     }

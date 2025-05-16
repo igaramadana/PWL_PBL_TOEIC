@@ -14,7 +14,7 @@ class KampusSeeder extends Seeder
     public function run(): void
     {
         $kampus = [
-            ['kampus_id' => 1, 'kampus_nama' => 'Kampus Utama', 'kampus_alamat' => 'Jl. Soekarno Hatta No.9, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur']
+            ['id' => 1, 'kampus_nama' => 'Kampus Utama', 'kampus_alamat' => 'Jl. Soekarno Hatta No.9, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur']
         ];
         DB::table('kampus')->insert($kampus);
     }
