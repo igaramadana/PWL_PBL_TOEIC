@@ -10,6 +10,7 @@ return [
     'addressRequired' => 'Alamat kampus wajib diisi',
 
     'modalHeader' => 'Tambah Data Kampus',
+    'modalFormId' => 'ID Kampus',
     'modalFormName' => 'Nama Kampus',
     'formNamePlaceholder' => 'Masukkan nama kampus',
     'modalFormAddress' => 'Alamat Kampus',
@@ -25,5 +26,8 @@ return [
     'modalEditHeader' => 'Edit Data Kampus',
     'updateSuccessToast' => 'Data kampus berhasil diperbarui',
     'updateErrorToast' => 'Gagal memperbarui data kampus: ',
-    'modalEditFooter' => 'Perbarui'
+    'modalEditFooter' => 'Perbarui',
+
+    'modalDetailHeader' => 'Detail Data Kampus',
+    'modalDetailClose' => 'Tutup',
 ];

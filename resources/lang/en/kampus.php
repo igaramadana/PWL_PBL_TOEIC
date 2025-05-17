@@ -10,6 +10,7 @@ return [
     'addressRequired' => 'Campus address is required',
 
     'modalHeader' => 'Add Campus Data',
+    'modalFormId' => 'Campus ID',
     'modalFormName' => 'Campus Name',
     'formNamePlaceholder' => 'Enter campus name',
     'modalFormAddress' => 'Campus Address',
@@ -26,4 +27,7 @@ return [
     'updateSuccessToast' => 'Campus data updated successfully',
     'updateErrorToast' => 'Failed to update campus data: ',
     'modalEditFooter' => 'Update',
+
+    'modalDetailHeader' => 'Detail Campus Data',
+    'modalDetailClose' => 'Close',
 ];
