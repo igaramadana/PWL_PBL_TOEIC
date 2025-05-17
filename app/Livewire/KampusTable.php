@@ -80,11 +80,14 @@ final class KampusTable extends PowerGridComponent
     public function actions(KampusModel $row): array
     {
         return [
+            Button::add('detail')
+                ->slot(view('components.detail-button-kampus', ['kampus_id' => $row->id])->render()),
             Button::add('edit')
-                ->slot('Edit: ' . $row->kampus_id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->kampus_id]),
+                ->slot(view('components.edit-button-kampus', [
+                    'kampus_id' => $row->id,
+                    'kampus_nama' => $row->kampus_nama,
+                    'kampus_alamat' => $row->kampus_alamat
+                ])->render()),
             Button::add('delete')
                 ->slot(view('components.delete-button-kampus', ['kampus_id' => $row->id])->render())
         ];

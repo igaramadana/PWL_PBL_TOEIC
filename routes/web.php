@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
             Route::get('kampus', [KampusController::class, 'index'])->name('kampus.index');
             Route::get('kampus/create', [KampusController::class, 'create'])->name('kampus.create');
             Route::post('kampus', [KampusController::class, 'store'])->name('kampus.store');
+            Route::put('/kampus/{id}', [KampusController::class, 'update'])->name('kampus.update');
             Route::delete('/kampus/{id}', [KampusController::class, 'destroy'])->name('kampus.delete');
         });
     });

@@ -21,4 +21,9 @@ return [
     'cancelBtn' => 'Batal',
     'deleteSuccessToast' => 'Data kampus berhasil dihapus',
     'deleteErrorToast' => 'Gagal menghapus data kampus: ',
+
+    'modalEditHeader' => 'Edit Data Kampus',
+    'updateSuccessToast' => 'Data kampus berhasil diperbarui',
+    'updateErrorToast' => 'Gagal memperbarui data kampus: ',
+    'modalEditFooter' => 'Perbarui'
 ];

@@ -21,4 +21,9 @@ return [
     'cancelBtn' => 'No, Cancel',
     'deleteSuccessToast' => 'Campus data deleted successfully',
     'deleteErrorToast' => 'Failed to delete campus data: ',
+
+    'modalEditHeader' => 'Edit Campus Data',
+    'updateSuccessToast' => 'Campus data updated successfully',
+    'updateErrorToast' => 'Failed to update campus data: ',
+    'modalEditFooter' => 'Update',
 ];

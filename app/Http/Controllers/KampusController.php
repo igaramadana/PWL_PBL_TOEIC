@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KampusModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
 class KampusController extends Controller
@@ -87,7 +88,30 @@ class KampusController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'kampus_nama' => 'required|string|max:255|unique:kampus,kampus_nama,' . $id,
+            'kampus_alamat' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('toast_error', __('kampus.errorToast'));
+        }
+        try {
+            $kampus = KampusModel::findOrFail($id);
+
+            $kampus->update([
+                'kampus_nama' => $request->kampus_nama,
+                'kampus_alamat' => $request->kampus_alamat,
+            ]);
+            return redirect()->route('kampus.index')
+                ->with('toast_success', __('kampus.updateSuccessToast'));
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('toast_error', __('kampus.updateErrorToast') . $e->getMessage());
+        }
     }
 
     /**
