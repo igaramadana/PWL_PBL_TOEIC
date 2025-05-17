@@ -11,7 +11,7 @@ class TendikModel extends Model
     use HasFactory;
 
     protected $table = 'tendik';
-    protected $primaryKey = 'tendik_id';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
         'nip',
@@ -22,11 +22,11 @@ class TendikModel extends Model
 
     public function user()
     {
-        return $this->belongsTo(UserModel::class, 'user_id', 'user_id');
+        return $this->belongsTo(UserModel::class, 'user_id');
     }
 
     public function kampus()
     {
-        return $this->belongsTo(KampusModel::class, 'kampus_id', 'kampus_id');
+        return $this->belongsTo(KampusModel::class, 'kampus_id');
     }
 }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tendik', function (Blueprint $table) {
-            $table->id('tendik_id');
+            $table->id('id');
             $table->string('nip')->unique();
             $table->unsignedBigInteger('user_id')->index();
             $table->string('tendik_nama');
@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('kampus_id')->index();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
-            $table->foreign('kampus_id')->references('kampus_id')->on('kampus')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('kampus_id')->references('id')->on('kampus')->onDelete('cascade');
         });
     }
 

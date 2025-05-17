@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mahasiswa', function (Blueprint $table) {
-            $table->id('mahasiswa_id');
+            $table->id();
             $table->unsignedBigInteger('user_id')->index();
             $table->string('nim')->unique();
             $table->string('mahasiswa_nama');
@@ -24,9 +24,9 @@ return new class extends Migration
             $table->boolean('daftar_ujian')->default(true);
             $table->timestamps();
 
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
-            $table->foreign('prodi_id')->references('prodi_id')->on('prodi')->onDelete('cascade');
-            $table->foreign('kampus_id')->references('kampus_id')->on('kampus')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('prodi_id')->references('id')->on('prodi')->onDelete('cascade');
+            $table->foreign('kampus_id')->references('id')->on('kampus')->onDelete('cascade');
         });
     }
 

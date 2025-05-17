@@ -15,13 +15,9 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 final class KampusTable extends PowerGridComponent
 {
     public string $tableName = 'kampus-table-yh4dwj-table';
-    public string $primaryKey = 'kampus_id';
-    public string $sortField = 'kampus_id';
 
     public function setUp(): array
     {
-        $this->showCheckBox();
-
         return [
             PowerGrid::header()
                 ->showToggleColumns()
@@ -34,7 +30,7 @@ final class KampusTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return KampusModel::query()->orderBy('kampus_id', 'asc');
+        return KampusModel::query();
     }
 
     public function relationSearch(): array
@@ -45,7 +41,7 @@ final class KampusTable extends PowerGridComponent
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('kampus_id')
+            ->add('id')
             ->add('kampus_nama')
             ->add('kampus_alamat');
     }
@@ -53,7 +49,11 @@ final class KampusTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Kampus id', 'kampus_id')->sortable(),
+            Column::add()
+                ->title('No')
+                ->field('row_number')
+                ->index(),
+            Column::make('Kampus id', 'id')->sortable(),
             Column::make('Kampus nama', 'kampus_nama')
                 ->sortable()
                 ->searchable(),
@@ -80,12 +80,28 @@ final class KampusTable extends PowerGridComponent
     public function actions(KampusModel $row): array
     {
         return [
+            Button::add('detail')
+                ->slot(view('components.detail-button-kampus', [
+                    'kampus_id' => $row->id,
+                    'kampus_nama' => $row->kampus_nama,
+                    'kampus_alamat' => $row->kampus_alamat
+                ])->render()),
             Button::add('edit')
-                ->slot('Edit: ' . $row->kampus_id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->kampus_id])
+                ->slot(view('components.edit-button-kampus', [
+                    'kampus_id' => $row->id,
+                    'kampus_nama' => $row->kampus_nama,
+                    'kampus_alamat' => $row->kampus_alamat
+                ])->render()),
+            Button::add('delete')
+                ->slot(view('components.delete-button-kampus', ['kampus_id' => $row->id])->render())
         ];
+    }
+    protected function getListeners()
+    {
+        return array_merge(
+            parent::getListeners(),
+            ['kampus-deleted' => '$refresh']
+        );
     }
 
     /*

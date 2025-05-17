@@ -10,7 +10,7 @@ class KampusModel extends Model
     use HasFactory;
 
     protected $table = 'kampus';
-    protected $primaryKey = 'kampus_id';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'kampus_nama',
         'kampus_alamat',

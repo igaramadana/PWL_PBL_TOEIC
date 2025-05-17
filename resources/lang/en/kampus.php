@@ -10,9 +10,24 @@ return [
     'addressRequired' => 'Campus address is required',
 
     'modalHeader' => 'Add Campus Data',
+    'modalFormId' => 'Campus ID',
     'modalFormName' => 'Campus Name',
     'formNamePlaceholder' => 'Enter campus name',
     'modalFormAddress' => 'Campus Address',
     'formAddressPlaceholder' => 'Enter campus address',
     'modalFooter' => 'Save',
+
+    'confirmDelete' => 'Are you sure you want to delete this campus?',
+    'deleteBtn' => 'Yes, Im sure',
+    'cancelBtn' => 'No, Cancel',
+    'deleteSuccessToast' => 'Campus data deleted successfully',
+    'deleteErrorToast' => 'Failed to delete campus data: ',
+
+    'modalEditHeader' => 'Edit Campus Data',
+    'updateSuccessToast' => 'Campus data updated successfully',
+    'updateErrorToast' => 'Failed to update campus data: ',
+    'modalEditFooter' => 'Update',
+
+    'modalDetailHeader' => 'Detail Campus Data',
+    'modalDetailClose' => 'Close',
 ];
