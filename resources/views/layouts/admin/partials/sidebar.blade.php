@@ -6,7 +6,7 @@
             <!-- Dashboard -->
             <li>
                 <a href="{{ route('admin.index') }}" id="menu-dashboard"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                         <path
@@ -20,7 +20,7 @@
 
             <!-- Data Master Dropdown -->
             <li>
-                <button type="button"
+                <button type="button" id="menu-data-master"
                     class="flex items-center p-2 w-full text-base text-gray-900 rounded-lg transition duration-75 cursor-pointer group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                     aria-controls="dropdown-data-master" data-collapse-toggle="dropdown-data-master">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -38,31 +38,31 @@
                 </button>
                 <ul id="dropdown-data-master" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="{{ url('/mahasiswa') }}"
+                        <a href="{{ url('/mahasiswa') }}" id="menu-mahasiswa"
                             class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             Data Mahasiswa
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/tendik') }}"
+                        <a href="{{ url('/tendik') }}" id="menu-tendik"
                             class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             Data Tendik
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('kampus.index') }}"
+                        <a href="{{ route('kampus.index') }}" id="menu-kampus"
                             class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             Data Kampus
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="#" id="menu-jurusan"
                             class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             Data Jurusan
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="#" id="menu-prodi"
                             class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             Data Prodi
                         </a>
@@ -168,20 +168,81 @@
 </aside>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setActiveMenu();
+
+        // Untuk dropdown yang menggunakan data-collapse-toggle
+        const dropdownButtons = document.querySelectorAll('[data-collapse-toggle]');
+        dropdownButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-collapse-toggle');
+                const target = document.getElementById(targetId);
+                target.classList.toggle('hidden');
+
+                // Rotate arrow icon
+                const arrow = this.querySelector('svg:last-child');
+                arrow.classList.toggle('rotate-180');
+            });
+        });
+    });
+
     function setActiveMenu() {
         const currentPath = window.location.pathname;
-        const menuItems = document.querySelectorAll('#logo-sidebar a');
+        const currentUrl = window.location.href;
 
-        menuItems.forEach(item => {
-            if (item.getAttribute('href') === currentPath) {
-                item.classList.add('bg-gray-300', 'dark:bg-blue-700', 'hover:bg-gray-200',
-                    'dark:hover:bg-blue-600');
-            } else {
-                item.classList.remove('bg-gray-300', 'dark:bg-blue-700', 'hover:bg-gray-200',
-                    'dark:hover:bg-blue-600');
+        // Reset all menu items
+        document.querySelectorAll('#logo-sidebar a').forEach(item => {
+            item.classList.remove('bg-gray-100', 'dark:bg-gray-700');
+        });
+
+        // Reset dropdown buttons
+        document.querySelectorAll('[data-collapse-toggle]').forEach(button => {
+            button.classList.remove('bg-gray-100', 'dark:bg-gray-700');
+        });
+
+        // Check exact matches first
+        let activeFound = false;
+        document.querySelectorAll('#logo-sidebar a[id^="menu-"]').forEach(item => {
+            if (item.getAttribute('href') === currentPath || item.href === currentUrl) {
+                item.classList.add('bg-gray-100', 'dark:bg-gray-700');
+                activeFound = true;
+
+                // If this is a dropdown item, highlight the parent button
+                if (item.closest('[id^="dropdown-"]')) {
+                    const dropdownId = item.closest('ul').id;
+                    const button = document.querySelector(`[aria-controls="${dropdownId}"]`);
+                    if (button) {
+                        button.classList.add('bg-gray-100', 'dark:bg-gray-700');
+                        // Ensure dropdown is visible
+                        document.getElementById(dropdownId).classList.remove('hidden');
+                    }
+                }
             }
         });
+
+        // If no exact match found, check for partial matches (useful for Laravel routes with parameters)
+        if (!activeFound) {
+            document.querySelectorAll('#logo-sidebar a[id^="menu-"]').forEach(item => {
+                const itemPath = new URL(item.href).pathname;
+                if (currentPath.startsWith(itemPath) && itemPath !== '/') {
+                    item.classList.add('bg-gray-100', 'dark:bg-gray-700');
+
+                    // If this is a dropdown item, highlight the parent button
+                    if (item.closest('[id^="dropdown-"]')) {
+                        const dropdownId = item.closest('ul').id;
+                        const button = document.querySelector(`[aria-controls="${dropdownId}"]`);
+                        if (button) {
+                            button.classList.add('bg-gray-100', 'dark:bg-gray-700');
+                            // Ensure dropdown is visible
+                            document.getElementById(dropdownId).classList.remove('hidden');
+                        }
+                    }
+                }
+            });
+        }
     }
 
-    document.addEventListener('DOMContentLoaded', setActiveMenu);
+    // Re-run when navigating with Turbolinks or similar
+    document.addEventListener('turbolinks:load', setActiveMenu);
+    window.addEventListener('load', setActiveMenu);
 </script>
