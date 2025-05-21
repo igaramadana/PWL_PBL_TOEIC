@@ -20,6 +20,7 @@ final class JurusanTable extends PowerGridComponent
     {
         return [
             PowerGrid::header()
+                ->showToggleColumns()
                 ->showSearchInput(),
             PowerGrid::footer()
                 ->showPerPage()
