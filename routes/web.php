@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KampusController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
 
@@ -28,12 +29,18 @@ Route::middleware('auth')->group(function () {
     // Route untuk Admin
     Route::middleware('checkrole:ADM')->group(function () {
         Route::group(['prefix' => 'admin'], function () {
+            // Kampus
             Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.index');
             Route::get('kampus', [KampusController::class, 'index'])->name('kampus.index');
             Route::get('kampus/create', [KampusController::class, 'create'])->name('kampus.create');
             Route::post('kampus', [KampusController::class, 'store'])->name('kampus.store');
             Route::put('/kampus/{id}', [KampusController::class, 'update'])->name('kampus.update');
             Route::delete('/kampus/{id}', [KampusController::class, 'destroy'])->name('kampus.delete');
+
+            // Jurusan
+            Route::get('/jurusan', [JurusanController::class, 'index'])->name('jurusan.index');
+            Route::post('/jurusan', [JurusanController::class, 'store'])->name('jurusan.store');
+            Route::delete('/jurusan/{id}', [JurusanController::class, 'destroy'])->name('jurusan.delete');
         });
     });
 
