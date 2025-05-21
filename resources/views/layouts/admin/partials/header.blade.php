@@ -22,7 +22,7 @@
             <div class="flex items-center">
                 <div class="hidden items-center mt-1 cursor-pointer sm:flex lg:flex lg:justify-center sm:justify-end">
                     @auth
-                        <h1 class="text-white">{{ auth()->user()->admin->admin_nama }}</h1>
+                        <h1 class="font-semibold text-gray-900 dark:text-white">{{ auth()->user()->admin->admin_nama }}</h1>
                     @endauth
                 </div>
                 <div class="flex items-center ms-3">
