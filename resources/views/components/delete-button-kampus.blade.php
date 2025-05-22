@@ -1,5 +1,5 @@
 <div>
-    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" data-tooltip-target="tooltip-hapus"
+    <button data-modal-target="popup-modal-{{ $kampus_id }}" data-modal-toggle="popup-modal-{{ $kampus_id }}"
         type="button"
         class="p-2 text-gray-900 bg-red-700 rounded-lg dark:text-gray-50 dark:bg-red-600 hover:text-white hover:bg-red-600 focus:ring-2 focus:ring-red-300 dark:hover:text-white dark:hover:bg-red-500">
         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
@@ -13,7 +13,7 @@
         @csrf
         @method('DELETE')
 
-        <div id="popup-modal" tabindex="-1"
+        <div id="popup-modal-{{ $kampus_id }}" tabindex="-1"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full backdrop-blur-sm bg-gray-900/50 dark:bg-gray-900/80">
             <div class="relative p-4 w-full max-w-lg max-h-xl">
                 <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">

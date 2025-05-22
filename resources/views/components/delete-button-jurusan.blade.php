@@ -1,6 +1,5 @@
 <div>
-    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" data-tooltip-target="tooltip-hapus"
-        type="button"
+    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
         class="p-2 text-gray-900 bg-red-700 rounded-lg dark:text-gray-50 dark:bg-red-600 hover:text-white hover:bg-red-600 focus:ring-2 focus:ring-red-300 dark:hover:text-white dark:hover:bg-red-500">
         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

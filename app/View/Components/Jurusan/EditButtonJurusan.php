@@ -5,15 +5,19 @@ namespace App\View\Components\Jurusan;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\KampusModel;
 
-class DeleteButtonJurusan extends Component
+class EditButtonJurusan extends Component
 {
+    public $kampus; // Deklarasikan properti publik
+
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        //
+        // Ambil semua data kampus dan simpan ke properti $kampus
+        $this->kampus = KampusModel::all();
     }
 
     /**
@@ -21,6 +25,6 @@ class DeleteButtonJurusan extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.delete-button-jurusan');
+        return view('components.edit-button-jurusan');
     }
 }

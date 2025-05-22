@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class DeleteButtonJurusan extends Component
+class DetailButtonJurusan extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class DeleteButtonJurusan extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.delete-button-jurusan');
+        return view('components.detail-button-jurusan');
     }
 }
