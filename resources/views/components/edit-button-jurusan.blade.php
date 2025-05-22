@@ -1,6 +1,6 @@
 <div>
-    <button data-tooltip-target="tooltip-edit" data-modal-target="edit-modal-{{ $jurusan_id }}"
-        data-modal-toggle="edit-modal-{{ $jurusan_id }}" type="button"
+    <button data-modal-target="edit-modal-{{ $jurusan_id }}" data-modal-toggle="edit-modal-{{ $jurusan_id }}"
+        type="button"
         class="p-2 text-gray-900 bg-yellow-500 rounded-lg dark:text-gray-50 dark:bg-yellow-500 hover:text-white hover:bg-yellow-500 focus:ring-2 focus:ring-yellow-300 dark:hover:text-white dark:hover:bg-yellow-500">
         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

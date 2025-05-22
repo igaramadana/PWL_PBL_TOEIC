@@ -1,6 +1,6 @@
 <div>
-    <button data-tooltip-target="tooltip-detail" data-modal-target="detail-modal-{{ $kampus_id }}"
-        data-modal-toggle="detail-modal-{{ $kampus_id }}" type="button"
+    <button data-modal-target="detail-modal-{{ $kampus_id }}" data-modal-toggle="detail-modal-{{ $kampus_id }}"
+        type="button"
         class="p-2 text-gray-900 bg-blue-600 rounded-lg dark:text-gray-50 dark:bg-blue-600 hover:text-white hover:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:hover:text-white dark:hover:bg-blue-500">
         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -8,6 +8,7 @@
         </svg>
         <span class="sr-only">Detail</span>
     </button>
+
 
     <!-- Modal Detail -->
     <div id="detail-modal-{{ $kampus_id }}" tabindex="-1" aria-hidden="true"
