@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Jurusan;
 
 use Closure;
 use App\Models\KampusModel;
