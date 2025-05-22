@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\KampusController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\LandingPageController;
@@ -43,6 +44,10 @@ Route::middleware('auth')->group(function () {
             Route::delete('/jurusan/{id}', [JurusanController::class, 'destroy'])->name('jurusan.delete');
             Route::put('/jurusan/{id}', [JurusanController::class, 'update'])->name('jurusan.update');
             Route::get('/jurusan/{id}/edit', [JurusanController::class, 'edit'])->name('jurusan.edit');
+
+            // Prodi
+            Route::get('/prodi', [ProdiController::class, 'index'])->name('prodi.index');
+            Route::post('/prodi', [ProdiController::class, 'store'])->name('prodi.store');
         });
     });
 
