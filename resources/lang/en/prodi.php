@@ -11,6 +11,8 @@ return [
     'modalFormJurusan' => 'Major',
     'formJurusanPlaceholder' => 'Select Major',
     'modalFooter' => 'Add',
+    'createSuccess' => 'Program Study data has been added successfully.',
+    'createError' => 'Failed to add Program Study data.',
 
     // Validation
     'codeRequired' => 'The Program Study Code field is required.',

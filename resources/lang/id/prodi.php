@@ -11,6 +11,8 @@ return [
     'modalFormJurusan' => 'Jurusan',
     'formJurusanPlaceholder' => 'Pilih Jurusan',
     'modalFooter' => 'Tambah',
+    'createSuccess' => 'Data Program Studi berhasil ditambahkan.',
+    'createError' => 'Data Program Studi gagal ditambahkan.',
 
     // Validation
     'codeRequired' => 'Kolom Kode Program Studi wajib diisi.',
