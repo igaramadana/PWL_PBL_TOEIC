@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/jurusan', [JurusanController::class, 'index'])->name('jurusan.index');
             Route::post('/jurusan', [JurusanController::class, 'store'])->name('jurusan.store');
             Route::delete('/jurusan/{id}', [JurusanController::class, 'destroy'])->name('jurusan.delete');
+            Route::put('/jurusan/{id}', [JurusanController::class, 'update'])->name('jurusan.update');
+            Route::get('/jurusan/{id}/edit', [JurusanController::class, 'edit'])->name('jurusan.edit');
         });
     });
 

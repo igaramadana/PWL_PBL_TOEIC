@@ -23,5 +23,14 @@ return [
     'deleteSuccess' => 'Data jurusan berhasil dihapus',
     'deleteError' => 'Data jurusan gagal dihapus',
     'confirmDelete' => 'Apakah anda yakin ingin menghapus data jurusan ini?',
-    'deleteButton' => 'Hapus'
+    'deleteButton' => 'Hapus',
+
+    'errorToast' => 'Gagal menambahkan data jurusan',
+    'successToast' => 'Data jurusan berhasil ditambahkan',
+
+    // update
+    'modalEditHeader' => 'Edit Data Jurusan',
+    'modalFooterUpdate' => 'Ubah',
+    'updateSuccess' => 'Data jurusan berhasil diubah',
+    'updateError' => 'Data jurusan gagal diubah',
 ];

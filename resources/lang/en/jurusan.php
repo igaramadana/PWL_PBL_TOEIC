@@ -23,5 +23,14 @@ return [
     'deleteSuccess' => 'Major data has been deleted successfully',
     'deleteError' => 'Major data failed to delete',
     'confirmDelete' => 'Are you sure you want to delete this major data?',
-    'deleteBtn' => 'Delete'
+    'deleteBtn' => 'Delete',
+
+    'errorToast' => 'Failed to add major data: ',
+    'successToast' => 'Major data added successfully',
+
+    // Update
+    'modalEditHeader' => 'Edit Major Data',
+    'modalFooterUpdate' => 'Update',
+    'updateSuccess' => 'Major data has been updated successfully',
+    'updateError' => 'Major data failed to update',
 ];

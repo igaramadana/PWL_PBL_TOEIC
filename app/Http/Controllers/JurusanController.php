@@ -64,7 +64,7 @@ class JurusanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($jurusan_id)
     {
         //
     }
@@ -74,7 +74,32 @@ class JurusanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'jurusan_kode' => 'required|min:3|unique:jurusan,jurusan_kode,' . $id,
+            'jurusan_nama' => 'required',
+            'kampus_id' => 'required|exists:kampus,id'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('toast_error', __('jurusan.updateError'));
+        }
+
+        try {
+            $jurusan = JurusanModel::findOrFail($id);
+            $jurusan->update([
+                'jurusan_kode' => $request->jurusan_kode,
+                'jurusan_nama' => $request->jurusan_nama,
+                'kampus_id' => $request->kampus_id
+            ]);
+            return redirect()->route('jurusan.index')
+                ->with('toast_success', __('jurusan.updateSuccess'));
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('toast_error', __('jurusan.updateError') . $e->getMessage());
+        }
     }
 
     /**

@@ -2,14 +2,15 @@
 
 namespace App\Livewire;
 
+use App\Models\KampusModel;
 use App\Models\JurusanModel;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
-use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
 final class JurusanTable extends PowerGridComponent
@@ -85,12 +86,17 @@ final class JurusanTable extends PowerGridComponent
 
     public function actions(JurusanModel $row): array
     {
+        $kampus = KampusModel::all();
+
         return [
             Button::add('edit')
-                ->slot('Edit: ' . $row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id]),
+                ->slot(view('components.edit-button-jurusan', [
+                    'jurusan_id' => $row->id,
+                    'jurusan_kode' => $row->jurusan_kode,
+                    'jurusan_nama' => $row->jurusan_nama,
+                    'kampus_id' => $row->kampus_id,
+                    'kampus' => $kampus,
+                ])->render()),
             Button::add('delete')
                 ->slot(view('components.delete-button-jurusan', ['jurusan_id' => $row->id])->render())
         ];
