@@ -38,18 +38,6 @@
                 </button>
                 <ul id="dropdown-data-master" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="{{ url('/mahasiswa') }}" id="menu-mahasiswa"
-                            class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            Data Mahasiswa
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/tendik') }}" id="menu-tendik"
-                            class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            Data Tendik
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('kampus.index') }}" id="menu-kampus"
                             class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                             Data Kampus
@@ -67,71 +55,40 @@
                             Data Prodi
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ url('/mahasiswa') }}" id="menu-mahasiswa"
+                            class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                            Data Mahasiswa
+                        </a>
+                    </li>
                 </ul>
             </li>
 
-            <!-- Ujian -->
+            <!-- Pendaftaran -->
             <li>
-                <a href="#" id="menu-ujian"
+                <a href="#" id="menu-pendaftaran"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
+                            d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                     </svg>
-                    <span class="flex-1 whitespace-nowrap ms-3">Ujian</span>
+                    <span class="flex-1 whitespace-nowrap ms-3">Pendaftaran</span>
                 </a>
             </li>
 
-            <!-- Verifikasi Pendaftar -->
+            <!-- Hasil Ujian TOEIC -->
             <li>
-                <a href="#" id="menu-verifikasi"
+                <a href="#" id="menu-hasil-toeic"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m8 12 2 2 5-5m4.5 5.5 1-.938a2 2 0 0 0 .375-2.309L20 5m-2 2-3.5-3.5M2 5l3.5 3.5L5 7l3 3M18 5l-3.5 3.5L14 7l-3 3" />
-                    </svg>
-                    <span class="flex-1 whitespace-nowrap ms-3">Verifikasi Pendaftar</span>
-                </a>
-            </li>
-
-            <!-- Pembayaran -->
-            <li>
-                <a href="#" id="menu-pembayaran"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z" />
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M7 12v-1m8 1v-1m-8 4v-1m8 1v-1M3 4h18v9a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V4Zm0 0v9a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V4H3Z" />
+                            d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z" />
                     </svg>
-                    <span class="flex-1 whitespace-nowrap ms-3">Pembayaran</span>
-                </a>
-            </li>
-
-            <!-- Hasil Ujian -->
-            <li>
-                <a href="#" id="menu-hasil-ujian"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 10V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4m0 0a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h4ZM4 9h16v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9Z" />
-                    </svg>
-                    <span class="flex-1 whitespace-nowrap ms-3">Hasil Ujian</span>
-                </a>
-            </li>
-
-            <!-- Setting Roles -->
-            <li>
-                <a href="#" id="menu-roles"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 14v3m4-6V7a3 3 0 1 1 6 0v4M5 11h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1Z" />
-                    </svg>
-                    <span class="flex-1 whitespace-nowrap ms-3">Setting Roles</span>
+                    <span class="flex-1 whitespace-nowrap ms-3">Hasil Ujian TOEIC</span>
                 </a>
             </li>
 
@@ -142,9 +99,7 @@
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 8v1a7 7 0 1 1-14 0V8m0 0a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v0Z" />
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                     <span class="flex-1 whitespace-nowrap ms-3">Pengumuman</span>
                 </a>
@@ -210,7 +165,7 @@
                 // If this is a dropdown item, highlight the parent button
                 if (item.closest('[id^="dropdown-"]')) {
                     const dropdownId = item.closest('ul').id;
-                    const button = document.querySelector(`[aria-controls="${dropdownId}"]`);
+                    const button = document.querySelector([aria-controls="${dropdownId}"]);
                     if (button) {
                         button.classList.add('bg-gray-100', 'dark:bg-gray-700');
                         // Ensure dropdown is visible
@@ -230,7 +185,7 @@
                     // If this is a dropdown item, highlight the parent button
                     if (item.closest('[id^="dropdown-"]')) {
                         const dropdownId = item.closest('ul').id;
-                        const button = document.querySelector(`[aria-controls="${dropdownId}"]`);
+                        const button = document.querySelector([aria-controls="${dropdownId}"]);
                         if (button) {
                             button.classList.add('bg-gray-100', 'dark:bg-gray-700');
                             // Ensure dropdown is visible
