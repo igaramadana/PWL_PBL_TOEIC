@@ -19,15 +19,6 @@ class KampusController extends Controller
         ];
         return view('admin.kampus.index', compact('page'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('admin.kampus.create');
-    }
-
     /**
      * Store a newly created resource in storage.
      */
