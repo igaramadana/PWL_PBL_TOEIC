@@ -33,4 +33,8 @@ return [
     'modalFooterUpdate' => 'Ubah',
     'updateSuccess' => 'Data jurusan berhasil diubah',
     'updateError' => 'Data jurusan gagal diubah',
+
+    'modalDetailHeader' => 'Detail Data Jurusan',
+    'modalFormId' => 'ID Jurusan',
+    'modalDetailClose' => 'Tutup',
 ];

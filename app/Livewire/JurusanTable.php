@@ -89,6 +89,13 @@ final class JurusanTable extends PowerGridComponent
         $kampus = KampusModel::all();
 
         return [
+            Button::add('detail')
+                ->slot(view('components.detail-button-jurusan', [
+                    'jurusan_id' => $row->id,
+                    'jurusan_kode' => $row->jurusan_kode,
+                    'jurusan_nama' => $row->jurusan_nama,
+                    'kampus_nama' => $row->kampus->kampus_nama ?? '-'
+                ])->render()),
             Button::add('edit')
                 ->slot(view('components.edit-button-jurusan', [
                     'jurusan_id' => $row->id,

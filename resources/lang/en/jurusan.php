@@ -33,4 +33,9 @@ return [
     'modalFooterUpdate' => 'Update',
     'updateSuccess' => 'Major data has been updated successfully',
     'updateError' => 'Major data failed to update',
+
+    // Detail
+    'modalDetailHeader' => 'Detail Major Data',
+    'modalFormId' => 'Major ID',
+    'modalDetailClose' => 'Close',
 ];
