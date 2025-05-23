@@ -30,4 +30,9 @@ return [
     'modalFooterUpdate' => 'Update',
     'updateSuccess' => 'Program Study data has been updated successfully.',
     'updateError' => 'Failed to update Program Study data.',
+
+    // detail
+    'modalDetailHeader' => 'Prgram Study Detail',
+    'modalFormId' => 'Program Study ID',
+    'modalDetailClose' => 'Close'
 ];

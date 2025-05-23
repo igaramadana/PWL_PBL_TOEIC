@@ -87,6 +87,13 @@ final class ProdiTable extends PowerGridComponent
     {
         $jurusan = JurusanModel::all();
         return [
+            Button::add('detail')
+                ->slot(view('components.detail-button-prodi', [
+                    'prodi_id' => $row->id,
+                    'prodi_kode' => $row->prodi_kode,
+                    'prodi_nama' => $row->prodi_nama,
+                    'jurusan_nama' => $row->jurusan->jurusan_nama ?? '-',
+                ])->render()),
             Button::add('edit')
                 ->slot(view('components.edit-button-prodi', [
                     'prodi_id' => $row->id,

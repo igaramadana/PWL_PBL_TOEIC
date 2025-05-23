@@ -30,4 +30,9 @@ return [
     'modalFooterUpdate' => 'Ubah',
     'updateSuccess' => 'Data Program Studi berhasil diubah.',
     'updateError' => 'Data Program Studi gagal diubah.',
+
+    // detail
+    'modalDetailHeader' => 'Detail Program Studi',
+    'modalFormId' => 'ID Program Studi',
+    'modalDetailClose' => 'Tutup',
 ];
