@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/prodi', [ProdiController::class, 'index'])->name('prodi.index');
             Route::post('/prodi', [ProdiController::class, 'store'])->name('prodi.store');
             Route::delete('/prodi/{id}', [ProdiController::class, 'destroy'])->name('prodi.delete');
+            Route::put('/prodi/{id}', [ProdiController::class, 'update'])->name('prodi.update');
         });
     });
 

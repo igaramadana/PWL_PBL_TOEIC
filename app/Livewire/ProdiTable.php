@@ -3,13 +3,14 @@
 namespace App\Livewire;
 
 use App\Models\ProdiModel;
+use App\Models\JurusanModel;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
-use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 
 final class ProdiTable extends PowerGridComponent
@@ -84,8 +85,17 @@ final class ProdiTable extends PowerGridComponent
 
     public function actions(ProdiModel $row): array
     {
+        $jurusan = JurusanModel::all();
         return [
             Button::add('edit')
+                ->slot(view('components.edit-button-prodi', [
+                    'prodi_id' => $row->id,
+                    'prodi_kode' => $row->prodi_kode,
+                    'prodi_nama' => $row->prodi_nama,
+                    'jurusan_id' => $row->jurusan_id,
+                    'jurusan' => $jurusan,
+                ])->render()),
+            Button::add('delete')
                 ->slot(view('components.delete-button-prodi', ['prodi_id' => $row->id])->render())
         ];
     }

@@ -24,4 +24,10 @@ return [
     'confirmDelete' => 'Apakah Anda yakin ingin menghapus Program Study data ini?',
     'deleteSuccess' => 'Data Program Study success dihapus.',
     'deleteError' => 'Data Program Study gagal dihapus.',
+
+    // edit
+    'modalEditHeader' => 'Edit Program Studi',
+    'modalFooterUpdate' => 'Ubah',
+    'updateSuccess' => 'Data Program Studi berhasil diubah.',
+    'updateError' => 'Data Program Studi gagal diubah.',
 ];
