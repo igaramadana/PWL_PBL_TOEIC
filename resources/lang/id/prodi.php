@@ -18,4 +18,21 @@ return [
     'codeRequired' => 'Kolom Kode Program Studi wajib diisi.',
     'nameRequired' => 'Kolom Nama Program Studi wajib diisi.',
     'jurusanRequired' => 'Kolom Jurusan wajib diisi.',
+
+    // Delete
+    'deleteBtn' => 'Hapus',
+    'confirmDelete' => 'Apakah Anda yakin ingin menghapus Program Study data ini?',
+    'deleteSuccess' => 'Data Program Study success dihapus.',
+    'deleteError' => 'Data Program Study gagal dihapus.',
+
+    // edit
+    'modalEditHeader' => 'Edit Program Studi',
+    'modalFooterUpdate' => 'Ubah',
+    'updateSuccess' => 'Data Program Studi berhasil diubah.',
+    'updateError' => 'Data Program Studi gagal diubah.',
+
+    // detail
+    'modalDetailHeader' => 'Detail Program Studi',
+    'modalFormId' => 'ID Program Studi',
+    'modalDetailClose' => 'Tutup',
 ];

@@ -70,7 +70,32 @@ class ProdiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'prodi_kode' => 'required|min:3|unique:prodi,prodi_kode,' . $id,
+            'prodi_nama' => 'required',
+            'jurusan_id' => 'required|exists:jurusan,id'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('toast_error', __('prodi.updateError'));
+        }
+
+        try {
+            $prodi = ProdiModel::findOrFail($id);
+            $prodi->update([
+                'prodi_kode' => $request->prodi_kode,
+                'prodi_nama' => $request->prodi_nama,
+                'jurusan_id' => $request->jurusan_id
+            ]);
+            return redirect()->route('prodi.index')
+                ->with('toast_success', __('prodi.updateSuccess'));
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('toast_error', __('prodi.updateError') . $e->getMessage());
+        }
     }
 
     /**
@@ -78,6 +103,16 @@ class ProdiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $check = ProdiModel::find($id);
+        if (!$check) {
+            return redirect()->back()->with('toast_error', __('prodi.deletenotFound'));
+        }
+
+        try {
+            $check->delete();
+            return redirect()->route('prodi.index')->with('toast_success', __('prodi.deleteSuccess'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('toast_error', __('prodi.deleteError'));
+        }
     }
 }

@@ -165,7 +165,7 @@
                 // If this is a dropdown item, highlight the parent button
                 if (item.closest('[id^="dropdown-"]')) {
                     const dropdownId = item.closest('ul').id;
-                    const button = document.querySelector([aria-controls="${dropdownId}"]);
+                    const button = document.querySelector(`[aria-controls="${dropdownId}"]`);
                     if (button) {
                         button.classList.add('bg-gray-100', 'dark:bg-gray-700');
                         // Ensure dropdown is visible
@@ -185,7 +185,7 @@
                     // If this is a dropdown item, highlight the parent button
                     if (item.closest('[id^="dropdown-"]')) {
                         const dropdownId = item.closest('ul').id;
-                        const button = document.querySelector([aria-controls="${dropdownId}"]);
+                        const button = document.querySelector(`[aria-controls="${dropdownId}"]`);
                         if (button) {
                             button.classList.add('bg-gray-100', 'dark:bg-gray-700');
                             // Ensure dropdown is visible

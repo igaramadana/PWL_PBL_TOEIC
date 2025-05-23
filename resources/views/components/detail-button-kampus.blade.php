@@ -36,17 +36,17 @@
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
                     <div class="grid gap-4 mb-5">
-                        <div class="p-2 rounded-md border border-gray-600">
+                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-600">
                             <h4 class="text-sm font-medium text-gray-900 dark:text-white">
                                 {{ __('kampus.modalFormId') }}</h4>
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $kampus_id ?? '-' }}</p>
                         </div>
-                        <div class="p-2 rounded-md border border-gray-600">
+                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-600">
                             <h4 class="text-sm font-medium text-gray-900 dark:text-white">
                                 {{ __('kampus.modalFormName') }}</h4>
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $kampus_nama ?? '-' }}</p>
                         </div>
-                        <div class="p-2 rounded-md border border-gray-600">
+                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-600">
                             <h4 class="text-sm font-medium text-gray-900 dark:text-white">
                                 {{ __('kampus.modalFormAddress') }}</h4>
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $kampus_alamat ?? '-' }}</p>

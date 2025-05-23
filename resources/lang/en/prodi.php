@@ -18,4 +18,21 @@ return [
     'codeRequired' => 'The Program Study Code field is required.',
     'nameRequired' => 'The Program Study Name field is required.',
     'jurusanRequired' => 'The Major field is required.',
+
+    // Delete
+    'deleteBtn' => 'Delete',
+    'confirmDelete' => 'Are you sure you want to delete this Program Study data?',
+    'deleteSuccess' => 'Program Study data has been deleted successfully.',
+    'deleteError' => 'Failed to delete Program Study data.',
+
+    // Edit
+    'modalEditHeader' => 'Edit Program Study',
+    'modalFooterUpdate' => 'Update',
+    'updateSuccess' => 'Program Study data has been updated successfully.',
+    'updateError' => 'Failed to update Program Study data.',
+
+    // detail
+    'modalDetailHeader' => 'Prgram Study Detail',
+    'modalFormId' => 'Program Study ID',
+    'modalDetailClose' => 'Close'
 ];
