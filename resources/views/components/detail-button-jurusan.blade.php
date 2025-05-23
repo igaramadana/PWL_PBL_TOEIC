@@ -14,7 +14,7 @@
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full backdrop-blur-sm bg-gray-900/50 dark:bg-gray-900/80">
         <div class="relative p-4 w-full max-w-md max-h-full">
             <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-800">
+            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
                 <!-- Modal header -->
                 <div
                     class="flex justify-between items-center p-4 rounded-t border-b border-gray-200 md:p-5 dark:border-gray-600">
@@ -35,22 +35,22 @@
                 <!-- Modal body -->
                 <div class="p-4 md:p-5">
                     <div class="grid gap-4 mb-5">
-                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-700">
+                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-600">
                             <h4 class="text-sm font-medium text-gray-900 dark:text-white">
                                 {{ __('jurusan.modalFormId') }}</h4>
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $jurusan_id ?? '-' }}</p>
                         </div>
-                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-700">
+                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-600">
                             <h4 class="text-sm font-medium text-gray-900 dark:text-white">
                                 {{ __('jurusan.modalFormCode') }}</h4>
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $jurusan_kode ?? '-' }}</p>
                         </div>
-                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-700">
+                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-600">
                             <h4 class="text-sm font-medium text-gray-900 dark:text-white">
                                 {{ __('jurusan.modalFormName') }}</h4>
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $jurusan_nama ?? '-' }}</p>
                         </div>
-                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-700">
+                        <div class="p-2 bg-white rounded-md border border-gray-600 dark:bg-gray-600">
                             <h4 class="text-sm font-medium text-gray-900 dark:text-white">
                                 {{ __('jurusan.modalFormKampus') }}</h4>
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ $kampus_nama ?? '-' }}</p>
