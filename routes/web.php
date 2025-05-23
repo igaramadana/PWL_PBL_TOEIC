@@ -48,6 +48,7 @@ Route::middleware('auth')->group(function () {
             // Prodi
             Route::get('/prodi', [ProdiController::class, 'index'])->name('prodi.index');
             Route::post('/prodi', [ProdiController::class, 'store'])->name('prodi.store');
+            Route::delete('/prodi/{id}', [ProdiController::class, 'destroy'])->name('prodi.delete');
         });
     });
 

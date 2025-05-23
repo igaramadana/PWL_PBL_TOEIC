@@ -18,4 +18,10 @@ return [
     'codeRequired' => 'Kolom Kode Program Studi wajib diisi.',
     'nameRequired' => 'Kolom Nama Program Studi wajib diisi.',
     'jurusanRequired' => 'Kolom Jurusan wajib diisi.',
+
+    // Delete
+    'deleteBtn' => 'Hapus',
+    'confirmDelete' => 'Apakah Anda yakin ingin menghapus Program Study data ini?',
+    'deleteSuccess' => 'Data Program Study success dihapus.',
+    'deleteError' => 'Data Program Study gagal dihapus.',
 ];

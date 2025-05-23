@@ -78,6 +78,16 @@ class ProdiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $check = ProdiModel::find($id);
+        if (!$check) {
+            return redirect()->back()->with('toast_error', __('prodi.deletenotFound'));
+        }
+
+        try {
+            $check->delete();
+            return redirect()->route('prodi.index')->with('toast_success', __('prodi.deleteSuccess'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('toast_error', __('prodi.deleteError'));
+        }
     }
 }

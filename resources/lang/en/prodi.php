@@ -18,4 +18,11 @@ return [
     'codeRequired' => 'The Program Study Code field is required.',
     'nameRequired' => 'The Program Study Name field is required.',
     'jurusanRequired' => 'The Major field is required.',
+
+    // Delete
+    'deleteBtn' => 'Delete',
+    'confirmDelete' => 'Are you sure you want to delete this Program Study data?',
+    'deleteSuccess' => 'Program Study data has been deleted successfully.',
+    'deleteError' => 'Failed to delete Program Study data.',
+
 ];
