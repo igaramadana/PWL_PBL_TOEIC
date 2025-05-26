@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\KampusController;
+use App\Http\Controllers\TendikController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\AdminTendikController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
 
@@ -50,6 +52,10 @@ Route::middleware('auth')->group(function () {
             Route::post('/prodi', [ProdiController::class, 'store'])->name('prodi.store');
             Route::delete('/prodi/{id}', [ProdiController::class, 'destroy'])->name('prodi.delete');
             Route::put('/prodi/{id}', [ProdiController::class, 'update'])->name('prodi.update');
+
+            // Tendik
+            Route::get('/tendik', [AdminTendikController::class, 'index'])->name('admin.tendik.index');
+            Route::get('/tendik/detail/{id}', [AdminTendikController::class, 'show'])->name('admin.tendik.detail');
         });
     });
 
