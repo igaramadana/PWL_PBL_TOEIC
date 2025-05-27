@@ -11,7 +11,7 @@
     </div>
 
     <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <form action="#" method="POST">
+        <form action="{{ route('pengumuman.update', $pengumuman->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="grid gap-4 mb-4 sm:grid-cols-2">

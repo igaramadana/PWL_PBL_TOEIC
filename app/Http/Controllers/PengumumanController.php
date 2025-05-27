@@ -48,4 +48,19 @@ class PengumumanController extends Controller
         ];
         return view('admin.pengumuman.edit', compact('page', 'pengumuman'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'judul' => 'required|string|max:255',
+            'isi' => 'required|string',
+        ]);
+        $pengumuman = PengumumanModel::findOrFail($id);
+        try {
+            $pengumuman->update($validated);
+            return redirect()->route('pengumuman.index')->with('toast_success', __('pengumuman.updateSuccess'));
+        } catch (\Exception $e) {
+            return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.updateError'));
+        }
+    }
 }

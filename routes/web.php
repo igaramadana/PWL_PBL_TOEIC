@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
             Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
             Route::get('/pengumuman/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
+            Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
         });
     });
 
