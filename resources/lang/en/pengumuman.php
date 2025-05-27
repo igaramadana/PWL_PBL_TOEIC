@@ -12,4 +12,8 @@ return [
 
     'createSuccess' => 'Announcement created successfully',
     'createError' => 'Announcement creation failed',
+
+    'editTitle' => 'Edit Announcement',
+    'btnUpdate' => 'Update',
+    'btnBack' => 'Back',
 ];

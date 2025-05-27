@@ -39,4 +39,13 @@ class PengumumanController extends Controller
             return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.createError'));
         }
     }
+
+    public function edit($id)
+    {
+        $pengumuman = PengumumanModel::findOrFail($id);
+        $page = (object) [
+            'title' => __('pengumuman.title'),
+        ];
+        return view('admin.pengumuman.edit', compact('page', 'pengumuman'));
+    }
 }

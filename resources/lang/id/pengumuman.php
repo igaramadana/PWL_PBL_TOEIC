@@ -12,4 +12,8 @@ return [
 
     'createSuccess' => 'Pengumuman berhasil ditambahkan',
     'createError' => 'Pengumuman gagal ditambahkan',
+
+    'editTitle' => 'Edit Pengumuman',
+    'btnUpdate' => 'Perbarui',
+    'btnBack' => 'Kembali',
 ];

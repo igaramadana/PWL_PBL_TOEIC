@@ -177,6 +177,15 @@
             }
         }
 
+        // Check for edit pages first
+        if (currentPath.includes('/admin/pengumuman') && currentPath !== '/admin/pengumuman') {
+            const pengumumanMenu = document.getElementById('menu-pengumuman');
+            if (pengumumanMenu) {
+                pengumumanMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
+                return;
+            }
+        }
+
         // Check exact matches first
         let activeFound = false;
         document.querySelectorAll('#logo-sidebar a[id^="menu-"]').forEach(item => {

@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
             // Pengumuman
             Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
             Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
+            Route::get('/pengumuman/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
         });
     });
 
