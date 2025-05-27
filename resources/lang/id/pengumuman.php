@@ -16,4 +16,7 @@ return [
     'editTitle' => 'Edit Pengumuman',
     'btnUpdate' => 'Perbarui',
     'btnBack' => 'Kembali',
+
+    'updateSuccess' => 'Pengumuman berhasil diperbarui',
+    'updateError' => 'Pengumuman gagal diperbarui',
 ];

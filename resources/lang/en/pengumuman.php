@@ -16,4 +16,6 @@ return [
     'editTitle' => 'Edit Announcement',
     'btnUpdate' => 'Update',
     'btnBack' => 'Back',
+    'updateSuccess' => 'Announcement updated successfully',
+    'updateError' => 'Announcement update failed',
 ];
