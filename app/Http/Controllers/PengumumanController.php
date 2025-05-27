@@ -63,4 +63,15 @@ class PengumumanController extends Controller
             return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.updateError'));
         }
     }
+
+    public function destroy($id)
+    {
+        $pengumuman = PengumumanModel::findOrFail($id);
+        try {
+            $pengumuman->delete();
+            return redirect()->route('pengumuman.index')->with('toast_success', __('pengumuman.deleteSuccess'));
+        } catch (\Exception $e) {
+            return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.deleteError'));
+        }
+    }
 }
