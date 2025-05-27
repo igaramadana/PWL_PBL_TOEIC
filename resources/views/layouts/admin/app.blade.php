@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
-<body class="flex flex-col min-h-screen bg-white dark:bg-gray-900">
+<body class="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
     @include('layouts.admin.partials.header')
     @include('layouts.admin.partials.sidebar')
 

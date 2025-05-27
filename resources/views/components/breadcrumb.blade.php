@@ -1,5 +1,5 @@
-<<div class="block mt-6 mb-6">
-    <nav class="flex px-5 py-3 text-gray-700 bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700"
+<<div class="block mt-6 mb-6 shadow-sm">
+    <nav class="flex px-5 py-3 text-gray-700 bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             @foreach ($pages as $index => $page)
