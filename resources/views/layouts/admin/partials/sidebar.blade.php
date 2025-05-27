@@ -1,5 +1,5 @@
 <aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 pt-20 w-64 h-screen bg-white border-r border-gray-200 transition-transform -translate-x-full sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-0 left-0 z-40 pt-20 w-64 h-screen bg-white border-r border-gray-200 shadow-sm transition-transform -translate-x-full sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
     <div class="overflow-y-auto px-3 pb-4 h-full bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
@@ -100,7 +100,7 @@
 
             <!-- Pengumuman -->
             <li>
-                <a href="#" id="menu-pengumuman"
+                <a href="{{ route('pengumuman.index') }}" id="menu-pengumuman"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -166,7 +166,7 @@
             const tendikMenu = document.getElementById('menu-tendik');
             if (tendikMenu) {
                 tendikMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
-                
+
                 // Highlight parent dropdown
                 const dataMasterButton = document.getElementById('menu-data-master');
                 if (dataMasterButton) {
