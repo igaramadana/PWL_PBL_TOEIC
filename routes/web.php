@@ -6,6 +6,7 @@ use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\KampusController;
 use App\Http\Controllers\TendikController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\AdminTendikController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
@@ -56,6 +57,10 @@ Route::middleware('auth')->group(function () {
             // Tendik
             Route::get('/tendik', [AdminTendikController::class, 'index'])->name('admin.tendik.index');
             Route::get('/tendik/detail/{id}', [AdminTendikController::class, 'show'])->name('admin.tendik.detail');
+
+            // Pengumuman
+            Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
+            Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
         });
     });
 
