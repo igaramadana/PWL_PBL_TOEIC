@@ -2,7 +2,7 @@
 
 return [
     // Page Register
-    'titleRegister' => 'Register | PBL TOEIC',
+    'titleRegister' => 'Register | SKILLIFY',
     'registerMhsTitle' => 'Register as Mahasiswa',
     'formName' => 'Full Name:',
     'formNim' => 'Student ID Number:',

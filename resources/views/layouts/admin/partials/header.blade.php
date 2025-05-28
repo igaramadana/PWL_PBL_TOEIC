@@ -15,9 +15,8 @@
                     </svg>
                 </button>
                 <a href="/home" class="flex ms-2 md:me-24">
-                    <img src="/img/PolinemaLogo.png" class="h-8 me-3" alt="FlowBite Logo" />
-                    <span class="self-center text-xl font-semibold whitespace-nowrap sm:text-2xl dark:text-white">PBL
-                        TOEIC</span>
+                    <img src="/img/SkillifyLogo.png" class="h-8 w-auto me-3" alt="SKILLIFY" style="width: 50px; height: auto";>
+                    <span class="self-center text-xl font-semibold whitespace-nowrap sm:text-2xl dark:text-white"></span>
                 </a>
             </div>
             <div class="flex items-center">

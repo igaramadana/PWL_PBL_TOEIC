@@ -2,7 +2,7 @@
 
 return [
     // Page Register
-    'titleRegister' => 'Daftar | PBL TOEIC',
+    'titleRegister' => 'Daftar | SKILLIFY',
     'registerMhsTitle' => 'Daftar sebagai Mahasiswa',
     'formName' => 'Nama Lengkap:',
     'formNim' => 'Nomor Induk Mahasiswa:',

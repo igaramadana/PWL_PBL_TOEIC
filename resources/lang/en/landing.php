@@ -1,7 +1,7 @@
 <?php
 return [
     // Main
-    'pageTitle' => 'Welcome to PBL TOEIC',
+    'pageTitle' => 'Welcome to SKILLIFY',
     'login' => 'Login',
 
     // Navbar

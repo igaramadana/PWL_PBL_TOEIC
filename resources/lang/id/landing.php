@@ -1,7 +1,7 @@
 <?php
 return [
     // Main
-    'pageTitle' => 'Selamat Datang di PBL TOEIC',
+    'pageTitle' => 'Selamat Datang di SILLIFY',
     'login' => 'Masuk',
 
     // Navbar

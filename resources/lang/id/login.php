@@ -1,7 +1,7 @@
 <?php
 return [
     // Page Login
-    'titleLogin' => 'Masuk | PBL TOEIC',
+    'titleLogin' => 'Masuk | SKILLIFY',
     'loginTitle' => 'Masuk ke akun Anda',
     'loginEmail' => 'Email',
     'loginPassword' => 'Kata Sandi',

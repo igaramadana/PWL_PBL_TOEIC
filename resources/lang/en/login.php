@@ -1,7 +1,7 @@
 <?php
 return [
     // Page Login
-    'titleLogin' => 'Login | PBL TOEIC',
+    'titleLogin' => 'Login | SKILLFY',
     'loginTitle' => 'Sign in to your account',
     'loginEmail' => 'Email',
     'loginPassword' => 'Password',

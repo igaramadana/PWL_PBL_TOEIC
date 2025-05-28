@@ -25,8 +25,7 @@
     <main>
         <section class="flex flex-col justify-center items-center p-4 my-6 min-h-screen">
             <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-                <img class="mr-2 w-8 h-8" src="/img/PolinemaLogo.png" alt="logo">
-                PBL TOEIC
+                <img src="/img/SkillifyLogo.png" alt="logo" style="width: 100px; height: auto;">
             </a>
             <div class="w-full max-w-2xl bg-white rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700" data-aos="zoom-in-down">
                 <div class="overflow-y-auto p-6 space-y-4 md:space-y-6 sm:p-8">
