@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/mahasiswa') }}" id="menu-mahasiswa"
+                        <a href="{{ route('admin.mahasiswa.index') }}" id="menu-mahasiswa"
                             class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-blue-600">
                             Data Mahasiswa
                         </a>
@@ -167,6 +167,21 @@
             if (tendikMenu) {
                 tendikMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
 
+                // Highlight parent dropdown
+                const dataMasterButton = document.getElementById('menu-data-master');
+                if (dataMasterButton) {
+                    dataMasterButton.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
+                    document.getElementById('dropdown-data-master').classList.remove('hidden');
+                }
+                return;
+            }
+        }
+
+        // Check for Detail pages mahasiswa
+        if (currentPath.includes('/admin/mahasiswa/') && currentPath !== '/admin/mahasiswa') {
+            const mahasiswaMenu = document.getElementById('menu-mahasiswa');
+            if (mahasiswaMenu) {
+                mahasiswaMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
                 // Highlight parent dropdown
                 const dataMasterButton = document.getElementById('menu-data-master');
                 if (dataMasterButton) {

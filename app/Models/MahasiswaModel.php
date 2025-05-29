@@ -19,7 +19,6 @@ class MahasiswaModel extends Model
         'prodi_id',
         'status',
         'angkatan',
-        'kampus_id',
         'daftar_ujian'
     ];
 
@@ -31,10 +30,5 @@ class MahasiswaModel extends Model
     public function prodi()
     {
         return $this->belongsTo(ProdiModel::class, 'prodi_id');
-    }
-
-    public function kampus()
-    {
-        return $this->belongsTo(KampusModel::class, 'kampus_id');
     }
 }
