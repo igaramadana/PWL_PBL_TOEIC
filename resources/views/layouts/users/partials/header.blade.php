@@ -24,7 +24,8 @@
             <div class="flex items-center">
                 <div class="hidden items-center mt-1 cursor-pointer sm:flex lg:flex lg:justify-center sm:justify-end">
                     @auth
-                        <h1 class="font-semibold text-gray-900 dark:text-white">{{ auth()->user()->admin->admin_nama }}</h1>
+                        <h1 class="font-semibold text-gray-900 dark:text-white">
+                            {{ auth()->user()->mahasiswa->mahasiswa_nama }}</h1>
                     @endauth
                 </div>
                 <div class="flex items-center ms-3">
@@ -42,7 +43,7 @@
                         <div class="px-4 py-3" role="none">
                             <p class="text-sm text-gray-900 dark:text-white" role="none">
                                 @auth
-                                    {{ auth()->user()->admin->admin_nama }}
+                                    {{ auth()->user()->mahasiswa->mahasiswa_nama }}
                                 @endauth
                             </p>
                             <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
