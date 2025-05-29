@@ -10,6 +10,7 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\AdminTendikController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminMahasiswaController;
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
@@ -53,6 +54,10 @@ Route::middleware('auth')->group(function () {
             Route::post('/prodi', [ProdiController::class, 'store'])->name('prodi.store');
             Route::delete('/prodi/{id}', [ProdiController::class, 'destroy'])->name('prodi.delete');
             Route::put('/prodi/{id}', [ProdiController::class, 'update'])->name('prodi.update');
+
+            // Mahasiswa
+            Route::get('/mahasiswa', [AdminMahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
+            Route::get('/mahasiswa/detail/{id}', [AdminMahasiswaController::class, 'show'])->name('admin.mahasiswa.detail');
 
             // Tendik
             Route::get('/tendik', [AdminTendikController::class, 'index'])->name('admin.tendik.index');

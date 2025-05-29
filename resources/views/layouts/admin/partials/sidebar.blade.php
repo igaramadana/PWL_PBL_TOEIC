@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url('/mahasiswa') }}" id="menu-mahasiswa"
+                        <a href="{{ route('admin.mahasiswa.index') }}" id="menu-mahasiswa"
                             class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-blue-600">
                             Data Mahasiswa
                         </a>
