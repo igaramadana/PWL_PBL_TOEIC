@@ -177,6 +177,21 @@
             }
         }
 
+        // Check for Detail pages mahasiswa
+        if (currentPath.includes('/admin/mahasiswa/') && currentPath !== '/admin/mahasiswa') {
+            const mahasiswaMenu = document.getElementById('menu-mahasiswa');
+            if (mahasiswaMenu) {
+                mahasiswaMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
+                // Highlight parent dropdown
+                const dataMasterButton = document.getElementById('menu-data-master');
+                if (dataMasterButton) {
+                    dataMasterButton.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
+                    document.getElementById('dropdown-data-master').classList.remove('hidden');
+                }
+                return;
+            }
+        }
+
         // Check for edit pages first
         if (currentPath.includes('/admin/pengumuman') && currentPath !== '/admin/pengumuman') {
             const pengumumanMenu = document.getElementById('menu-pengumuman');
