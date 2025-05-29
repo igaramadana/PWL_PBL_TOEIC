@@ -27,17 +27,24 @@
             <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                 <img src="/img/SkillifyLogo.png" alt="logo" style="width: 100px; height: auto;">
             </a>
-            <div class="w-full max-w-2xl bg-white rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700" data-aos="zoom-in-down">
+            <div class="w-full max-w-2xl bg-white rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700"
+                data-aos="zoom-in-down">
                 <div class="overflow-y-auto p-6 space-y-4 md:space-y-6 sm:p-8">
                     <!-- Tabs -->
                     <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                         <div class="flex justify-center">
-                            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+                            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab"
+                                data-tabs-toggle="#default-tab-content" role="tablist">
                                 <li class="me-2" role="presentation">
-                                    <button class="inline-block p-4 rounded-t-lg border-b-2 cursor-pointer" id="mahasiswa-tab" data-tabs-target="#mahasiswa" type="button" role="tab" aria-controls="mahasiswa" aria-selected="true">Mahasiswa</button>
+                                    <button class="inline-block p-4 rounded-t-lg border-b-2 cursor-pointer"
+                                        id="mahasiswa-tab" data-tabs-target="#mahasiswa" type="button" role="tab"
+                                        aria-controls="mahasiswa" aria-selected="true">Mahasiswa</button>
                                 </li>
                                 <li class="me-2" role="presentation">
-                                    <button class="inline-block p-4 rounded-t-lg border-b-2 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="tendik-tab" data-tabs-target="#tendik" type="button" role="tab" aria-controls="tendik" aria-selected="false">Tendik</button>
+                                    <button
+                                        class="inline-block p-4 rounded-t-lg border-b-2 cursor-pointer hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                        id="tendik-tab" data-tabs-target="#tendik" type="button" role="tab"
+                                        aria-controls="tendik" aria-selected="false">Tendik</button>
                                 </li>
                             </ul>
                         </div>
@@ -45,131 +52,280 @@
                     <!-- Tab Content -->
                     <div id="default-tab-content">
                         <!-- Form Mahasiswa -->
-                        <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="mahasiswa" role="tabpanel" aria-labelledby="mahasiswa-tab">
-                            <h1 class="mb-6 text-xl font-bold tracking-tight leading-tight text-gray-900 md:text-2xl dark:text-white">
+                        <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="mahasiswa" role="tabpanel"
+                            aria-labelledby="mahasiswa-tab">
+                            <h1
+                                class="mb-6 text-xl font-bold tracking-tight leading-tight text-gray-900 md:text-2xl dark:text-white">
                                 {{ __('register.registerMhsTitle') }}
                             </h1>
-                            <form class="space-y-4 md:space-y-6" action="#">
+                            <form class="space-y-4 md:space-y-6" action="{{ route('register') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="role" value="MHS">
+
+                                <!-- Nama -->
                                 <div class="mb-6">
-                                    <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formName') }}</label>
-                                    <input type="nama" id="nama" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Iga Ramadana" required />
+                                    <label for="nama"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formName') }}</label>
+                                    <input type="text" name="nama" id="nama" value="{{ old('nama') }}"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Iga Ramadana" required />
+                                    @error('nama')
+                                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
                                 </div>
+
+                                <!-- NIM dan No Telp -->
                                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                                     <div>
-                                        <label for="nim" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formNim') }}</label>
-                                        <input type="text" id="nim" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123456789" required />
+                                        <label for="nim"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formNim') }}</label>
+                                        <input type="text" name="nim" id="nim" value="{{ old('nim') }}"
+                                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="123456789" required />
+                                        @error('nim')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                     <div>
-                                        <label for="phone-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{__('register.formPhone')}}</label>
-                                        <div class="relative">
-                                            <div class="flex absolute inset-y-0 top-0 items-center pointer-events-none start-0 ps-3.5">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 18">
-                                                    <path d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z"/>
-                                                </svg>
+
+                                        <div class="mx-auto max-w-sm">
+                                            <label for="no_telp"
+                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
+                                                number:</label>
+                                            <div class="relative">
+                                                <div
+                                                    class="flex absolute inset-y-0 top-0 items-center pointer-events-none start-0 ps-3.5">
+                                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                        fill="currentColor" viewBox="0 0 19 18">
+                                                        <path
+                                                            d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z" />
+                                                    </svg>
+                                                </div>
+                                                <input type="number" name="no_telp" id="no_telp"
+                                                    aria-describedby="helper-text-explanation"
+                                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 ps-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
+                                                    required />
+                                                @error('no_telp')
+                                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                                @enderror
                                             </div>
-                                            <input type="text" id="phone-input" aria-describedby="helper-text-explanation" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 ps-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="grid gap-6 mb-6 md:grid-cols-3">
                                     <div>
-                                        <label for="campus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formCampus') }}</label>
-                                        <select id="campus" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option selected>{{ __('register.formCampus') }}</option>
-                                            <option value="main">Main Campus (Malang)</option>
-                                            <option value="kediri">PSDKU Kediri</option>
-                                            <option value="lumajang">PSDKU Lumajang</option>
-                                            <option value="pamekasan">PSDKU Pamekasan</option>
+                                        <label for="kampus_id"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kampus</label>
+                                        <select name="kampus_id" id="kampus_id"
+                                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required>
+                                            <option value="">Pilih Kampus</option>
+                                            @foreach ($kampuses as $kampus)
+                                                <option value="{{ $kampus->id }}">{{ $kampus->kampus_nama }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div>
-                                        <label for="jurusan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formMajor') }}</label>
-                                        <select id="jurusan" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option selected>{{ __('register.formMajor') }}</option>
-                                            <option value="ti">Teknologi Informasi</option>
-                                            <option value="ts">Teknik Sipil</option>
+                                        <label for="jurusan_id"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jurusan</label>
+                                        <select name="jurusan_id" id="jurusan_id"
+                                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required disabled>
+                                            <option value="">Pilih Jurusan</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label for="prodi_id"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Program
+                                            Studi</label>
+                                        <select name="prodi_id" id="prodi_id"
+                                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            required disabled>
+                                            <option value="">Pilih Program Studi</option>
                                         </select>
                                     </div>
                                 </div>
+
+                                <!-- Angkatan -->
                                 <div class="mb-6">
-                                    <label for="prodi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formProdi') }}</label>
-                                    <select id="prodi" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected>{{ __('register.formProdi') }}</option>
-                                        <option value="sib">D-IV Sistem Informasi Bisnis</option>
-                                        <option value="ti">D-IV Teknik Informatika</option>
+                                    <div>
+                                        <label for="angkatan"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Angkatan') }}</label>
+                                        <input type="number" name="angkatan" id="angkatan"
+                                            value="{{ old('angkatan') }}"
+                                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="2023" required />
+                                        @error('angkatan')
+                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <!-- Status -->
+                                <div class="mb-6">
+                                    <label for="status"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Status') }}</label>
+                                    <select name="status" id="status"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required>
+                                        <option value="Aktif">{{ __('Aktif') }}</option>
+                                        <option value="Alumni">{{ __('Alumni') }}</option>
                                     </select>
+                                    @error('status')
+                                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
                                 </div>
+
+                                <!-- Email -->
                                 <div class="mb-6">
-                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formEmail') }}</label>
-                                    <input type="email" id="email" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required />
+                                    <label for="email"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formEmail') }}</label>
+                                    <input type="email" name="email" id="email" value="{{ old('email') }}"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="name@company.com" required />
+                                    @error('email')
+                                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
                                 </div>
+
+                                <!-- Password -->
                                 <div class="mb-6">
-                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formPassword') }}</label>
-                                    <input type="password" id="password" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required />
+                                    <label for="password"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formPassword') }}</label>
+                                    <input type="password" name="password" id="password"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="•••••••••" required />
+                                    @error('password')
+                                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
                                 </div>
+
+                                <!-- Confirm Password -->
                                 <div class="mb-6">
-                                    <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formConfirmPassword') }}</label>
-                                    <input type="password" id="confirm_password" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required />
+                                    <label for="confirm_password"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formConfirmPassword') }}</label>
+                                    <input type="password" name="password_confirmation" id="confirm_password"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="•••••••••" required />
                                 </div>
+
+                                <!-- Terms and Conditions -->
                                 <div class="flex items-start mb-6">
                                     <div class="flex items-center h-5">
-                                        <input id="remember" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded-sm border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required />
+                                        <input id="remember" name="terms" type="checkbox" value="1"
+                                            class="w-4 h-4 bg-gray-50 rounded-sm border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                                            required />
                                     </div>
-                                    <label for="remember" class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+                                    <label for="remember"
+                                        class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">I agree with
+                                        the <a href="#"
+                                            class="text-blue-600 hover:underline dark:text-blue-500">terms and
+                                            conditions</a>.</label>
+                                    @error('terms')
+                                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                                <button type="submit" class="px-5 py-2.5 w-full text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('register.buttonRegister') }}</button>
+
+                                <!-- Submit Button -->
+                                <button type="submit"
+                                    class="px-5 py-2.5 w-full text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('register.buttonRegister') }}</button>
+
+                                <!-- Login Link -->
                                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                    {{ __('register.haveAccount') }} <a href="/login" class="font-medium text-blue-600 hover:underline dark:text-blue-500">{{ __('register.buttonloginHere') }}</a>
+                                    {{ __('register.haveAccount') }} <a href="/login"
+                                        class="font-medium text-blue-600 hover:underline dark:text-blue-500">{{ __('register.buttonloginHere') }}</a>
                                 </p>
                             </form>
                         </div>
 
                         <!-- Form Tendik -->
-                        <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="tendik" role="tabpanel" aria-labelledby="tendik-tab">
-                            <h1 class="mb-6 text-xl font-bold tracking-tight leading-tight text-gray-900 md:text-2xl dark:text-white">
+                        <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="tendik" role="tabpanel"
+                            aria-labelledby="tendik-tab">
+                            <h1
+                                class="mb-6 text-xl font-bold tracking-tight leading-tight text-gray-900 md:text-2xl dark:text-white">
                                 {{ __('register.registerTndTitle') }}
                             </h1>
                             <form class="space-y-4 md:space-y-6" action="#">
                                 <div class="mb-6">
-                                    <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formName') }}</label>
-                                    <input type="nama" id="nama" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Iga Ramadana" required />
+                                    <label for="nama"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formName') }}</label>
+                                    <input type="nama" id="nama"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Iga Ramadana" required />
                                 </div>
                                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                                     <div>
-                                        <label for="nip" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formNip') }}</label>
-                                        <input type="text" id="nim" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123456789" required />
+                                        <label for="nip"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formNip') }}</label>
+                                        <input type="text" id="nim"
+                                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="123456789" required />
                                     </div>
                                     <div>
-                                        <label for="phone-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{__('register.formPhone')}}</label>
+                                        <label for="phone-input"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formPhone') }}</label>
                                         <div class="relative">
-                                            <div class="flex absolute inset-y-0 top-0 items-center pointer-events-none start-0 ps-3.5">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 18">
-                                                    <path d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z"/>
+                                            <div
+                                                class="flex absolute inset-y-0 top-0 items-center pointer-events-none start-0 ps-3.5">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="currentColor" viewBox="0 0 19 18">
+                                                    <path
+                                                        d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z" />
                                                 </svg>
                                             </div>
-                                            <input type="text" id="phone-input" aria-describedby="helper-text-explanation" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 ps-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
+                                            <input type="text" id="phone-input"
+                                                aria-describedby="helper-text-explanation"
+                                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 ps-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
+                                                required />
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="mb-6">
-                                    <label for="email_tendik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formEmail') }}</label>
-                                    <input type="email" id="email_tendik" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required />
+                                    <label for="email_tendik"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formEmail') }}</label>
+                                    <input type="email" id="email_tendik"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="name@company.com" required />
                                 </div>
                                 <div class="mb-6">
-                                    <label for="password_tendik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formPassword') }}</label>
-                                    <input type="password" id="password_tendik" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required />
+                                    <label for="password_tendik"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formPassword') }}</label>
+                                    <input type="password" id="password_tendik"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="•••••••••" required />
                                 </div>
                                 <div class="mb-6">
-                                    <label for="confirm_password_tendik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formConfirmPassword') }}</label>
-                                    <input type="password" id="confirm_password_tendik" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required />
+                                    <label for="confirm_password_tendik"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formConfirmPassword') }}</label>
+                                    <input type="password" id="confirm_password_tendik"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="•••••••••" required />
                                 </div>
                                 <div class="flex items-start mb-6">
                                     <div class="flex items-center h-5">
-                                        <input id="remember_tendik" type="checkbox" value="" class="w-4 h-4 bg-gray-50 rounded-sm border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required />
+                                        <input id="remember_tendik" type="checkbox" value=""
+                                            class="w-4 h-4 bg-gray-50 rounded-sm border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                                            required />
                                     </div>
-                                    <label for="remember_tendik" class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a>.</label>
+                                    <label for="remember_tendik"
+                                        class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">I agree with
+                                        the <a href="#"
+                                            class="text-blue-600 hover:underline dark:text-blue-500">terms and
+                                            conditions</a>.</label>
                                 </div>
-                                <button type="submit" class="px-5 py-2.5 w-full text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('register.buttonRegister') }}</button>
+                                <button type="submit"
+                                    class="px-5 py-2.5 w-full text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('register.buttonRegister') }}</button>
                                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                    {{ __('register.haveAccount') }} <a href="{{ route('login') }}" class="font-medium text-blue-600 hover:underline dark:text-blue-500">{{ __('register.buttonloginHere') }}</a>
+                                    {{ __('register.haveAccount') }} <a href="{{ route('login') }}"
+                                        class="font-medium text-blue-600 hover:underline dark:text-blue-500">{{ __('register.buttonloginHere') }}</a>
                                 </p>
                             </form>
                         </div>
@@ -179,10 +335,48 @@
         </section>
     </main>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
+
+
+        $(document).ready(function() {
+            $('#kampus_id').change(function() {
+                var kampus_id = $(this).val();
+                $('#jurusan_id').empty().append('<option value="">Pilih Jurusan</option>').prop('disabled',
+                    true);
+                $('#prodi_id').empty().append('<option value="">Pilih Program Studi</option>').prop(
+                    'disabled', true);
+
+                if (kampus_id) {
+                    $.get('/get-jurusan/' + kampus_id, function(data) {
+                        $('#jurusan_id').prop('disabled', false);
+                        $.each(data, function(key, value) {
+                            $('#jurusan_id').append('<option value="' + value.id + '">' +
+                                value.jurusan_nama + '</option>');
+                        });
+                    });
+                }
+            });
+
+            $('#jurusan_id').change(function() {
+                var jurusan_id = $(this).val();
+                $('#prodi_id').empty().append('<option value="">Pilih Program Studi</option>').prop(
+                    'disabled', true);
+
+                if (jurusan_id) {
+                    $.get('/get-prodi/' + jurusan_id, function(data) {
+                        $('#prodi_id').prop('disabled', false);
+                        $.each(data, function(key, value) {
+                            $('#prodi_id').append('<option value="' + value.id + '">' +
+                                value.prodi_nama + '</option>');
+                        });
+                    });
+                }
+            });
+        });
     </script>
 </body>
 

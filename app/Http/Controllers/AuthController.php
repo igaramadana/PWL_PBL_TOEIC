@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RoleModel;
+use App\Models\UserModel;
+use App\Models\ProdiModel;
+use App\Models\KampusModel;
+use App\Models\JurusanModel;
 use Illuminate\Http\Request;
+use App\Models\MahasiswaModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -17,7 +24,8 @@ class AuthController extends Controller
     public function registerPage()
     {
         $title = (__('register.titleRegister'));
-        return view('auth.register', compact('title'));
+        $kampuses = KampusModel::all();
+        return view('auth.register', compact('title', 'kampuses'));
     }
 
     public function login(Request $request)
@@ -74,5 +82,60 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
-    public function register(Request $request) {}
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|string|max:255',
+            'nim' => 'required|string|max:20|unique:mahasiswa,nim',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
+            'no_telp' => 'required|string|max:20',
+            'prodi_id' => 'required|exists:prodi,id',
+            'angkatan' => 'required|integer|min:2000|max:2099',
+            'status' => 'required|in:Aktif,Alumni',
+            'terms' => 'accepted',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput($request->except('password', 'password_confirmation'));
+        }
+
+        // Create user
+        $user = UserModel::create([
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => RoleModel::where('role_kode', 'MHS')->first()->id
+        ]);
+
+        // Create mahasiswa
+        MahasiswaModel::create([
+            'user_id' => $user->id,
+            'nim' => $request->nim,
+            'mahasiswa_nama' => $request->nama,
+            'no_telp' => $request->no_telp,
+            'prodi_id' => $request->prodi_id,
+            'angkatan' => $request->angkatan,
+            'status' => $request->status,
+            'daftar_ujian' => false
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('login')
+            ->with('toast_success', __('Registration successful!'));
+    }
+
+    public function getJurusanByKampus($kampus_id)
+    {
+        $jurusan = JurusanModel::where('kampus_id', $kampus_id)->get();
+        return response()->json($jurusan);
+    }
+
+    public function getProdiByJurusan($jurusan_id)
+    {
+        $prodi = ProdiModel::where('jurusan_id', $jurusan_id)->get();
+        return response()->json($prodi);
+    }
 }
