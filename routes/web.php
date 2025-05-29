@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminTendikController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminMahasiswaController;
+use App\Http\Controllers\MahasiswaController;
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
@@ -74,9 +75,7 @@ Route::middleware('auth')->group(function () {
 
     // Route untuk Mahasiswa
     Route::middleware('checkrole:MHS')->group(function () {
-        Route::get('/mahasiswa', function () {
-            return view('mahasiswa.index');
-        })->name('mahasiswa.index');
+        Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
     });
 
     // Route untuk Tendik
