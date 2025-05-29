@@ -85,3 +85,6 @@ Route::middleware('auth')->group(function () {
         })->name('tendik.index');
     });
 });
+
+Route::get('/get-jurusan/{kampus_id}', [AuthController::class, 'getJurusanByKampus']);
+Route::get('/get-prodi/{jurusan_id}', [AuthController::class, 'getProdiByJurusan']);
