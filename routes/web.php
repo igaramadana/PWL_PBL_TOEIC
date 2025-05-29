@@ -26,6 +26,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login.process');
     Route::get('/register', [AuthController::class, 'registerPage'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.process');
+    Route::post('/register/tendik', [AuthController::class, 'registerTendik'])->name('register.tendik');
 });
 
 // Route untuk semua user yang sudah login
