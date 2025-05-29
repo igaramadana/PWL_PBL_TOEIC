@@ -7,6 +7,7 @@ use App\Http\Controllers\KampusController;
 use App\Http\Controllers\TendikController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\AdminTendikController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
@@ -71,6 +72,13 @@ Route::middleware('auth')->group(function () {
             Route::get('/pengumuman/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
             Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
             Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.delete');
+
+            // Pendaftaran
+            Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
+            Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
+            Route::get('/pendaftaran/{id}', [PendaftaranController::class, 'edit'])->name('pendaftaran.edit');
+            Route::put('/pendaftaran/{id}', [PendaftaranController::class, 'update'])->name('pendaftaran.update');
+            Route::delete('/pendaftaran/{id}', [PendaftaranController::class, 'destroy'])->name('pendaftaran.delete');
         });
     });
 
