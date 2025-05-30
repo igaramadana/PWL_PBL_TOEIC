@@ -72,20 +72,20 @@
 
             <!-- Pendaftaran -->
             <li>
-                <a href="{{ route('ujian.index') }}" id="menu-ujian"
+                <a href="#" id="menu-pendaftaran"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                     </svg>
-                    <span class="flex-1 whitespace-nowrap ms-3">Pendaftaran Ujian</span>
+                    <span class="flex-1 whitespace-nowrap ms-3">Pendaftaran</span>
                 </a>
             </li>
 
             <!-- Hasil Ujian TOEIC -->
             <li>
-                <a href="{{ route('ujian_hasil.index') }}" id="menu-hasil-toeic"
+                <a href="#" id="menu-hasil-toeic"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -173,30 +173,6 @@
                     dataMasterButton.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
                     document.getElementById('dropdown-data-master').classList.remove('hidden');
                 }
-                return;
-            }
-        }
-
-        // Check for Detail pages mahasiswa
-        if (currentPath.includes('/admin/mahasiswa/') && currentPath !== '/admin/mahasiswa') {
-            const mahasiswaMenu = document.getElementById('menu-mahasiswa');
-            if (mahasiswaMenu) {
-                mahasiswaMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
-                // Highlight parent dropdown
-                const dataMasterButton = document.getElementById('menu-data-master');
-                if (dataMasterButton) {
-                    dataMasterButton.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
-                    document.getElementById('dropdown-data-master').classList.remove('hidden');
-                }
-                return;
-            }
-        }
-
-        // Cheeck for Detail pages pendaftaran Ujian
-        if (currentPath.includes('/admin/ujian/') && currentPath !== '/admin/ujian') {
-            const pendaftaranMenu = document.getElementById('menu-ujian');
-            if (pendaftaranMenu) {
-                pendaftaranMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
                 return;
             }
         }
