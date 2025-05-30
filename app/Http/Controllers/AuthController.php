@@ -124,7 +124,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('login')
+        return redirect()->route('mahasiswa.index')
             ->with('toast_success', __('Registration successful!'));
     }
 
@@ -164,7 +164,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('login')
+        return redirect()->route('tendik.index')
             ->with('toast_success', __('Registration successful!'));
     }
 
