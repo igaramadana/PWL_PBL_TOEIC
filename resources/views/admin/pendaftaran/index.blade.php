@@ -92,7 +92,7 @@
     @else
         @foreach ($pendaftaran as $item)
             <div class="mb-2">
-                <a href="{{ route('ujian.edit', $item->id) }}"
+                <a href="{{ route('ujian.detail', $item->id) }}"
                     class="block px-4 py-2 max-w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                     <div class="flex items-start">
                         <div

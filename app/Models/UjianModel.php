@@ -37,4 +37,8 @@ class UjianModel extends Model
     {
         return $this->waktu_ujian ? substr($this->waktu_ujian, 0, 5) : null; // Ensure only HH:MM is returned
     }
+    public function pendaftar()
+    {
+        return $this->hasMany(PendaftaranModel::class, 'ujian_id', 'id');
+    }
 }

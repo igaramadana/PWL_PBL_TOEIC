@@ -77,6 +77,7 @@ Route::middleware('auth')->group(function () {
             // ujian
             Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
             Route::post('/ujian', [UjianController::class, 'store'])->name('ujian.store');
+            Route::get('/ujian/detail/{id}', [UjianController::class, 'show'])->name('ujian.detail');
             Route::get('/ujian/{id}', [UjianController::class, 'edit'])->name('ujian.edit');
             Route::put('/ujian/{id}', [UjianController::class, 'update'])->name('ujian.update');
             Route::delete('/ujian/{id}', [UjianController::class, 'destroy'])->name('ujian.delete');
