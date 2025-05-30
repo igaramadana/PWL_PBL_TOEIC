@@ -26,7 +26,7 @@
                         <span class="sr-only">{{ __('pendaftaran.Close') }}</span>
                     </button>
                 </div>
-                <form action="{{ route('pendaftaran.store') }}" method="POST">
+                <form action="{{ route('ujian.store') }}" method="POST">
                     @csrf
                     <div class="grid gap-4 mb-4 sm:grid-cols-2">
                         <div class="sm:col-span-2">
@@ -46,7 +46,8 @@
                         <div>
                             <label for="waktu_ujian"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('pendaftaran.ExamTime') }}</label>
-                            <input type="time" name="waktu_ujian" id="waktu_ujian" value="{{ old('waktu_ujian', '09:00') }}"
+                            <input type="time" name="waktu_ujian" id="waktu_ujian"
+                                value="{{ old('waktu_ujian', '09:00') }}"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 required>
                         </div>
@@ -91,12 +92,15 @@
     @else
         @foreach ($pendaftaran as $item)
             <div class="mb-2">
-                <a href="{{ route('pendaftaran.edit', $item->id) }}"
+                <a href="{{ route('ujian.edit', $item->id) }}"
                     class="block px-4 py-2 max-w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                     <div class="flex items-start">
-                        <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full dark:bg-blue-600 mr-6">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                        <div
+                            class="flex-shrink-0 flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full dark:bg-blue-600 mr-6">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
                             </svg>
                         </div>
                         <div class="flex-1">
@@ -104,10 +108,12 @@
                                 {{ $item->nama_ujian }}
                             </h5>
                             <div class="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                                <span class="font-medium">{{ __('pendaftaran.ExamSchedule') }}:</span> {{ \Carbon\Carbon::parse($item->jadwal_ujian)->format('d M Y') }}
+                                <span class="font-medium">{{ __('pendaftaran.ExamSchedule') }}:</span>
+                                {{ \Carbon\Carbon::parse($item->jadwal_ujian)->format('d M Y') }}
                             </div>
                             <div class="text-sm text-gray-600 dark:text-gray-300">
-                                <span class="font-medium">{{ __('pendaftaran.ExamTime') }}:</span> {{ $item->waktu_ujian_display }}
+                                <span class="font-medium">{{ __('pendaftaran.ExamTime') }}:</span>
+                                {{ $item->waktu_ujian_display }}
                             </div>
                             <div class="text-sm text-gray-600 dark:text-gray-300">
                                 <span class="font-medium">{{ __('pendaftaran.Quota') }}:</span> {{ $item->kuota }}

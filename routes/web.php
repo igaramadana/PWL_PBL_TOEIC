@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UjianController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdiController;
@@ -73,12 +74,12 @@ Route::middleware('auth')->group(function () {
             Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
             Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.delete');
 
-            // Pendaftaran
-            Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
-            Route::post('/pendaftaran', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
-            Route::get('/pendaftaran/{id}', [PendaftaranController::class, 'edit'])->name('pendaftaran.edit');
-            Route::put('/pendaftaran/{id}', [PendaftaranController::class, 'update'])->name('pendaftaran.update');
-            Route::delete('/pendaftaran/{id}', [PendaftaranController::class, 'destroy'])->name('pendaftaran.delete');
+            // ujian
+            Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
+            Route::post('/ujian', [UjianController::class, 'store'])->name('ujian.store');
+            Route::get('/ujian/{id}', [UjianController::class, 'edit'])->name('ujian.edit');
+            Route::put('/ujian/{id}', [UjianController::class, 'update'])->name('ujian.update');
+            Route::delete('/ujian/{id}', [UjianController::class, 'destroy'])->name('ujian.delete');
         });
     });
 
