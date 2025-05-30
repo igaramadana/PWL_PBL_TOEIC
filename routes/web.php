@@ -8,6 +8,7 @@ use App\Http\Controllers\TendikController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\UjianHasilController;
 use App\Http\Controllers\AdminTendikController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
@@ -72,6 +73,13 @@ Route::middleware('auth')->group(function () {
             Route::get('/pendaftaran/{id}', [PendaftaranController::class, 'edit'])->name('pendaftaran.edit');
             Route::put('/pendaftaran/{id}', [PendaftaranController::class, 'update'])->name('pendaftaran.update');
             Route::delete('/pendaftaran/{id}', [PendaftaranController::class, 'destroy'])->name('pendaftaran.delete');
+
+            // Ujian Hasil
+            Route::get('/ujian_hasil', [UjianHasilController::class, 'index'])->name('ujian_hasil.index');
+            Route::post('/ujian_hasil', [UjianHasilController::class, 'store'])->name('ujian_hasil.store');
+            Route::get('/ujian_hasil/{id}', [UjianHasilController::class, 'edit'])->name('ujian_hasil.edit');
+            Route::put('/ujian_hasil/{id}', [UjianHasilController::class, 'update'])->name('ujian_hasil.update');
+            Route::delete('/ujian_hasil/{id}', [UjianHasilController::class, 'destroy'])->name('ujian_hasil.delete');
         });
     });
 
