@@ -116,7 +116,8 @@
                                 {{ $item->waktu_ujian_display }}
                             </div>
                             <div class="text-sm text-gray-600 dark:text-gray-300">
-                                <span class="font-medium">{{ __('pendaftaran.Quota') }}:</span> {{ $item->kuota }}
+                                <span
+                                    class="font-medium">{{ __('pendaftaran.Quota') }}:</span>{{ count($item->pendaftar) }}/{{ $item->kuota }}
                             </div>
                         </div>
                     </div>

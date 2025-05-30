@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <p class="text-gray-600 dark:text-gray-300">Kuota:</p>
-                    <p class="font-medium text-gray-900 dark:text-white">{{ $ujian->kuota }}</p>
+                    <p class="font-medium text-gray-900 dark:text-white">{{ count($ujian->pendaftar) }}/{{ $ujian->kuota }}</p>
                 </div>
             </div>
         </div>
