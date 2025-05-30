@@ -10,31 +10,22 @@ class PendaftaranModel extends Model
     use HasFactory;
 
     protected $table = 'pendaftaran';
-
     protected $fillable = [
-        'nama_ujian',
-        'jadwal_ujian',
-        'waktu_ujian',
-        'kuota',
-        'admin_id',
+        'ujian_id',
+        'no_pendaftaran',
+        'user_id',
+        'tanggal_lahir',
+        'nik',
+        'alamat_asal',
+        'alamat_sekarang',
+        'foto_ktp',
+        'foto_ktm',
+        'status',
+        'created_at',
     ];
 
-    protected $casts = [
-        'jadwal_ujian' => 'date',
-        'waktu_ujian' => 'string', // Changed from 'datetime' to 'string' to match the 'time' column
-    ];
-
-    protected $appends = [
-        'waktu_ujian_display',
-    ];
-
-    public function admin()
+    public function ujian()
     {
-        return $this->belongsTo(AdminModel::class, 'admin_id', 'id');
-    }
-
-    public function getWaktuUjianDisplayAttribute()
-    {
-        return $this->waktu_ujian ? substr($this->waktu_ujian, 0, 5) : null; // Ensure only HH:MM is returned
+        return $this->belongsTo(UjianModel::class, 'ujian_id', 'id');
     }
 }

@@ -57,9 +57,9 @@ class UjianController extends Controller
 
         try {
             $pendaftaran->update($validated);
-            return redirect()->route('pendaftaran.index')->with('toast_success', __('pendaftaran.updateSuccess'));
+            return redirect()->route('ujian.index')->with('toast_success', __('pendaftaran.updateSuccess'));
         } catch (\Exception $e) {
-            return redirect()->route('pendaftaran.index')->with('toast_error', __('pendaftaran.updateError'));
+            return redirect()->route('ujian.index')->with('toast_error', __('pendaftaran.updateError'));
         }
     }
 
@@ -68,9 +68,18 @@ class UjianController extends Controller
         $pendaftaran = UjianModel::findOrFail($id);
         try {
             $pendaftaran->delete();
-            return redirect()->route('pendaftaran.index')->with('toast_success', __('pendaftaran.deleteSuccess'));
+            return redirect()->route('ujian.index')->with('toast_success', __('pendaftaran.deleteSuccess'));
         } catch (\Exception $e) {
-            return redirect()->route('pendaftaran.index')->with('toast_error', __('pendaftaran.deleteError'));
+            return redirect()->route('ujian.index')->with('toast_error', __('pendaftaran.deleteError'));
         }
+    }
+
+    public function show($id)
+    {
+        $ujian = UjianModel::with(['admin', 'pendaftar'])->findOrFail($id);
+        $page = (object) [
+            'title' => __('Detail Ujian'),
+        ];
+        return view('admin.pendaftaran.show', compact('page', 'ujian'));
     }
 }
