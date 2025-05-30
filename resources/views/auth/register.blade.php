@@ -243,18 +243,23 @@
                         </div>
 
                         <!-- Form Tendik -->
-                        <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="tendik" role="tabpanel" aria="tabpanel" aria-labelledby="tendik-tab">
-                            <h1 class="mb-6 text-xl font-bold tracking-tight leading-tight text-gray-900 md:text-2xl dark:text-white">
+                        <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="tendik" role="tabpanel"
+                            aria="tabpanel" aria-labelledby="tendik-tab">
+                            <h1
+                                class="mb-6 text-xl font-bold tracking-tight leading-tight text-gray-900 md:text-2xl dark:text-white">
                                 {{ __('register.registerTndTitle') }}
                             </h1>
-                            <form class="space-y-4 md:space-y-6" action="{{ route('register.tendik') }}" method="POST">
+                            <form class="space-y-4 md:space-y-6" action="{{ route('register.tendik') }}"
+                                method="POST">
                                 @csrf
                                 <input type="hidden" name="role" value="TND">
 
                                 <!-- Nama -->
                                 <div class="mb-6">
-                                    <label for="tendik_nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formName') }}</label>
-                                    <input type="text" name="tendik_nama" id="tendik_nama" value="{{ old('tendik_nama') }}"
+                                    <label for="tendik_nama"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formName') }}</label>
+                                    <input type="text" name="tendik_nama" id="tendik_nama"
+                                        value="{{ old('tendik_nama') }}"
                                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="John Doe" required />
                                     @error('tendik_nama')
@@ -265,8 +270,10 @@
                                 <!-- NIP dan No Telp -->
                                 <div class="grid gap-6 mb-6 md:grid-cols-2">
                                     <div>
-                                        <label for="nip" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
-                                        <input type="text" name="nip" id="nip" value="{{ old('nip') }}"
+                                        <label for="nip"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP</label>
+                                        <input type="text" name="nip" id="nip"
+                                            value="{{ old('nip') }}"
                                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="123456789" required />
                                         @error('nip')
@@ -274,8 +281,11 @@
                                         @enderror
                                     </div>
                                     <div>
-                                        <label for="no_telp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No. Telepon</label>
-                                        <input type="text" name="no_telp" id="no_telp" value="{{ old('no_telp') }}"
+                                        <label for="no_telp"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No.
+                                            Telepon</label>
+                                        <input type="text" name="no_telp" id="no_telp"
+                                            value="{{ old('no_telp') }}"
                                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             placeholder="081234567890" required />
                                         @error('no_telp')
@@ -286,7 +296,8 @@
 
                                 <!-- Kampus -->
                                 <div class="mb-6">
-                                    <label for="kampus_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kampus</label>
+                                    <label for="kampus_id"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kampus</label>
                                     <select name="kampus_id" id="kampus_id"
                                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required>
@@ -302,7 +313,8 @@
 
                                 <!-- Email -->
                                 <div class="mb-6">
-                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formEmail') }}</label>
+                                    <label for="email"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formEmail') }}</label>
                                     <input type="email" name="email" id="email" value="{{ old('email') }}"
                                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="name@company.com" required />
@@ -313,7 +325,8 @@
 
                                 <!-- Password -->
                                 <div class="mb-6">
-                                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formPassword') }}</label>
+                                    <label for="password"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formPassword') }}</label>
                                     <input type="password" name="password" id="password"
                                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="•••••••••" required />
@@ -324,7 +337,8 @@
 
                                 <!-- Confirm Password -->
                                 <div class="mb-6">
-                                    <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formConfirmPassword') }}</label>
+                                    <label for="confirm_password"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formConfirmPassword') }}</label>
                                     <input type="password" name="password_confirmation" id="confirm_password"
                                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="•••••••••" required />
@@ -337,7 +351,8 @@
                                             class="w-4 h-4 bg-gray-50 rounded-sm border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
                                             required />
                                     </div>
-                                    <label for="remember" class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">I agree with
+                                    <label for="remember"
+                                        class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">I agree with
                                         the <a href="#"
                                             class="text-blue-600 hover:underline dark:text-blue-500">terms and
                                             conditions</a>.</label>
@@ -352,7 +367,7 @@
 
                                 <!-- Login Link -->
                                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                    {{ __('register.haveAccount') }} <a href="/login"
+                                    {{ __('register.haveAccount') }} <a href="{{ route('login') }}"
                                         class="font-medium text-blue-600 hover:underline dark:text-blue-500">{{ __('register.buttonloginHere') }}</a>
                                 </p>
                             </form>
