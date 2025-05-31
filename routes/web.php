@@ -90,13 +90,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/ujian/{id}', [UjianController::class, 'edit'])->name('ujian.edit');
             Route::put('/ujian/{id}', [UjianController::class, 'update'])->name('ujian.update');
             Route::delete('/ujian/{id}', [UjianController::class, 'destroy'])->name('ujian.delete');
-
         });
     });
 
     // Route untuk Mahasiswa
     Route::middleware('checkrole:MHS')->group(function () {
         Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
+        Route::get('/mahasiswa/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
+        Route::get('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'showForm'])->name('pendaftaran.detail');
+        Route::post('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'store'])->name('mahasiswa.pendaftaran.store');
     });
 
     // Route untuk Tendik
@@ -107,5 +109,11 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::get('/get-jurusan/{kampus_id}', [AuthController::class, 'getJurusanByKampus']);
-Route::get('/get-prodi/{jurusan_id}', [AuthController::class, 'getProdiByJurusan']);
+// routes/web.php
+Route::get('/get-jurusan/{kampus_id}', function ($kampus_id) {
+    return \App\Models\JurusanModel::where('kampus_id', $kampus_id)->get();
+});
+
+Route::get('/get-prodi/{jurusan_id}', function ($jurusan_id) {
+    return \App\Models\ProdiModel::where('jurusan_id', $jurusan_id)->get();
+});
