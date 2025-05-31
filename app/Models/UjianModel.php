@@ -16,29 +16,29 @@ class UjianModel extends Model
         'jadwal_ujian',
         'waktu_ujian',
         'kuota',
-        'admin_id',
+        'admin_id'
     ];
 
     protected $casts = [
         'jadwal_ujian' => 'date',
-        'waktu_ujian' => 'string', // Changed from 'datetime' to 'string' to match the 'time' column
+        'waktu_ujian' => 'datetime'
     ];
 
-    protected $appends = [
-        'waktu_ujian_display',
-    ];
-
-    public function admin()
-    {
-        return $this->belongsTo(AdminModel::class, 'admin_id', 'id');
-    }
-
-    public function getWaktuUjianDisplayAttribute()
-    {
-        return $this->waktu_ujian ? substr($this->waktu_ujian, 0, 5) : null; // Ensure only HH:MM is returned
-    }
+    // Relasi ke pendaftaran
     public function pendaftar()
     {
-        return $this->hasMany(PendaftaranModel::class, 'ujian_id', 'id');
+        return $this->hasMany(PendaftaranModel::class, 'ujian_id');
+    }
+
+    // Relasi ke admin (jika ada model admin)
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'admin_id');
+    }
+
+    // Accessor untuk format waktu ujian
+    public function getWaktuUjianDisplayAttribute()
+    {
+        return $this->waktu_ujian ? $this->waktu_ujian->format('H:i') : '-';
     }
 }

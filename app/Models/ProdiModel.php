@@ -21,4 +21,8 @@ class ProdiModel extends Model
     {
         return $this->belongsTo(JurusanModel::class, 'jurusan_id');
     }
+    public function mahasiswas()
+    {
+        return $this->hasMany(MahasiswaModel::class, 'prodi_id');
+    }
 }

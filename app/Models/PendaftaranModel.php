@@ -10,6 +10,7 @@ class PendaftaranModel extends Model
     use HasFactory;
 
     protected $table = 'pendaftaran';
+
     protected $fillable = [
         'ujian_id',
         'no_pendaftaran',
@@ -20,12 +21,23 @@ class PendaftaranModel extends Model
         'alamat_sekarang',
         'foto_ktp',
         'foto_ktm',
-        'status',
-        'created_at',
+        'pas_foto',
+        'status'
     ];
 
+    protected $casts = [
+        'tanggal_lahir' => 'datetime'
+    ];
+
+    // Relasi ke ujian
     public function ujian()
     {
-        return $this->belongsTo(UjianModel::class, 'ujian_id', 'id');
+        return $this->belongsTo(UjianModel::class, 'ujian_id');
+    }
+
+    // Relasi ke user
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

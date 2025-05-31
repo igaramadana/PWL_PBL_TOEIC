@@ -167,16 +167,4 @@ class AuthController extends Controller
         return redirect()->route('tendik.index')
             ->with('toast_success', __('Registration successful!'));
     }
-
-    public function getJurusanByKampus($kampus_id)
-    {
-        $jurusan = JurusanModel::where('kampus_id', $kampus_id)->get();
-        return response()->json($jurusan);
-    }
-
-    public function getProdiByJurusan($jurusan_id)
-    {
-        $prodi = ProdiModel::where('jurusan_id', $jurusan_id)->get();
-        return response()->json($prodi);
-    }
 }
