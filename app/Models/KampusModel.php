@@ -15,4 +15,9 @@ class KampusModel extends Model
         'kampus_nama',
         'kampus_alamat',
     ];
+
+    public function jurusans()
+    {
+        return $this->hasMany(JurusanModel::class, 'kampus_id');
+    }
 }
