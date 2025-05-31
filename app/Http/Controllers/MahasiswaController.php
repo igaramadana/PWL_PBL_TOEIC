@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UjianModel;
 use Laravolt\Avatar\Avatar;
 use Illuminate\Http\Request;
+use App\Models\MahasiswaModel;
 use App\Models\PengumumanModel;
+use App\Models\PendaftaranModel;
 
 class MahasiswaController extends Controller
 {
@@ -18,9 +21,33 @@ class MahasiswaController extends Controller
         $page = (object) [
             'title' => 'Mahasiswa',
         ];
+
         $pengumuman = PengumumanModel::with('admin')->latest()->get();
         $adminNama = $pengumuman->isNotEmpty() ? $pengumuman->first()->admin->admin_nama : 'Admin';
         $avatar = $this->avatar->create($adminNama)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
-        return view('mahasiswa.index', compact('page', 'pengumuman', 'avatar'));
+
+        // Ambil data mahasiswa dan pendaftaran jika ada
+        $mahasiswa = MahasiswaModel::where('user_id', auth()->id())->first();
+        $pendaftaran = null;
+        $ujian = null;
+
+        if ($mahasiswa && $mahasiswa->daftar_ujian) {
+            $pendaftaran = PendaftaranModel::with('ujian')
+                ->where('user_id', auth()->id())
+                ->first();
+
+            if ($pendaftaran) {
+                $ujian = $pendaftaran->ujian;
+            }
+        }
+
+        return view('mahasiswa.index', compact(
+            'page',
+            'pengumuman',
+            'avatar',
+            'mahasiswa',
+            'pendaftaran',
+            'ujian'
+        ));
     }
 }
