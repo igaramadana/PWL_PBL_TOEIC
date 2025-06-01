@@ -81,7 +81,8 @@ Route::middleware('auth')->group(function () {
             Route::post('/ujian_hasil', [UjianHasilController::class, 'store'])->name('ujian_hasil.store');
             Route::get('/ujian_hasil/{id}', [UjianHasilController::class, 'edit'])->name('ujian_hasil.edit');
             Route::put('/ujian_hasil/{id}', [UjianHasilController::class, 'update'])->name('ujian_hasil.update');
-            Route::delete('/ujian_hasil/{id}', [UjianHasilController::class, 'destroy'])->name('ujian_hasil.delete');
+            Route::delete('/ujian_hasil/{id}', [UjianHasilController::class, 'destroy'])->name('ujian_hasil.destroy');
+            Route::get('/ujian_hasil/detail/{id}', [UjianHasilController::class, 'show'])->name('ujian_hasil.detail');
 
             // ujian
             Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
@@ -90,13 +91,15 @@ Route::middleware('auth')->group(function () {
             Route::get('/ujian/{id}', [UjianController::class, 'edit'])->name('ujian.edit');
             Route::put('/ujian/{id}', [UjianController::class, 'update'])->name('ujian.update');
             Route::delete('/ujian/{id}', [UjianController::class, 'destroy'])->name('ujian.delete');
-
         });
     });
 
     // Route untuk Mahasiswa
     Route::middleware('checkrole:MHS')->group(function () {
         Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
+        Route::get('/mahasiswa/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
+        Route::get('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'showForm'])->name('pendaftaran.detail');
+        Route::post('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'store'])->name('mahasiswa.pendaftaran.store');
     });
 
     // Route untuk Tendik
@@ -107,5 +110,11 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::get('/get-jurusan/{kampus_id}', [AuthController::class, 'getJurusanByKampus']);
-Route::get('/get-prodi/{jurusan_id}', [AuthController::class, 'getProdiByJurusan']);
+// routes/web.php
+Route::get('/get-jurusan/{kampus_id}', function ($kampus_id) {
+    return \App\Models\JurusanModel::where('kampus_id', $kampus_id)->get();
+});
+
+Route::get('/get-prodi/{jurusan_id}', function ($jurusan_id) {
+    return \App\Models\ProdiModel::where('jurusan_id', $jurusan_id)->get();
+});

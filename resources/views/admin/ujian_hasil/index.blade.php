@@ -101,7 +101,7 @@
     @else
         @foreach ($ujianHasil as $item)
             <div class="mb-2">
-                <a href="{{ route('ujian_hasil.edit', $item->id) }}"
+                <a href="{{ route('ujian_hasil.detail', $item->id) }}"
                     class="block px-4 py-2 max-w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                     <div class="flex items-start">
                         <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full dark:bg-blue-600 mr-6">
@@ -120,7 +120,7 @@
                                 <span class="font-medium">{{ __('ujian_hasil.ExamTime') }}:</span> {{ $item->waktu_ujian_display }}
                             </div>
                             <div class="text-sm text-gray-600 dark:text-gray-300">
-                                <span class="font-medium">{{ __('ujian_hasil.Quota') }}:</span> {{ $item->kuota }}
+                                <span class="font-medium">{{ __('ujian_hasil.Quota') }}:</span> {{ count($item->pendaftar) }}/{{ $item->kuota }}
                             </div>
                             <div class="text-sm text-gray-600 dark:text-gray-300">
                                 <span class="font-medium">{{ __('ujian_hasil.Status') }}:</span> 
