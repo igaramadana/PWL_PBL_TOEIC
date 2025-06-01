@@ -2,27 +2,31 @@
 
 namespace App\Livewire;
 
-use App\Models\PendaftaranModel;
 use App\Models\MahasiswaModel;
 use Illuminate\Support\Carbon;
+use App\Models\PendaftaranModel;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
-use PowerComponents\LivewirePowerGrid\Facades\Filter;
-use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Components\SetUp\Exportable;
 
 final class PendaftarTable extends PowerGridComponent
 {
     public string $tableName = 'pendaftar-table-3xu78r-table';
     public int $ujianId;
+
+    use WithExport;
     public function setUp(): array
     {
         return [
+            PowerGrid::exportable(fileName: 'pendaftaran-toeic-' . Carbon::now()->format('d-m-Y') . '.xlsx')
+                ->type(Exportable::TYPE_XLS),
             PowerGrid::header()
-                ->showSearchInput()
-                ->showToggleColumns(),
+                ->showSearchInput(),
 
             PowerGrid::footer()
                 ->showPerPage()
@@ -52,42 +56,45 @@ final class PendaftarTable extends PowerGridComponent
     public function columns(): array
     {
         return [
+            Column::add()
+                ->title('No')
+                ->field('row_number')
+                ->visibleInExport(false)
+                ->index(),
             Column::make('No Pendaftaran', 'no_pendaftaran')
+                ->visibleInExport(true)
                 ->sortable()
                 ->searchable(),
 
             Column::make('Nama Mahasiswa', 'mahasiswa_nama')
                 ->sortable()
+                ->visibleInExport(true)
                 ->searchable(),
 
             Column::make('NIM', 'mahasiswa_nim')
                 ->sortable()
+                ->visibleInExport(true)
                 ->searchable(),
 
             Column::make('Program Studi', 'prodi')
                 ->sortable()
+                ->visibleInExport(true)
                 ->searchable(),
 
             Column::make('Tanggal Lahir', 'tanggal_lahir_formatted', 'tanggal_lahir')
-                ->sortable(),
+                ->sortable()
+                ->visibleInExport(true),
 
             Column::make('Status', 'status')
                 ->sortable()
+                ->visibleInExport(true)
                 ->searchable(),
 
             Column::make('Tanggal Daftar', 'created_at_formatted', 'created_at')
-                ->sortable(),
+                ->sortable()
+                ->visibleInExport(true),
 
             Column::action('Aksi')
-        ];
-    }
-
-    public function filters(): array
-    {
-        return [
-            Filter::inputText('no_pendaftaran')->operators(['contains']),
-            Filter::inputText('mahasiswa_nama')->operators(['contains']),
-            Filter::inputText('mahasiswa_nim')->operators(['contains']),
         ];
     }
 
