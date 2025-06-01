@@ -7,9 +7,9 @@
     ]" />
 
     <div class="mb-6">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Detail Ujian</h2>
-        <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class="grid md:grid-cols-2 gap-6">
+        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Detail Ujian</h2>
+        <div class="p-6 w-full bg-white rounded-lg border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="grid gap-6 md:grid-cols-2">
                 <div class="flex items-start space-x-4">
                     <div class="flex-shrink-0">
                         <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
@@ -77,6 +77,6 @@
     </div>
 
     <div class="mb-6">
-        <livewire:pendaftar-table />
+        @livewire('pendaftar-table', ['ujianId' => $ujian->id])
     </div>
 @endsection

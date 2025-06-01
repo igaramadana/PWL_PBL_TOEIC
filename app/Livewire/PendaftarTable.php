@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\PendaftaranModel;
+use App\Models\MahasiswaModel;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -15,14 +16,14 @@ use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 final class PendaftarTable extends PowerGridComponent
 {
     public string $tableName = 'pendaftar-table-3xu78r-table';
-
+    public int $ujianId;
     public function setUp(): array
     {
-        $this->showCheckBox();
-
         return [
             PowerGrid::header()
-                ->showSearchInput(),
+                ->showSearchInput()
+                ->showToggleColumns(),
+
             PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -31,101 +32,72 @@ final class PendaftarTable extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return PendaftaranModel::query()->with('ujian');
+        return PendaftaranModel::query()
+            ->with(['mahasiswa', 'ujian'])
+            ->where('ujian_id', $this->ujianId);
     }
 
     public function fields(): PowerGridFields
     {
         return PowerGrid::fields()
-            ->add('id')
-            ->add('ujian.nama_ujian', fn(PendaftaranModel $model) => $model->ujian->nama_ujian ?? 'N/A')
             ->add('no_pendaftaran')
-            ->add('user_id')
-            ->add('tanggal_lahir_formatted', fn(PendaftaranModel $model) => Carbon::parse($model->tanggal_lahir)->format('d/m/Y H:i:s'))
-            ->add('nik')
-            ->add('alamat_asal')
-            ->add('alamat_sekarang')
-            ->add('foto_ktp')
-            ->add('foto_ktm')
+            ->add('mahasiswa_nama', fn(PendaftaranModel $model) => $model->mahasiswa->mahasiswa_nama ?? 'N/A')
+            ->add('mahasiswa_nim', fn(PendaftaranModel $model) => $model->mahasiswa->nim ?? 'N/A')
+            ->add('prodi', fn(PendaftaranModel $model) => $model->mahasiswa->prodi->prodi_nama ?? 'N/A')
+            ->add('tanggal_lahir_formatted', fn(PendaftaranModel $model) => Carbon::parse($model->tanggal_lahir)->format('d/m/Y'))
             ->add('status')
-            ->add('created_at')
-            ->add('created_at');
+            ->add('created_at_formatted', fn(PendaftaranModel $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i'));
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
-            Column::make('Ujian id', 'ujian_id'),
-            Column::make('No pendaftaran', 'no_pendaftaran')
+            Column::make('No Pendaftaran', 'no_pendaftaran')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('User id', 'user_id'),
-            Column::make('Tanggal lahir', 'tanggal_lahir_formatted', 'tanggal_lahir')
+            Column::make('Nama Mahasiswa', 'mahasiswa_nama')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('NIM', 'mahasiswa_nim')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Program Studi', 'prodi')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Tanggal Lahir', 'tanggal_lahir_formatted', 'tanggal_lahir')
                 ->sortable(),
-
-            Column::make('Nik', 'nik')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Alamat asal', 'alamat_asal')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Alamat sekarang', 'alamat_sekarang')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Foto ktp', 'foto_ktp')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Foto ktm', 'foto_ktm')
-                ->sortable()
-                ->searchable(),
 
             Column::make('Status', 'status')
                 ->sortable()
                 ->searchable(),
 
-            Column::action('Action')
+            Column::make('Tanggal Daftar', 'created_at_formatted', 'created_at')
+                ->sortable(),
+
+            Column::action('Aksi')
         ];
     }
 
     public function filters(): array
     {
         return [
-            Filter::datetimepicker('tanggal_lahir'),
+            Filter::inputText('no_pendaftaran')->operators(['contains']),
+            Filter::inputText('mahasiswa_nama')->operators(['contains']),
+            Filter::inputText('mahasiswa_nim')->operators(['contains']),
         ];
-    }
-
-    #[\Livewire\Attributes\On('edit')]
-    public function edit($rowId): void
-    {
-        $this->js('alert(' . $rowId . ')');
     }
 
     public function actions(PendaftaranModel $row): array
     {
         return [
-            Button::add('edit')
-                ->slot('Edit: ' . $row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+            Button::add('detail')
+                ->slot('Detail')
+                ->class('px-3 py-1 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500')
+                ->route('ujian.detail', ['id' => $row->id]),
         ];
     }
-
-    /*
-    public function actionRules($row): array
-    {
-       return [
-            // Hide button edit for ID 1
-            Rule::button('edit')
-                ->when(fn($row) => $row->id === 1)
-                ->hide(),
-        ];
-    }
-    */
 }
