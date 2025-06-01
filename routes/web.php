@@ -75,7 +75,6 @@ Route::middleware('auth')->group(function () {
             Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
             Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.delete');
 
-
             // Ujian Hasil
             Route::get('/ujian_hasil', [UjianHasilController::class, 'index'])->name('ujian_hasil.index');
             Route::post('/ujian_hasil', [UjianHasilController::class, 'store'])->name('ujian_hasil.store');

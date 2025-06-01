@@ -40,4 +40,9 @@ class PendaftaranModel extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(MahasiswaModel::class, 'user_id', 'user_id');
+    }
 }
