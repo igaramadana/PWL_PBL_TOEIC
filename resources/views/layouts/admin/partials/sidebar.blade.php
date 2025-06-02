@@ -61,12 +61,6 @@
                             Data Mahasiswa
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.tendik.index') }}" id="menu-tendik"
-                            class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-blue-600">
-                            Data Tendik
-                        </a>
-                    </li>
                 </ul>
             </li>
 
@@ -162,22 +156,6 @@
         });
 
         // Check for detail pages first
-        if (currentPath.includes('/admin/tendik/') && currentPath !== '/admin/tendik') {
-            const tendikMenu = document.getElementById('menu-tendik');
-            if (tendikMenu) {
-                tendikMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
-
-                // Highlight parent dropdown
-                const dataMasterButton = document.getElementById('menu-data-master');
-                if (dataMasterButton) {
-                    dataMasterButton.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
-                    document.getElementById('dropdown-data-master').classList.remove('hidden');
-                }
-                return;
-            }
-        }
-
-        // Check for Detail pages mahasiswa
         if (currentPath.includes('/admin/mahasiswa/') && currentPath !== '/admin/mahasiswa') {
             const mahasiswaMenu = document.getElementById('menu-mahasiswa');
             if (mahasiswaMenu) {
@@ -192,7 +170,7 @@
             }
         }
 
-        // Cheeck for Detail pages pendaftaran Ujian
+        // Check for Detail pages pendaftaran Ujian
         if (currentPath.includes('/admin/ujian/') && currentPath !== '/admin/ujian') {
             const pendaftaranMenu = document.getElementById('menu-ujian');
             if (pendaftaranMenu) {

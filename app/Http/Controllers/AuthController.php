@@ -6,10 +6,8 @@ use App\Models\RoleModel;
 use App\Models\UserModel;
 use App\Models\ProdiModel;
 use App\Models\KampusModel;
-use App\Models\TendikModel;
-use App\Models\JurusanModel;
-use Illuminate\Http\Request;
 use App\Models\MahasiswaModel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -55,8 +53,6 @@ class AuthController extends Controller
                         return redirect()->route('admin.index');
                     case 'MHS':
                         return redirect()->route('mahasiswa.index');
-                    case 'TND':
-                        return redirect()->route('tendik.index');
                     default:
                         Auth::logout();
                         return redirect()->route('login')
@@ -125,46 +121,6 @@ class AuthController extends Controller
         Auth::login($user);
 
         return redirect()->route('mahasiswa.index')
-            ->with('toast_success', __('Registration successful!'));
-    }
-
-    public function registerTendik(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'tendik_nama' => 'required|string|max:255',
-            'nip' => 'required|string|max:20|unique:tendik,nip',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed',
-            'no_telp' => 'required|string|max:20',
-            'kampus_id' => 'required|exists:kampus,id',
-            'terms' => 'accepted',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput($request->except('password', 'password_confirmation'));
-        }
-
-        // Create user
-        $user = UserModel::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role_id' => RoleModel::where('role_kode', 'TND')->first()->id
-        ]);
-
-        // Create tendik
-        TendikModel::create([
-            'user_id' => $user->id,
-            'nip' => $request->nip,
-            'tendik_nama' => $request->tendik_nama,
-            'no_telp' => $request->no_telp,
-            'kampus_id' => $request->kampus_id
-        ]);
-
-        Auth::login($user);
-
-        return redirect()->route('tendik.index')
             ->with('toast_success', __('Registration successful!'));
     }
 }

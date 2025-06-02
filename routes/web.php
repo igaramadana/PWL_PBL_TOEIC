@@ -5,12 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\KampusController;
-use App\Http\Controllers\TendikController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\UjianHasilController;
-use App\Http\Controllers\AdminTendikController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminMahasiswaController;
@@ -29,7 +27,6 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login.process');
     Route::get('/register', [AuthController::class, 'registerPage'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.process');
-    Route::post('/register/tendik', [AuthController::class, 'registerTendik'])->name('register.tendik');
 });
 
 // Route untuk semua user yang sudah login
@@ -64,10 +61,6 @@ Route::middleware('auth')->group(function () {
             Route::get('/mahasiswa', [AdminMahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
             Route::get('/mahasiswa/detail/{id}', [AdminMahasiswaController::class, 'show'])->name('admin.mahasiswa.detail');
 
-            // Tendik
-            Route::get('/tendik', [AdminTendikController::class, 'index'])->name('admin.tendik.index');
-            Route::get('/tendik/detail/{id}', [AdminTendikController::class, 'show'])->name('admin.tendik.detail');
-
             // Pengumuman
             Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
             Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
@@ -83,7 +76,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/ujian_hasil/{id}', [UjianHasilController::class, 'destroy'])->name('ujian_hasil.destroy');
             Route::get('/ujian_hasil/detail/{id}', [UjianHasilController::class, 'show'])->name('ujian_hasil.detail');
 
-            // ujian
+            // Ujian
             Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
             Route::post('/ujian', [UjianController::class, 'store'])->name('ujian.store');
             Route::get('/ujian/detail/{id}', [UjianController::class, 'show'])->name('ujian.detail');
@@ -100,16 +93,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'showForm'])->name('pendaftaran.detail');
         Route::post('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'store'])->name('mahasiswa.pendaftaran.store');
     });
-
-    // Route untuk Tendik
-    Route::middleware('checkrole:TND')->group(function () {
-        Route::get('/tendik', function () {
-            return view('tendik.index');
-        })->name('tendik.index');
-    });
 });
 
-// routes/web.php
 Route::get('/get-jurusan/{kampus_id}', function ($kampus_id) {
     return \App\Models\JurusanModel::where('kampus_id', $kampus_id)->get();
 });

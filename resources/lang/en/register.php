@@ -18,7 +18,6 @@ return [
     'buttonLogin' => 'Login',
     'buttonloginHere' => 'Login here',
 
-    // Tendik
-    'registerTndTitle' => 'Register as Tendik',
-    'formNip' => 'Employee Number:',
+
 ];
+
