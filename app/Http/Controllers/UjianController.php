@@ -76,7 +76,7 @@ class UjianController extends Controller
 
     public function show($id)
     {
-        $ujian = UjianModel::with(['admin', 'pendaftar'])->findOrFail($id);
+        $ujian = UjianModel::with(['admin', 'pendaftar.user'])->findOrFail($id);
         $page = (object) [
             'title' => __('Detail Ujian'),
         ];

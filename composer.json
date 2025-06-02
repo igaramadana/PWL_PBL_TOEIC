@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "laravolt/avatar": "^6.2",
         "livewire/livewire": "^3.6",
+        "openspout/openspout": "^4.0",
         "power-components/livewire-powergrid": "^6.3"
     },
     "require-dev": {
