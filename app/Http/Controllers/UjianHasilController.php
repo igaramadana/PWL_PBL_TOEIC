@@ -84,4 +84,13 @@ class UjianHasilController extends Controller
             return redirect()->route('ujian_hasil.index')->with('toast_error', __('ujian_hasil.deleteError'));
         }
     }
+
+    public function show($id)
+    {
+        $ujianHasil = UjianHasilModel::with(['admin', 'pendaftar'])->findOrFail($id);
+        $page = (object) [
+            'title' => __('Detail Hasil Ujian'),
+        ];
+        return view('admin.ujian_hasil.show', compact('page', 'ujianHasil'));
+    }
 }

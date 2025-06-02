@@ -12,9 +12,9 @@ class UjianHasilModel extends Model
     protected $table = 'ujian_hasil';
 
     protected $fillable = [
-        'nama_hasil_ujian', // Match database column name
-        'waktu_ujian', // Match database column name (date)
-        'jam_ujian', // Match database column name (time)
+        'nama_hasil_ujian',
+        'waktu_ujian',
+        'jam_ujian',
         'kuota',
         'status',
         'admin_id',
@@ -34,12 +34,17 @@ class UjianHasilModel extends Model
         return $this->belongsTo(AdminModel::class, 'admin_id', 'id');
     }
 
+    // Relasi ke pendaftaran
+    public function pendaftar()
+    {
+        return $this->hasMany(PendaftaranModel::class, 'ujian_id');
+    }
+
     public function getJamUjianDisplayAttribute()
     {
         return $this->jam_ujian ? substr($this->jam_ujian, 0, 5) : null;
     }
 
-    // Accessor untuk compatibility dengan form fields
     public function getNamaUjianAttribute()
     {
         return $this->nama_hasil_ujian;
@@ -55,7 +60,6 @@ class UjianHasilModel extends Model
         return $this->jam_ujian ? substr($this->jam_ujian, 0, 5) : null;
     }
 
-    // Mutator untuk compatibility dengan form fields
     public function setNamaUjianAttribute($value)
     {
         $this->attributes['nama_hasil_ujian'] = $value;

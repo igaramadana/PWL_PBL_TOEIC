@@ -21,7 +21,9 @@
                     </label>
                     <input type="text" name="nama_ujian" id="nama_ujian" value="{{ old('nama_ujian', $ujianHasil->nama_ujian) }}"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="{{ __('ujian_hasil.EnterExamName') }}" required>
+                        placeholder="{{:
+
+                        }('ujian_hasil.EnterExamName') }}" required>
                 </div>
                 <div>
                     <label for="jadwal_ujian" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -104,7 +106,7 @@
                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
                         {{ __('ujian_hasil.deleteConfirmation') }}</h3>
                     <div class="flex justify-between">
-                        <form id="delete-form" action="{{ route('ujian_hasil.destroy', $ujianHasil->id) }}" method="POST">
+                        <form id="delete-form" action="{{ route('ujian_hasil.delete', $ujianHasil->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" data-modal-hide="popup-modal"
