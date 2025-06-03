@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\KampusModel;
+use Laravolt\Avatar\Avatar;
 use App\Models\JurusanModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class JurusanController extends Controller
@@ -12,13 +14,20 @@ class JurusanController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $avatar;
+    public function __construct()
+    {
+        $this->avatar = new Avatar;
+    }
     public function index()
     {
         $page = (object) [
             'title' => __('jurusan.title'),
         ];
         $kampus = KampusModel::all();
-        return view('admin.jurusan.index', compact('page', 'kampus'));
+        $jurusan = Auth::user()->admin->admin_nama;
+        $avatar = $this->avatar->create($jurusan)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        return view('admin.jurusan.index', compact('page', 'kampus', 'avatar'));
     }
     /**
      * Store a newly created resource in storage.

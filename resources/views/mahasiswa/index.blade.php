@@ -54,9 +54,9 @@
                                 {{ $mahasiswa->prodi->prodi_nama ?? 'Belum diisi' }}</p>
                         </div>
                         <div>
-                            <p class="text-xs font-medium text-gray-500 sm:text-sm dark:text-gray-400">SEMESTER</p>
+                            <p class="text-xs font-medium text-gray-500 sm:text-sm dark:text-gray-400">ANGKATAN</p>
                             <p class="text-base font-semibold text-gray-900 sm:text-lg dark:text-white">
-                                {{ $mahasiswa->semester ?? 'Belum diisi' }}</p>
+                                {{ $mahasiswa->angkatan ?? 'Belum diisi' }}</p>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,6 @@
                             <p class="text-xs font-medium text-gray-500 sm:text-sm dark:text-gray-400">TANGGAL</p>
                             <p class="text-base font-semibold text-gray-900 sm:text-lg dark:text-white">
                                 {{ \Carbon\Carbon::parse($ujian->tanggal_ujian)->translatedFormat('d F Y') }}
-                                {{-- {{ $ujian->tanggal_ujian->format('d M Y') }}</p> --}}
                         </div>
                         <div>
                             <p class="text-xs font-medium text-gray-500 sm:text-sm dark:text-gray-400">WAKTU</p>
@@ -161,46 +160,50 @@
 
         {{-- Kolom Pengumuman --}}
         <div data-aos="fade-right" class="space-y-4">
-            @foreach ($pengumuman as $item)
-                <a href="#"
-                    class="block px-6 py-4 w-full bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                    <div class="flex items-center mb-2">
-                        <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                            viewBox="0 0 24 24">
-                            <path
-                                d="M17.133 12.632v-1.8a5.407 5.407 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.933.933 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175Zm-13.267-.8a1 1 0 0 1-1-1 9.424 9.424 0 0 1 2.517-6.391A1.001 1.001 0 1 1 6.854 5.8a7.43 7.43 0 0 0-1.988 5.037 1 1 0 0 1-1 .995Zm16.268 0a1 1 0 0 1-1-1A7.431 7.431 0 0 0 17.146 5.8a1 1 0 0 1 1.471-1.354 9.424 9.424 0 0 1 2.517 6.391 1 1 0 0 1-1 .995ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z" />
-                        </svg>
-                        <span class="ml-1 text-gray-900 dark:text-white">Pengumuman</span>
-                    </div>
-
-                    <h4 class="mb-2 text-xl font-bold tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                        {{ $item->judul }}</h4>
-                    <p class="mb-4 font-normal text-gray-700 dark:text-gray-400">{{ $item->isi }}</p>
-
-                    <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
-
-                    <div class="flex flex-col gap-2 justify-between items-start sm:flex-row sm:items-center">
-                        <div class="flex items-center">
-                            <img src="{{ $avatar }}" class="mt-1 mr-1 h-6" alt="Polinema Logo" />
-                            <span
-                                class="mt-1 text-gray-900 dark:text-white">{{ $item->admin->admin_nama ?? 'Admin' }}</span>
-                        </div>
-                        <div class="flex items-center">
+            @if ($pengumuman->isEmpty())
+                <h4 class="text-gray-900 dark:text-white">Tidak ada Pengumuman</h4>
+            @else
+                @foreach ($pengumuman as $item)
+                    <a href="#"
+                        class="block px-6 py-4 w-full bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        <div class="flex items-center mb-2">
                             <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                 viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
-                                    clip-rule="evenodd" />
+                                <path
+                                    d="M17.133 12.632v-1.8a5.407 5.407 0 0 0-4.154-5.262.955.955 0 0 0 .021-.106V3.1a1 1 0 0 0-2 0v2.364a.933.933 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C6.867 15.018 5 15.614 5 16.807 5 17.4 5 18 5.538 18h12.924C19 18 19 17.4 19 16.807c0-1.193-1.867-1.789-1.867-4.175Zm-13.267-.8a1 1 0 0 1-1-1 9.424 9.424 0 0 1 2.517-6.391A1.001 1.001 0 1 1 6.854 5.8a7.43 7.43 0 0 0-1.988 5.037 1 1 0 0 1-1 .995Zm16.268 0a1 1 0 0 1-1-1A7.431 7.431 0 0 0 17.146 5.8a1 1 0 0 1 1.471-1.354 9.424 9.424 0 0 1 2.517 6.391 1 1 0 0 1-1 .995ZM8.823 19a3.453 3.453 0 0 0 6.354 0H8.823Z" />
                             </svg>
-                            <span
-                                class="ml-1 text-gray-900 dark:text-white">{{ $item->created_at ? $item->created_at->format('D, d M Y | H.i') : 'N/A' }}
-                                WIB</span>
+                            <span class="ml-1 text-gray-900 dark:text-white">Pengumuman</span>
                         </div>
-                    </div>
-                </a>
-            @endforeach
+
+                        <h4 class="mb-2 text-xl font-bold tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                            {{ $item->judul }}</h4>
+                        <p class="mb-4 font-normal text-gray-700 dark:text-gray-400">{{ $item->isi }}</p>
+
+                        <hr class="my-4 h-px bg-gray-200 border-0 dark:bg-gray-700">
+
+                        <div class="flex flex-col gap-2 justify-between items-start sm:flex-row sm:items-center">
+                            <div class="flex items-center">
+                                <img src="{{ $avatar }}" class="mt-1 mr-1 h-6" alt="Polinema Logo" />
+                                <span
+                                    class="mt-1 text-gray-900 dark:text-white">{{ $item->admin->admin_nama ?? 'Admin' }}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span
+                                    class="ml-1 text-gray-900 dark:text-white">{{ $item->created_at ? $item->created_at->format('D, d M Y | H.i') : 'N/A' }}
+                                    WIB</span>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            @endif
         </div>
     </div>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Laravolt\Avatar\Avatar;
 use Illuminate\Http\Request;
 use App\Models\MahasiswaModel;
+use Illuminate\Support\Facades\Auth;
 
 class AdminMahasiswaController extends Controller
 {
@@ -18,8 +19,9 @@ class AdminMahasiswaController extends Controller
         $page = (object) [
             'title' => __('mahasiswa.title'),
         ];
-
-        return view('admin.mahasiswa.index', compact('page'));
+        $mahasiswa = Auth::user()->admin->admin_nama;
+        $avatar = $this->avatar->create($mahasiswa)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        return view('admin.mahasiswa.index', compact('page', 'avatar'));
     }
 
     public function show($id)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Laravolt\Avatar\Avatar;
 use Illuminate\Http\Request;
 use App\Models\PengumumanModel;
+use Illuminate\Support\Facades\Auth;
 
 class PengumumanController extends Controller
 {
@@ -46,7 +47,9 @@ class PengumumanController extends Controller
         $page = (object) [
             'title' => __('pengumuman.title'),
         ];
-        return view('admin.pengumuman.edit', compact('page', 'pengumuman'));
+        $headerProfile = Auth::user()->admin->admin_nama;
+        $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        return view('admin.pengumuman.edit', compact('page', 'pengumuman', 'avatar'));
     }
 
     public function update(Request $request, $id)
