@@ -6,9 +6,8 @@ use App\Models\RoleModel;
 use App\Models\UserModel;
 use App\Models\ProdiModel;
 use App\Models\KampusModel;
-use App\Models\JurusanModel;
-use Illuminate\Http\Request;
 use App\Models\MahasiswaModel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,8 +53,6 @@ class AuthController extends Controller
                         return redirect()->route('admin.index');
                     case 'MHS':
                         return redirect()->route('mahasiswa.index');
-                    case 'TND':
-                        return redirect()->route('tendik.index');
                     default:
                         Auth::logout();
                         return redirect()->route('login')
@@ -123,19 +120,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('login')
+        return redirect()->route('mahasiswa.index')
             ->with('toast_success', __('Registration successful!'));
-    }
-
-    public function getJurusanByKampus($kampus_id)
-    {
-        $jurusan = JurusanModel::where('kampus_id', $kampus_id)->get();
-        return response()->json($jurusan);
-    }
-
-    public function getProdiByJurusan($jurusan_id)
-    {
-        $prodi = ProdiModel::where('jurusan_id', $jurusan_id)->get();
-        return response()->json($prodi);
     }
 }

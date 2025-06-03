@@ -1,13 +1,14 @@
 <?php
 
+use App\Http\Controllers\UjianController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\KampusController;
-use App\Http\Controllers\TendikController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\PengumumanController;
-use App\Http\Controllers\AdminTendikController;
+use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\UjianHasilController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminMahasiswaController;
@@ -60,31 +61,44 @@ Route::middleware('auth')->group(function () {
             Route::get('/mahasiswa', [AdminMahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
             Route::get('/mahasiswa/detail/{id}', [AdminMahasiswaController::class, 'show'])->name('admin.mahasiswa.detail');
 
-            // Tendik
-            Route::get('/tendik', [AdminTendikController::class, 'index'])->name('admin.tendik.index');
-            Route::get('/tendik/detail/{id}', [AdminTendikController::class, 'show'])->name('admin.tendik.detail');
-
             // Pengumuman
             Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
             Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
             Route::get('/pengumuman/{id}', [PengumumanController::class, 'edit'])->name('pengumuman.edit');
             Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
             Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.delete');
+
+            // Ujian Hasil
+            Route::get('/ujian_hasil', [UjianHasilController::class, 'index'])->name('ujian_hasil.index');
+            Route::post('/ujian_hasil', [UjianHasilController::class, 'store'])->name('ujian_hasil.store');
+            Route::get('/ujian_hasil/{id}', [UjianHasilController::class, 'edit'])->name('ujian_hasil.edit');
+            Route::put('/ujian_hasil/{id}', [UjianHasilController::class, 'update'])->name('ujian_hasil.update');
+            Route::delete('/ujian_hasil/{id}', [UjianHasilController::class, 'destroy'])->name('ujian_hasil.destroy');
+            Route::get('/ujian_hasil/detail/{id}', [UjianHasilController::class, 'show'])->name('ujian_hasil.detail');
+
+            // Ujian
+            Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
+            Route::post('/ujian', [UjianController::class, 'store'])->name('ujian.store');
+            Route::get('/ujian/detail/{id}', [UjianController::class, 'show'])->name('ujian.detail');
+            Route::get('/ujian/{id}', [UjianController::class, 'edit'])->name('ujian.edit');
+            Route::put('/ujian/{id}', [UjianController::class, 'update'])->name('ujian.update');
+            Route::delete('/ujian/{id}', [UjianController::class, 'destroy'])->name('ujian.delete');
         });
     });
 
     // Route untuk Mahasiswa
     Route::middleware('checkrole:MHS')->group(function () {
         Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
-    });
-
-    // Route untuk Tendik
-    Route::middleware('checkrole:TND')->group(function () {
-        Route::get('/tendik', function () {
-            return view('tendik.index');
-        })->name('tendik.index');
+        Route::get('/mahasiswa/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
+        Route::get('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'showForm'])->name('pendaftaran.detail');
+        Route::post('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'store'])->name('mahasiswa.pendaftaran.store');
     });
 });
 
-Route::get('/get-jurusan/{kampus_id}', [AuthController::class, 'getJurusanByKampus']);
-Route::get('/get-prodi/{jurusan_id}', [AuthController::class, 'getProdiByJurusan']);
+Route::get('/get-jurusan/{kampus_id}', function ($kampus_id) {
+    return \App\Models\JurusanModel::where('kampus_id', $kampus_id)->get();
+});
+
+Route::get('/get-prodi/{jurusan_id}', function ($jurusan_id) {
+    return \App\Models\ProdiModel::where('jurusan_id', $jurusan_id)->get();
+});

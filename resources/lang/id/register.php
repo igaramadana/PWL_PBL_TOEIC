@@ -17,8 +17,4 @@ return [
     'haveAccount' => 'Sudah punya akun?',
     'buttonLogin' => 'Masuk',
     'buttonloginHere' => 'Masuk disini',
-
-    // Tendik
-    'registerTndTitle' => 'Daftar sebagai Tendik',
-    'formNip' => 'Nomor Induk Pegawai:',
 ];

@@ -17,8 +17,4 @@ return [
     'haveAccount' => 'Already have an account?',
     'buttonLogin' => 'Login',
     'buttonloginHere' => 'Login here',
-
-    // Tendik
-    'registerTndTitle' => 'Register as Tendik',
-    'formNip' => 'Employee Number:',
 ];

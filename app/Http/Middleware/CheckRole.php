@@ -30,7 +30,6 @@ class CheckRole
             $redirectRoute = match ($user->role->role_kode) {
                 'ADM' => 'admin.index',
                 'MHS' => 'mahasiswa.index',
-                'TND' => 'tendik.index',
                 default => null,
             };
 
