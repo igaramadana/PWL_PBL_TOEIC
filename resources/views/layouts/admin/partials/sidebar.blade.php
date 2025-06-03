@@ -61,12 +61,6 @@
                             Data Mahasiswa
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.tendik.index') }}" id="menu-tendik"
-                            class="flex items-center p-2 pl-11 w-full text-gray-900 rounded-lg transition duration-75 group hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-blue-600">
-                            Data Tendik
-                        </a>
-                    </li>
                 </ul>
             </li>
 
