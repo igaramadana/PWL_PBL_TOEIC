@@ -7,8 +7,19 @@
         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
             <h1 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Anda sudah pernah mendaftar ujian 1x</h1>
             <p class="text-gray-600 dark:text-gray-300">
-                Anda tidak dapat mendaftar ujian lagi karena sudah pernah mendaftar sebelumnya.
+                Anda tidak dapat mendaftar ujian lagi karena sudah pernah mendaftar sebelumnya. Jika ingin mengikuti ujian kembali, silakan daftar melalui jalur ujian mandiri
             </p>
+            <div class="mt-4">
+                <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Ujian Mandiri</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    Untuk Ujian Mandiri, Anda dapat melakukan pendaftaran dan pembayaran melalui ITC. 
+                    Harga untuk TOEIC Listening and Reading adalah <strong>Rp. 675,000</strong>.
+                </p>
+                <a href="https://smartcart.id/product/toeic-listening-reading" 
+                   class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Daftar Ujian Mandiri
+                </a>
+            </div>
         </div>
     @else
         @if ($pendaftaran->isEmpty())
