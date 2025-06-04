@@ -38,11 +38,15 @@ class PendaftaranModel extends Model
     // Relasi ke user
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(UserModel::class, 'user_id');
     }
 
     public function mahasiswa()
     {
         return $this->belongsTo(MahasiswaModel::class, 'user_id', 'user_id');
+    }
+    public function hasilUjian()
+    {
+        return $this->hasOne(UjianHasilModel::class, 'pendaftaran_id');
     }
 }

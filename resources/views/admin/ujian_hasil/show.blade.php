@@ -7,9 +7,12 @@
     ]" />
 
     <div class="mb-6">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Detail Hasil Ujian</h2>
-        <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class="grid md:grid-cols-2 gap-6">
+        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Hasil Ujian {{ $ujian->nama_ujian }}</h2>
+
+        <!-- Informasi Ujian -->
+        <div class="p-6 mb-6 w-full bg-white rounded-lg border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="grid gap-6 md:grid-cols-2">
+                <!-- Nama Ujian -->
                 <div class="flex items-start space-x-4">
                     <div class="flex-shrink-0">
                         <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
@@ -20,11 +23,14 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('ujian_hasil.EnterExamName') }}</p>
-                        <p class="text-lg font-semibold text-gray-900 dark:text-white">{{ $ujianHasil->nama_ujian }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            {{ __('ujian_hasil.EnterExamName') }}</p>
+                        <p class="text-lg font-semibold text-gray-900 dark:text-white">
+                            {{ $ujian->nama_ujian }}</p>
                     </div>
                 </div>
 
+                <!-- Jadwal Ujian -->
                 <div class="flex items-start space-x-4">
                     <div class="flex-shrink-0">
                         <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
@@ -35,13 +41,15 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('ujian_hasil.ExamSchedule') }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('ujian_hasil.ExamSchedule') }}
+                        </p>
                         <p class="text-lg font-semibold text-gray-900 dark:text-white">
-                            {{ \Carbon\Carbon::parse($ujianHasil->jadwal_ujian)->format('d M Y') }}
+                            {{ \Carbon\Carbon::parse($ujian->jadwal_ujian)->format('d M Y') }}
                         </p>
                     </div>
                 </div>
 
+                <!-- Waktu Ujian -->
                 <div class="flex items-start space-x-4">
                     <div class="flex-shrink-0">
                         <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
@@ -52,10 +60,13 @@
                     </div>
                     <div>
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('ujian_hasil.ExamTime') }}</p>
-                        <p class="text-lg font-semibold text-gray-900 dark:text-white">{{ $ujianHasil->waktu_ujian_display }}</p>
+                        <p class="text-lg font-semibold text-gray-900 dark:text-white">
+                            {{ $ujian->waktu_ujian_display }}
+                        </p>
                     </div>
                 </div>
 
+                <!-- Kuota -->
                 <div class="flex items-start space-x-4">
                     <div class="flex-shrink-0">
                         <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
@@ -68,123 +79,101 @@
                     <div>
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('ujian_hasil.Quota') }}</p>
                         <p class="text-lg font-semibold text-gray-900 dark:text-white">
-                            {{ count($ujianHasil->pendaftar) }}/{{ $ujianHasil->kuota }}
-                        </p>
-                    </div>
-                </div>
-
-                <div class="flex items-start space-x-4">
-                    <div class="flex-shrink-0">
-                        <svg class="w-6 h-6 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('ujian_hasil.Status') }}</p>
-                        <p class="text-lg font-semibold text-gray-900 dark:text-white">
-                            {{ $ujianHasil->status === 'Sudah Dilaksanakan' ? __('ujian_hasil.StatusOptions.Held') : __('ujian_hasil.StatusOptions.NotHeld') }}
+                            {{ $pendaftars->count() }}/{{ $ujian->kuota }}
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="mb-6">
-        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Registrants</h3>
-        <div class="flex justify-between items-center mb-4">
-            <div class="flex space-x-4">
-                <select id="period" class="block p-2.5 w-48 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                    <option selected>Select a period</option>
-                    <option value="1">Last 7 Days</option>
-                    <option value="2">Last 30 Days</option>
-                    <option value="3">All Time</option>
-                </select>
-                <div class="relative">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0 0 4-4m-4 4H9m-7 0a7 7 0 1 1 14 0 7 7 0 0 1-14 0Z"/>
+        <!-- Daftar Peserta dan Nilai -->
+        <div class="p-6 w-full bg-white rounded-lg border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
+            @if (session('errors'))
+                <div class="p-4 mb-4 text-sm text-red-800 bg-red-50 rounded-lg dark:bg-gray-800 dark:text-red-400">
+                    <ul class="pl-5 list-disc">
+                        @foreach (session('errors') as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <div class="flex justify-between mb-4">
+                <h3 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Daftar Peserta dan Nilai</h3>
+                <div class="flex space-x-2">
+                    <a href="{{ route('admin.ujian_hasil.format') }}"
+                        class="inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                        <svg class="mr-2 w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2Z" />
                         </svg>
-                    </div>
-                    <input type="text" id="search" class="block p-2.5 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search...">
+                        Lihat Format
+                    </a>
+                    <form action="{{ route('admin.ujian_hasil.import', $ujian) }}" method="POST"
+                        enctype="multipart/form-data" class="inline-flex">
+                        @csrf
+                        <input type="file" name="file" id="fileImport" class="hidden" accept=".xlsx,.xls" required>
+                        <label for="fileImport"
+                            class="inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg class="mr-2 w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M9 2.221V7H4.221a2 2 0 0 1 .365-.5L8.5 2.586A2 2 0 0 1 9 2.22ZM11 2v5a2 2 0 0 1-2 2H4v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-7Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Import Data
+                        </label>
+                    </form>
                 </div>
             </div>
-        </div>
-        @if ($ujianHasil->pendaftar->isEmpty())
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+            <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-6 py-3">Id</th>
-                            <th scope="col" class="px-6 py-3">Pendaftaran ID</th>
-                            <th scope="col" class="px-6 py-3">Nama Lengkap</th>
-                            <th scope="col" class="px-6 py-3">Jurusan</th>
-                            <th scope="col" class="px-6 py-3">Tanggal Ujian</th>
-                            <th scope="col" class="px-6 py-3">Skor Listening</th>
-                            <th scope="col" class="px-6 py-3">Skor Reading</th>
+                            <th scope="col" class="px-6 py-3">No</th>
+                            <th scope="col" class="px-6 py-3">Nama Peserta</th>
+                            <th scope="col" class="px-6 py-3">No Pendaftaran</th>
+                            <th scope="col" class="px-6 py-3">Listening</th>
+                            <th scope="col" class="px-6 py-3">Reading</th>
                             <th scope="col" class="px-6 py-3">Total Skor</th>
-                            <th scope="col" class="px-6 py-3">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td colspan="9" class="px-6 py-4 text-center">No records found</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="flex justify-end mt-4">
-                <p class="text-sm text-gray-500 dark:text-gray-400">Showing 0 to 0 of 0 Results</p>
-            </div>
-        @else
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">Id</th>
-                            <th scope="col" class="px-6 py-3">Pendaftaran ID</th>
-                            <th scope="col" class="px-6 py-3">Nama Lengkap</th>
-                            <th scope="col" class="px-6 py-3">Jurusan</th>
-                            <th scope="col" class="px-6 py-3">Tanggal Ujian</th>
-                            <th scope="col" class="px-6 py-3">Skor Listening</th>
-                            <th scope="col" class="px-6 py-3">Skor Reading</th>
-                            <th scope="col" class="px-6 py-3">Total Skor</th>
-                            <th scope="col" class="px-6 py-3">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($ujianHasil->pendaftar as $pendaftar)
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4">{{ $pendaftar->id }}</td>
-                                <td class="px-6 py-4">{{ $pendaftar->pendaftaran_id ?? '-' }}</td>
-                                <td class="px-6 py-4">{{ $pendaftar->user->nama_lengkap ?? '-' }}</td>
-                                <td class="px-6 py-4">{{ $pendaftar->jurusan->nama_jurusan ?? '-' }}</td>
-                                <td class="px-6 py-4">{{ \Carbon\Carbon::parse($ujianHasil->jadwal_ujian)->format('d M Y') }}</td>
-                                <td class="px-6 py-4">{{ $pendaftar->skor_listening ?? '-' }}</td>
-                                <td class="px-6 py-4">{{ $pendaftar->skor_reading ?? '-' }}</td>
-                                <td class="px-6 py-4">{{ ($pendaftar->skor_listening ?? 0) + ($pendaftar->skor_reading ?? 0) }}</td>
-                                <td class="px-6 py-4">
-                                    <a href="{{ route('admin.mahasiswa.detail', $pendaftar->user_id) }}"
-                                        class="text-blue-600 dark:text-blue-400 hover:underline">{{ __('ujian_hasil.View') }}</a>
+                        @foreach ($pendaftars as $key => $pendaftar)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4">{{ $key + 1 }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                    {{ $pendaftar->user->name ?? ($pendaftar->mahasiswa->mahasiswa_nama ?? '-') }}
                                 </td>
+                                <td class="px-6 py-4">{{ $pendaftar->no_pendaftaran }}</td>
+                                <td class="px-6 py-4">{{ $pendaftar->hasilUjian->skor_listening ?? '-' }}</td>
+                                <td class="px-6 py-4">{{ $pendaftar->hasilUjian->skor_reading ?? '-' }}</td>
+                                <td class="px-6 py-4">{{ $pendaftar->hasilUjian->total_skor ?? '-' }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <div class="flex justify-between items-center mt-4">
-                <div>
-                    <select id="entries" class="block p-2.5 w-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                        <option value="10" selected>10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </div>
-                <p class="text-sm text-gray-500 dark:text-gray-400">Showing 1 to {{ $ujianHasil->pendaftar->count() }} of {{ $ujianHasil->pendaftar->count() }} Results</p>
-            </div>
-        @endif
+        </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        document.getElementById('fileImport').addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name || 'Pilih file';
+            const label = e.target.nextElementSibling;
+
+            // Update label text
+            const icon = label.querySelector('svg').outerHTML;
+            label.innerHTML = icon + ' ' + fileName;
+
+            // Submit form automatically after file selection
+            if (e.target.files.length > 0) {
+                e.target.closest('form').submit();
+            }
+        });
+    </script>
+@endpush

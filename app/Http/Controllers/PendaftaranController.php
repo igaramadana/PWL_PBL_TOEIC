@@ -95,7 +95,7 @@ class PendaftaranController extends Controller
                 'foto_ktp' => $fotoKtpPath,
                 'foto_ktm' => $fotoKtmPath,
                 'pas_foto' => $fotoPasPath,
-                'status' => 'Non Verified',
+                'status' => 'Verified',
             ]);
 
             $mahasiswa->update([

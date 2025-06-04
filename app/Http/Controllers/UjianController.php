@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\UjianModel;
+use Laravolt\Avatar\Avatar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UjianController extends Controller
 {
+    protected $avatar;
+    public function __construct()
+    {
+        $this->avatar = new Avatar;
+    }
     public function index()
     {
         $page = (object) [
             'title' => __('pendaftaran.title'),
         ];
         $pendaftaran = UjianModel::with('admin')->get();
-        return view('admin.pendaftaran.index', compact('page', 'pendaftaran'));
+        $adminNama = $pendaftaran->isNotEmpty() ? $pendaftaran->first()->admin->admin_nama : 'Admin';
+        $avatar = $this->avatar->create($adminNama)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        return view('admin.pendaftaran.index', compact('page', 'pendaftaran', 'avatar'));
     }
 
     public function store(Request $request)
@@ -80,6 +89,9 @@ class UjianController extends Controller
         $page = (object) [
             'title' => __('Detail Ujian'),
         ];
-        return view('admin.pendaftaran.show', compact('page', 'ujian'));
+
+        $headerProfile = Auth::user()->admin->admin_nama;
+        $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        return view('admin.pendaftaran.show', compact('page', 'ujian', 'avatar'));
     }
 }
