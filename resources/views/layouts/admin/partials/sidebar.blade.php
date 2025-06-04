@@ -195,6 +195,15 @@
             }
         }
 
+        // Check for Detail pages hasil Ujian
+        if (currentPath.includes('/admin/ujian_hasil/') && currentPath !== '/admin/ujian_hasil') {
+            const hasilUjianMenu = document.getElementById('menu-hasil-toeic');
+            if (hasilUjianMenu) {
+                hasilUjianMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
+                return;
+            }
+        }
+
         // Check for edit pages first
         if (currentPath.includes('/admin/pengumuman') && currentPath !== '/admin/pengumuman') {
             const pengumumanMenu = document.getElementById('menu-pengumuman');

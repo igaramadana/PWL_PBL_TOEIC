@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UjianModel;
 use Laravolt\Avatar\Avatar;
 use Illuminate\Http\Request;
 use App\Models\UjianHasilModel;
+use App\Models\PendaftaranModel;
+use App\Imports\UjianHasilImport;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UjianHasilController extends Controller
 {
@@ -20,77 +25,69 @@ class UjianHasilController extends Controller
         $page = (object) [
             'title' => __('ujian_hasil.title'),
         ];
-        $ujianHasil = UjianHasilModel::with('admin')->get();
-        $avatar = $this->avatar->create('Admin')->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
-        return view('admin.ujian_hasil.index', compact('page', 'ujianHasil', 'avatar'));
+        $ujian = UjianModel::withCount('pendaftar')
+            ->orderBy('jadwal_ujian', 'desc')
+            ->get();
+        $headerProfile = Auth::user()->admin->admin_nama;
+        $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        return view('admin.ujian_hasil.index', compact('page', 'avatar', 'ujian'));
     }
 
-    public function store(Request $request)
+    public function detail(UjianModel $ujian)
     {
-        $validated = $request->validate([
-            'nama_ujian' => 'required|string|max:255',
-            'jadwal_ujian' => 'required|date',
-            'waktu_ujian' => 'required|date_format:H:i',
-            'kuota' => 'required|integer|min:1',
-            'status' => 'required|in:Belum Dilaksanakan,Sudah Dilaksanakan',
+        $page = (object) [
+            'title' => __('ujian_hasil.detail'),
+        ];
+
+        // Ambil semua pendaftar untuk ujian ini, termasuk yang belum memiliki hasil ujian
+        $pendaftars = PendaftaranModel::with(['user', 'mahasiswa', 'hasilUjian'])
+            ->where('ujian_id', $ujian->id)
+            ->get();
+
+        $headerProfile = Auth::user()->admin->admin_nama;
+        $avatar = $this->avatar->create($headerProfile)
+            ->setBackground('#4B5563')
+            ->setBorder(4, '#1C64F2')
+            ->toBase64();
+
+        return view('admin.ujian_hasil.show', compact('page', 'avatar', 'ujian', 'pendaftars'));
+    }
+
+    public function import(Request $request, UjianModel $ujian)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls|max:2048' // Tambahkan max size
         ]);
 
-        $validated['admin_id'] = auth()->user()->id;
-
         try {
-            UjianHasilModel::create($validated);
-            return redirect()->route('ujian_hasil.index')->with('toast_success', __('ujian_hasil.createSuccess'));
+            Excel::import(new UjianHasilImport($ujian), $request->file('file'));
+            return redirect()->back()->with('toast_success', 'Data hasil ujian berhasil diimpor');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            $errorMessages = [];
+
+            foreach ($failures as $failure) {
+                $errorMessages[] = "Baris {$failure->row()}: {$failure->errors()[0]}";
+            }
+
+            return redirect()->back()
+                ->with('error', 'Terjadi kesalahan validasi:')
+                ->with('errors', $errorMessages);
         } catch (\Exception $e) {
-            return redirect()->route('ujian_hasil.index')->with('toast_error', __('ujian_hasil.createError'));
+            return redirect()->back()->with('toast_error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
 
-    public function edit($id)
+    public function formatPage()
     {
-        $ujianHasil = UjianHasilModel::findOrFail($id);
         $page = (object) [
-            'title' => __('ujian_hasil.title'),
+            'title' => __('ujian_hasil.format'),
         ];
-        return view('admin.ujian_hasil.edit', compact('page', 'ujianHasil'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $validated = $request->validate([
-            'nama_ujian' => 'required|string|max:255',
-            'jadwal_ujian' => 'required|date',
-            'waktu_ujian' => 'required|date_format:H:i',
-            'kuota' => 'required|integer|min:1',
-            'status' => 'required|in:Belum Dilaksanakan,Sudah Dilaksanakan',
-        ]);
-
-        $ujianHasil = UjianHasilModel::findOrFail($id);
-
-        try {
-            $ujianHasil->update($validated);
-            return redirect()->route('ujian_hasil.index')->with('toast_success', __('ujian_hasil.updateSuccess'));
-        } catch (\Exception $e) {
-            return redirect()->route('ujian_hasil.index')->with('toast_error', __('ujian_hasil.updateError'));
-        }
-    }
-
-    public function destroy($id)
-    {
-        $ujianHasil = UjianHasilModel::findOrFail($id);
-        try {
-            $ujianHasil->delete();
-            return redirect()->route('ujian_hasil.index')->with('toast_success', __('ujian_hasil.deleteSuccess'));
-        } catch (\Exception $e) {
-            return redirect()->route('ujian_hasil.index')->with('toast_error', __('ujian_hasil.deleteError'));
-        }
-    }
-
-    public function show($id)
-    {
-        $ujianHasil = UjianHasilModel::with(['admin', 'pendaftar'])->findOrFail($id);
-        $page = (object) [
-            'title' => __('Detail Hasil Ujian'),
-        ];
-        return view('admin.ujian_hasil.show', compact('page', 'ujianHasil'));
+        $headerProfile = Auth::user()->admin->admin_nama;
+        $avatar = $this->avatar->create($headerProfile)
+            ->setBackground('#4B5563')
+            ->setBorder(4, '#1C64F2')
+            ->toBase64();
+        return view('admin.ujian_hasil.format', compact('page', 'avatar'));
     }
 }

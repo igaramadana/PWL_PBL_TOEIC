@@ -9,69 +9,18 @@ class UjianHasilModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'ujian_hasil';
+    protected $table = 'hasil_ujian';
 
     protected $fillable = [
-        'nama_hasil_ujian',
-        'waktu_ujian',
-        'jam_ujian',
-        'kuota',
-        'status',
-        'admin_id',
+        'pendaftaran_id',
+        'ujian_id',
+        'skor_listening',
+        'skor_reading',
+        'total_skor'
     ];
 
-    protected $casts = [
-        'waktu_ujian' => 'date',
-        'jam_ujian' => 'string',
-    ];
-
-    protected $appends = [
-        'jam_ujian_display',
-    ];
-
-    public function admin()
+    public function pendaftaran()
     {
-        return $this->belongsTo(AdminModel::class, 'admin_id', 'id');
-    }
-
-    // Relasi ke pendaftaran
-    public function pendaftar()
-    {
-        return $this->hasMany(PendaftaranModel::class, 'ujian_id');
-    }
-
-    public function getJamUjianDisplayAttribute()
-    {
-        return $this->jam_ujian ? substr($this->jam_ujian, 0, 5) : null;
-    }
-
-    public function getNamaUjianAttribute()
-    {
-        return $this->nama_hasil_ujian;
-    }
-
-    public function getJadwalUjianAttribute()
-    {
-        return $this->waktu_ujian;
-    }
-
-    public function getWaktuUjianDisplayAttribute()
-    {
-        return $this->jam_ujian ? substr($this->jam_ujian, 0, 5) : null;
-    }
-
-    public function setNamaUjianAttribute($value)
-    {
-        $this->attributes['nama_hasil_ujian'] = $value;
-    }
-
-    public function setJadwalUjianAttribute($value)
-    {
-        $this->attributes['waktu_ujian'] = $value;
-    }
-
-    public function setWaktuUjianAttribute($value)
-    {
-        $this->attributes['jam_ujian'] = $value;
+        return $this->belongsTo(PendaftaranModel::class, 'pendaftaran_id');
     }
 }
