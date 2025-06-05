@@ -31,14 +31,20 @@ class UjianController extends Controller
         $validated = $request->validate([
             'nama_ujian' => 'required|string|max:255',
             'jadwal_ujian' => 'required|date',
-            'waktu_ujian' => 'required|date_format:H:i', // Validate time format (HH:MM)
+            'waktu_ujian' => 'required|date_format:H:i',
+            'ujian_status' => 'required|in:Open,Close', // Validate time format (HH:MM)
             'kuota' => 'required|integer|min:1',
         ]);
 
-        $validated['admin_id'] = auth()->user()->id;
-
         try {
-            UjianModel::create($validated);
+            UjianModel::create([
+                'nama_ujian' => $validated['nama_ujian'],
+                'jadwal_ujian' => $validated['jadwal_ujian'],
+                'waktu_ujian' => $validated['waktu_ujian'],
+                'kuota' => $validated['kuota'],
+                'admin_id' => auth()->user()->id,
+                'ujian_status' => $validated['ujian_status'],
+            ]);
             return redirect()->route('ujian.index')->with('toast_success', __('pendaftaran.createSuccess'));
         } catch (\Exception $e) {
             return redirect()->route('ujian.index')->with('toast_error', __('pendaftaran.createError'));
@@ -114,5 +120,11 @@ class UjianController extends Controller
         $pendaftaran->update(['status' => 'Verified']);
 
         return redirect()->back()->with('toast_success', 'Pendaftaran berhasil disetujui');
+    }
+
+    public function close(UjianModel $ujian)
+    {
+        $ujian->update(['ujian_status' => 'Close']);
+        return redirect()->back()->with('toast_success', 'Registration closed successfully');
     }
 }
