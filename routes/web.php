@@ -75,6 +75,8 @@ Route::middleware('auth')->group(function () {
             Route::put('/ujian_hasil/{id}', [UjianHasilController::class, 'update'])->name('ujian_hasil.update');
             Route::delete('/ujian_hasil/{id}', [UjianHasilController::class, 'destroy'])->name('ujian_hasil.destroy');
             Route::get('/ujian_hasil/detail/{ujian}', [UjianHasilController::class, 'detail'])->name('ujian_hasil.detail');
+            Route::post('/ujian_hasil/{ujian}/import', [UjianHasilController::class, 'import'])->name('admin.ujian_hasil.import');
+            Route::get('/ujian_hasil/format', [UjianHasilController::class, 'formatPage'])->name('admin.ujian_hasil.format');
 
             // Ujian
             Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
@@ -83,8 +85,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/ujian/{id}', [UjianController::class, 'edit'])->name('ujian.edit');
             Route::put('/ujian/{id}', [UjianController::class, 'update'])->name('ujian.update');
             Route::delete('/ujian/{id}', [UjianController::class, 'destroy'])->name('ujian.delete');
-            Route::post('/admin/ujian_hasil/{ujian}/import', [UjianHasilController::class, 'import'])->name('admin.ujian_hasil.import');
-            Route::get('/admin/ujian_hasil/format', [UjianHasilController::class, 'formatPage'])->name('admin.ujian_hasil.format');
+            Route::get('/ujian/detail/pendaftar/{id}', [UjianController::class, 'detailPendaftar'])->name('admin.detail.pendaftaran');
+            Route::post('/ujian/detail/pendaftar/{id}', [UjianController::class, 'approve'])->name('admin.detail.pendaftaran.approve');
         });
     });
 
@@ -94,6 +96,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/mahasiswa/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
         Route::get('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'showForm'])->name('pendaftaran.detail');
         Route::post('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'store'])->name('mahasiswa.pendaftaran.store');
+
+        Route::get('/mahasiswa/hasil_ujian', [MahasiswaController::class, 'hasilUjian'])->name('mahasiswa.hasil_ujian.index');
     });
 });
 

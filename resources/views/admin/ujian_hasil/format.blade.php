@@ -16,10 +16,10 @@
                 <table class="min-w-full border border-gray-200 dark:border-gray-700">
                     <thead class="bg-gray-100 dark:bg-gray-700">
                         <tr>
-                            <th class="px-4 py-2 border">No Pendaftaran</th>
-                            <th class="px-4 py-2 border">Listening (0-495)</th>
-                            <th class="px-4 py-2 border">Reading (0-495)</th>
-                            <th class="px-4 py-2 border">Total Skor (0-990)</th>
+                            <th class="px-4 py-2 border">no_pendaftaran</th>
+                            <th class="px-4 py-2 border">listening</th>
+                            <th class="px-4 py-2 border">reading</th>
+                            <th class="px-4 py-2 border">total_skor</th>
                         </tr>
                     </thead>
                     <tbody>
