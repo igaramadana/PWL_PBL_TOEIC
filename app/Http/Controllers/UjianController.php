@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\UjianModel;
 use Laravolt\Avatar\Avatar;
 use Illuminate\Http\Request;
+use App\Models\PendaftaranModel;
 use Illuminate\Support\Facades\Auth;
 
 class UjianController extends Controller
@@ -93,5 +94,25 @@ class UjianController extends Controller
         $headerProfile = Auth::user()->admin->admin_nama;
         $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
         return view('admin.pendaftaran.show', compact('page', 'ujian', 'avatar'));
+    }
+
+    public function detailPendaftar($id)
+    {
+        $page = (object) [
+            'title' => __('Detail Ujian'),
+        ];
+        $pendaftaran = PendaftaranModel::with(['ujian', 'mahasiswa', 'hasilUjian'])
+            ->findOrFail($id);
+        $headerProfile = Auth::user()->admin->admin_nama;
+        $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        return view('admin.pendaftaran.detail', compact('pendaftaran', 'avatar', 'page'));
+    }
+
+    public function approve($id)
+    {
+        $pendaftaran = PendaftaranModel::findOrFail($id);
+        $pendaftaran->update(['status' => 'Verified']);
+
+        return redirect()->back()->with('toast_success', 'Pendaftaran berhasil disetujui');
     }
 }
