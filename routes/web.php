@@ -31,7 +31,7 @@ Route::middleware('guest')->group(function () {
 
 // Route untuk semua user yang sudah login
 Route::middleware('auth')->group(function () {
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Route untuk Admin
     Route::middleware('checkrole:ADM')->group(function () {
@@ -87,6 +87,7 @@ Route::middleware('auth')->group(function () {
             Route::delete('/ujian/{id}', [UjianController::class, 'destroy'])->name('ujian.delete');
             Route::get('/ujian/detail/pendaftar/{id}', [UjianController::class, 'detailPendaftar'])->name('admin.detail.pendaftaran');
             Route::post('/ujian/detail/pendaftar/{id}', [UjianController::class, 'approve'])->name('admin.detail.pendaftaran.approve');
+            Route::put('ujian/{ujian}/close', [UjianController::class, 'close'])->name('ujian.close');
         });
     });
 

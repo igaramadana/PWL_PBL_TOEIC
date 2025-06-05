@@ -57,6 +57,8 @@
                             <input type="number" name="kuota" id="kuota" min="1"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 required>
+
+                            <input type="hidden" name="ujian_status" value="Open">
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">
@@ -88,41 +90,114 @@
     </div>
 
     @if ($pendaftaran->isEmpty())
-        <h1 class="text-gray-900 dark:text-white">{{ __('pendaftaran.title') }} belum tersedia</h1>
+        <div class="p-6 text-center bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <svg class="mx-auto w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h3 class="mt-4 text-lg font-medium text-gray-900 dark:text-white">{{ __('pendaftaran.title') }} belum tersedia
+            </h3>
+            <p class="mt-1 text-gray-500 dark:text-gray-400">Silakan tambahkan ujian baru dengan menekan tombol "Tambah
+                Ujian" di atas.</p>
+        </div>
     @else
-        @foreach ($pendaftaran as $item)
-            <div class="mb-2">
-                <a href="{{ route('ujian.detail', $item->id) }}"
-                    class="block px-4 py-2 max-w-full bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                    <div class="flex items-start">
-                        <div
-                            class="flex-shrink-0 flex items-center justify-center w-12 h-12 bg-blue-600 rounded-full dark:bg-blue-600 mr-6">
-                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-                            </svg>
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            @foreach ($pendaftaran as $item)
+                <div
+                    class="relative bg-white rounded-lg shadow-md transition-shadow duration-300 dark:bg-gray-800 hover:shadow-lg">
+                    <!-- Status Badge -->
+                    <div class="absolute top-4 right-4">
+                        @if ($item->ujian_status === 'Open')
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-medium text-green-800 bg-green-100 rounded-full dark:bg-green-900 dark:text-green-200">
+                                {{ $item->ujian_status }}
+                            </span>
+                        @else
+                            <span
+                                class="px-2.5 py-0.5 text-xs font-medium text-red-800 bg-red-100 rounded-full dark:bg-red-900 dark:text-red-200">
+                                {{ $item->ujian_status }}
+                            </span>
+                        @endif
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex items-start mb-4">
+                            <div class="flex-shrink-0 mr-4">
+                                <div
+                                    class="flex justify-center items-center w-12 h-12 bg-blue-100 rounded-full dark:bg-blue-900">
+                                    <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="mb-1 text-xl font-bold text-gray-900 dark:text-white">{{ $item->nama_ujian }}
+                                </h3>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('pendaftaran.ExamID') }}:
+                                    {{ $item->id }}</p>
+                            </div>
                         </div>
-                        <div class="flex-1">
-                            <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                {{ $item->nama_ujian }}
-                            </h5>
-                            <div class="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                                <span class="font-medium">{{ __('pendaftaran.ExamSchedule') }}:</span>
-                                {{ \Carbon\Carbon::parse($item->jadwal_ujian)->format('d M Y') }}
+
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="ml-2 text-gray-700 dark:text-gray-300">
+                                    {{ \Carbon\Carbon::parse($item->jadwal_ujian)->translatedFormat('l, d F Y') }}
+                                </span>
                             </div>
-                            <div class="text-sm text-gray-600 dark:text-gray-300">
-                                <span class="font-medium">{{ __('pendaftaran.ExamTime') }}:</span>
-                                {{ $item->waktu_ujian_display }}
+
+                            <div class="flex items-center">
+                                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="ml-2 text-gray-700 dark:text-gray-300">
+                                    {{ $item->waktu_ujian_display }}
+                                </span>
                             </div>
-                            <div class="text-sm text-gray-600 dark:text-gray-300">
-                                <span
-                                    class="font-medium">{{ __('pendaftaran.Quota') }}:</span>{{ count($item->pendaftar) }}/{{ $item->kuota }}
+
+                            <div class="flex items-center">
+                                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                                </svg>
+                                <span class="ml-2 text-gray-700 dark:text-gray-300">
+                                    {{ count($item->pendaftar) }} / {{ $item->kuota }}
+                                    {{ __('pendaftaran.Participants') }}
+                                    <div class="mt-1 w-full h-2.5 bg-gray-200 rounded-full dark:bg-gray-700">
+                                        @php
+                                            $percentage =
+                                                $item->kuota > 0
+                                                    ? min(100, (count($item->pendaftar) / $item->kuota) * 100)
+                                                    : 0;
+                                        @endphp
+                                        <div class="h-2.5 bg-blue-600 rounded-full" style="width: {{ $percentage }}%">
+                                        </div>
+                                    </div>
+                                </span>
                             </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <a href="{{ route('ujian.detail', $item->id) }}"
+                                class="flex gap-2 justify-center items-center px-4 py-3 w-full text-base font-semibold text-white bg-blue-600 rounded-lg shadow transition-all duration-200 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                {{ __('pendaftaran.ViewDetails') }}
+                            </a>
                         </div>
                     </div>
-                </a>
-            </div>
-        @endforeach
+                </div>
+            @endforeach
+        </div>
     @endif
 @endsection

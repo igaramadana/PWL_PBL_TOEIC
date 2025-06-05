@@ -16,6 +16,7 @@ class UjianModel extends Model
         'jadwal_ujian',
         'waktu_ujian',
         'kuota',
+        'ujian_status',
         'admin_id'
     ];
 
