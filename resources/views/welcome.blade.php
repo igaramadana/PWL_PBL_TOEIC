@@ -28,7 +28,7 @@
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <a href="{{ url('/') }}" class="flex items-center">
                     <img src="{{ asset('img/SistemLogo.png') }}" class="mr-2" style="width: 50px; height: auto;" alt="SKILLIFY">
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Skillify</span>
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TOEIC</span>
                 </a>
                 <div class="flex items-center lg:order-2">
                     {{-- Language - Switch --}}
@@ -543,7 +543,7 @@
                 <div class="mb-6 md:mb-0">
                     <a href="https://flowbite.com" class="flex items-center">
                         <img src="/img/SistemLogo.png" class="mr-3 h-8" alt="FlowBite Logo" />
-                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Skillify</span>
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TOEIC</span>
                     </a>
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">

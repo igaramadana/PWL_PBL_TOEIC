@@ -14,11 +14,9 @@
                         </path>
                     </svg>
                 </button>
-                <a href="/home" class="flex ms-2 md:me-24">
-                    <img src="/img/SkillifyLogo.png" class="w-auto h-8 me-3" alt="SKILLIFY"
-                        style="width: 50px; height: auto";>
-                    <span
-                        class="self-center text-xl font-semibold whitespace-nowrap sm:text-2xl dark:text-white"></span>
+                <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="{{ asset('img/SistemLogo.png') }}" class="h-10" alt="SKILLIFY">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TOEIC</span>
                 </a>
             </div>
             <div class="flex items-center">
