@@ -23,8 +23,9 @@
 <body class="bg-white dark:bg-gray-900">
     <main>
         <section class="flex flex-col justify-center items-center p-4 my-6 min-h-screen">
-            <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-                <img src="/img/SkillifyLogo.png" alt="logo" style="width: 100px; height: auto;">
+            <a href="#" class="flex items-center mb-6 text-xl font-semibold text-gray-900 dark:text-white">
+                <img src="/img/SistemLogo.png" alt="logo" style="width: 60px; height: auto;">
+                Skillify
             </a>
             <div class="w-full max-w-2xl bg-white rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700"
                 data-aos="zoom-in-down">
