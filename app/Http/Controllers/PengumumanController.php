@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Laravolt\Avatar\Avatar;
 use Illuminate\Http\Request;
 use App\Models\PengumumanModel;
+use Illuminate\Support\Facades\Auth;
 
 class PengumumanController extends Controller
 {
     protected $avatar;
+
     public function __construct()
     {
         $this->avatar = new Avatar;
     }
+
     public function index()
     {
         $page = (object) [
@@ -23,6 +26,7 @@ class PengumumanController extends Controller
         $avatar = $this->avatar->create($adminNama)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
         return view('admin.pengumuman.index', compact('page', 'pengumuman', 'avatar'));
     }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -30,13 +34,19 @@ class PengumumanController extends Controller
             'isi' => 'required|string',
         ]);
 
-        $validated['admin_id'] = auth()->user()->id;
+        // Ensure the authenticated user has an associated admin record
+        $admin = Auth::user()->admin;
+        if (!$admin) {
+            return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.noAdminAccount'));
+        }
+
+        $validated['admin_id'] = $admin->id;
 
         try {
             PengumumanModel::create($validated);
             return redirect()->route('pengumuman.index')->with('toast_success', __('pengumuman.createSuccess'));
         } catch (\Exception $e) {
-            return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.createError'));
+            return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.createError') . ': ' . $e->getMessage());
         }
     }
 
@@ -46,7 +56,9 @@ class PengumumanController extends Controller
         $page = (object) [
             'title' => __('pengumuman.title'),
         ];
-        return view('admin.pengumuman.edit', compact('page', 'pengumuman'));
+        $headerProfile = Auth::user()->admin->admin_nama ?? 'Admin';
+        $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        return view('admin.pengumuman.edit', compact('page', 'pengumuman', 'avatar'));
     }
 
     public function update(Request $request, $id)
@@ -60,7 +72,7 @@ class PengumumanController extends Controller
             $pengumuman->update($validated);
             return redirect()->route('pengumuman.index')->with('toast_success', __('pengumuman.updateSuccess'));
         } catch (\Exception $e) {
-            return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.updateError'));
+            return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.updateError') . ': ' . $e->getMessage());
         }
     }
 
@@ -71,7 +83,21 @@ class PengumumanController extends Controller
             $pengumuman->delete();
             return redirect()->route('pengumuman.index')->with('toast_success', __('pengumuman.deleteSuccess'));
         } catch (\Exception $e) {
-            return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.deleteError'));
+            return redirect()->route('pengumuman.index')->with('toast_error', __('pengumuman.deleteError') . ': ' . $e->getMessage());
+        }
+    }
+
+    public function mahasiswaIndex()
+    {
+        $page = (object) [
+            'title' => __('pengumuman.title'),
+        ];
+        $pengumuman = PengumumanModel::with('admin')->latest()->get();
+
+        if (view()->exists('mahasiswa.pengumuman.index')) {
+            return view('mahasiswa.pengumuman.index', compact('page', 'pengumuman'));
+        } else {
+            return view('layouts.users.pengumuman', compact('page', 'pengumuman'));
         }
     }
 }

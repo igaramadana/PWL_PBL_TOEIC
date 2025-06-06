@@ -34,14 +34,14 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('pengumuman.title') }}</label>
                             <input type="text" name="judul" id="judul"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-600 focus:border-primary-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="{{ __('pengumuman.EnterAnnouncementTitle') }}" required="">
+                                placeholder="{{ __('pengumuman.EnterAnnouncementTitle') }}" required>
                         </div>
                         <div class="sm:col-span-2">
                             <label for="isi"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('pengumuman.AnnouncementContent') }}</label>
                             <textarea id="isi" name="isi" rows="4"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="{{ __('pengumuman.AnnouncementPlaceholder') }}"></textarea>
+                                placeholder="{{ __('pengumuman.AnnouncementPlaceholder') }}" required></textarea>
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">
@@ -93,7 +93,7 @@
                                 {{ $item->judul }}
                             </h5>
                             <div class="flex items-center mt-1">
-                                <img src="{{ $avatar }}" class="mr-1 w-5 h-5" alt="FlowBite Logo" />
+                                <img src="{{ $avatar }}" class="mr-1 w-5 h-5" alt="Admin Avatar" />
                                 <p class="font-normal text-gray-700 dark:text-gray-400">{{ $item->admin->admin_nama }}
                                 </p>
                             </div>

@@ -99,6 +99,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/mahasiswa/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
         Route::get('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'showForm'])->name('pendaftaran.detail');
         Route::post('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'store'])->name('mahasiswa.pendaftaran.store');
+        //Pengumuman
+        Route::get('/mahasiswa/pengumuman', [PengumumanController::class, 'mahasiswaIndex'])->name('mahasiswa.pengumuman.index');
     });
 
     // Route untuk Tendik
