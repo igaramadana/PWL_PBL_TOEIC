@@ -48,7 +48,7 @@
 
             <!-- Pengumuman -->
             <li>
-                <a href="" id="menu-pengumuman"
+                <a href="#" id="menu-pengumuman"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-white dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -81,7 +81,7 @@
     <div class="relative w-full max-w-md max-h-full">
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <button type="button"
-                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                class="inline-flex absolute right-2.5 top-3 justify-center items-center ml-auto w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
                 data-modal-hide="popup-signout">
                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 14 14">
@@ -91,7 +91,7 @@
                 <span class="sr-only">Close modal</span>
             </button>
             <div class="p-6 text-center">
-                <svg class="mx-auto mb-4 text-red-600 w-12 h-12 dark:text-red-500" aria-hidden="true"
+                <svg class="mx-auto mb-4 w-12 h-12 text-red-600 dark:text-red-500" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -101,13 +101,96 @@
                 <form action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf
                     <button type="submit"
-                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                        class="inline-flex items-center px-5 py-2.5 mr-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800">
                         Ya, keluar
                     </button>
                 </form>
                 <button data-modal-hide="popup-signout" type="button"
-                    class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Batal</button>
+                    class="px-5 py-2.5 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Batal</button>
             </div>
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setActiveMenu();
+
+        // Untuk dropdown yang menggunakan data-collapse-toggle
+        const dropdownButtons = document.querySelectorAll('[data-collapse-toggle]');
+        dropdownButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-collapse-toggle');
+                const target = document.getElementById(targetId);
+                target.classList.toggle('hidden');
+
+                // Rotate arrow icon
+                const arrow = this.querySelector('svg:last-child');
+                arrow.classList.toggle('rotate-180');
+            });
+        });
+    });
+
+    function setActiveMenu() {
+        const currentPath = window.location.pathname;
+        const currentUrl = window.location.href;
+
+        // Reset all menu items
+        document.querySelectorAll('#logo-sidebar a').forEach(item => {
+            item.classList.remove('bg-blue-500', 'text-white', 'dark:bg-blue-600');
+        });
+
+        // Check for detail pages first
+        if (currentPath.includes('/mahasiswa/hasil_ujian/') && currentPath !== '/mahasiswa/hasil_ujian') {
+            const hasilUjianMenu = document.getElementById('menu-hasil-toeic');
+            if (hasilUjianMenu) {
+                hasilUjianMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
+                return;
+            }
+        }
+
+        if (currentPath.includes('/pendaftaran/') && currentPath !== '/pendaftaran') {
+            const pendaftaranMenu = document.getElementById('menu-ujian');
+            if (pendaftaranMenu) {
+                pendaftaranMenu.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
+                return;
+            }
+        }
+
+        // Check exact matches first
+        let activeFound = false;
+        document.querySelectorAll('#logo-sidebar a[id^="menu-"]').forEach(item => {
+            if (item.getAttribute('href') === currentPath || item.href === currentUrl) {
+                item.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
+                activeFound = true;
+
+                // Ubah warna ikon menjadi putih
+                const icon = item.querySelector('svg');
+                if (icon) {
+                    icon.classList.remove('text-gray-500', 'dark:text-gray-400');
+                    icon.classList.add('text-white', 'dark:text-white');
+                }
+            }
+        });
+
+        // If no exact match found, check for partial matches
+        if (!activeFound) {
+            document.querySelectorAll('#logo-sidebar a[id^="menu-"]').forEach(item => {
+                const itemPath = new URL(item.href).pathname;
+                if (currentPath.startsWith(itemPath) && itemPath !== '/') {
+                    item.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-600');
+
+                    // Ubah warna ikon menjadi putih
+                    const icon = item.querySelector('svg');
+                    if (icon) {
+                        icon.classList.remove('text-gray-500', 'dark:text-gray-400');
+                        icon.classList.add('text-white', 'dark:text-white');
+                    }
+                }
+            });
+        }
+    }
+
+    // Re-run when navigating with Turbolinks or similar
+    document.addEventListener('turbolinks:load', setActiveMenu);
+    window.addEventListener('load', setActiveMenu);
+</script>

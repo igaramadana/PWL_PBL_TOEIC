@@ -22,8 +22,8 @@ class PendaftaranController extends Controller
         $checkRegist = $mahasiswa && $mahasiswa->daftar_ujian;
 
         $pendaftaran = $checkRegist ? [] : UjianModel::with('admin')->get();
-
-        return view('mahasiswa.pendaftaran.pendaftaran', compact('page', 'pendaftaran', 'checkRegist'));
+        $status = PendaftaranModel::where('user_id', auth()->user()->id)->first();
+        return view('mahasiswa.pendaftaran.pendaftaran', compact('page', 'pendaftaran', 'checkRegist', 'status'));
     }
 
     public function showForm($id)
