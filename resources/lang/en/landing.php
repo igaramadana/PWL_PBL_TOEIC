@@ -1,7 +1,7 @@
 <?php
 return [
     // Main
-    'pageTitle' => 'Welcome to SKILLIFY',
+    'pageTitle' => 'Welcome to SILLIFY',
     'login' => 'Login',
 
     // Navbar
@@ -11,7 +11,7 @@ return [
 
     // Hero Section
     'heroTitle' => 'Achieve Your English Proficiency with TOEIC',
-    'heroSubtitle' => 'Register now for the TOEIC test and take the first step to prove your English communication skills to employers around the world.',
+    'heroSubtitle' => 'Register now for the TOEIC test and take the first step to prove your English communication skills to employers worldwide.',
     'heroButton' => 'Register Now',
     'heroButton2' => 'Learn About TOEIC',
 
@@ -27,7 +27,16 @@ return [
 
     // Our Team
     'teamTitle' => 'Our Team',
-    'teamSubtitle' => 'We are the Group 3 PBL team from SIB-2C',
+    'teamSubtitle' => 'We are PBL Group 3 from SIB-2C',
+
+    // Announcement Section
+    'announcementTitle' => 'Exam Registration Open',
+    'announcementSubtitle' => 'Join our upcoming TOEIC exams. Limited slots available!',
+    'noExamsAvailable' => 'No exams available at the moment.',
+    'examSchedule' => 'Exam Date',
+    'examTime' => 'Exam Time',
+    'quota' => 'Quota',
+    'registerNow' => 'Register Now',
 
     // Footer
     'followUs' => 'Follow Us'

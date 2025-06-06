@@ -181,6 +181,75 @@
             </div>
         </div>
     </section>
+
+    <!-- Announcement Section -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="px-4 mx-auto max-w-screen-xl" data-aos="fade-up">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                    {{ __('landing.announcementTitle') }}
+                </h2>
+                <p class="mx-auto mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400">
+                    {{ __('landing.announcementSubtitle') }}
+                </p>
+            </div>
+
+            @php
+                $ujian = App\Models\UjianModel::with('pendaftar')->get();
+            @endphp
+
+            @if ($ujian->isEmpty())
+                <div class="text-center text-gray-500 dark:text-gray-400">
+                    {{ __('landing.noExamsAvailable') }}
+                </div>
+            @else
+                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    @foreach ($ujian as $item)
+                        <div class="block p-6 bg-white rounded-lg border border-gray-200 shadow-sm transition-all duration-300 ease-in-out hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                            data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                            <div class="flex items-center mb-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                    </svg>
+                                </div>
+                                <h3 class="ml-6 text-xl font-bold text-gray-900 dark:text-white">
+                                    {{ $item->nama_ujian }}
+                                </h3>
+                            </div>
+                            <div class="text-gray-500 dark:text-gray-400">
+                                <p class="mb-2">
+                                    <span class="font-medium">{{ __('landing.examSchedule') }}:</span>
+                                    {{ \Carbon\Carbon::parse($item->jadwal_ujian)->format('d M Y') }}
+                                </p>
+                                <p class="mb-2">
+                                    <span class="font-medium">{{ __('landing.examTime') }}:</span>
+                                    {{ \Carbon\Carbon::parse($item->waktu_ujian)->format('H:i') }}
+                                </p>
+                                <p class="mb-4">
+                                    <span class="font-medium">{{ __('landing.quota') }}:</span>
+                                    {{ count($item->pendaftar) }}/{{ $item->kuota }}
+                                </p>
+                                <a href="{{ route('register') }}"
+                                    class="inline-flex justify-center items-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                                    {{ __('landing.registerNow') }}
+                                    <svg class="-mr-1 ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </section>
+
     {{-- About --}}
     <section id="test-info" class="py-16 bg-gray-50 dark:bg-gray-900">
         <div class="px-4 mx-auto max-w-screen-xl" data-aos="fade-up">
