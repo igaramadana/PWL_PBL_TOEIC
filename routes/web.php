@@ -5,12 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\KampusController;
-use App\Http\Controllers\TendikController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\UjianHasilController;
-use App\Http\Controllers\AdminTendikController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminMahasiswaController;
@@ -29,12 +27,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login.process');
     Route::get('/register', [AuthController::class, 'registerPage'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.process');
-    Route::post('/register/tendik', [AuthController::class, 'registerTendik'])->name('register.tendik');
 });
 
 // Route untuk semua user yang sudah login
 Route::middleware('auth')->group(function () {
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Route untuk Admin
     Route::middleware('checkrole:ADM')->group(function () {
@@ -64,10 +61,6 @@ Route::middleware('auth')->group(function () {
             Route::get('/mahasiswa', [AdminMahasiswaController::class, 'index'])->name('admin.mahasiswa.index');
             Route::get('/mahasiswa/detail/{id}', [AdminMahasiswaController::class, 'show'])->name('admin.mahasiswa.detail');
 
-            // Tendik
-            Route::get('/tendik', [AdminTendikController::class, 'index'])->name('admin.tendik.index');
-            Route::get('/tendik/detail/{id}', [AdminTendikController::class, 'show'])->name('admin.tendik.detail');
-
             // Pengumuman
             Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
             Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
@@ -78,18 +71,22 @@ Route::middleware('auth')->group(function () {
             // Ujian Hasil
             Route::get('/ujian_hasil', [UjianHasilController::class, 'index'])->name('ujian_hasil.index');
             Route::post('/ujian_hasil', [UjianHasilController::class, 'store'])->name('ujian_hasil.store');
-            Route::get('/ujian_hasil/{id}', [UjianHasilController::class, 'edit'])->name('ujian_hasil.edit');
             Route::put('/ujian_hasil/{id}', [UjianHasilController::class, 'update'])->name('ujian_hasil.update');
             Route::delete('/ujian_hasil/{id}', [UjianHasilController::class, 'destroy'])->name('ujian_hasil.destroy');
-            Route::get('/ujian_hasil/detail/{id}', [UjianHasilController::class, 'show'])->name('ujian_hasil.detail');
+            Route::get('/ujian_hasil/detail/{ujian}', [UjianHasilController::class, 'detail'])->name('ujian_hasil.detail');
+            Route::post('/ujian_hasil/{ujian}/import', [UjianHasilController::class, 'import'])->name('admin.ujian_hasil.import');
+            Route::get('/ujian_hasil/format', [UjianHasilController::class, 'formatPage'])->name('admin.ujian_hasil.format');
 
-            // ujian
+            // Ujian
             Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
             Route::post('/ujian', [UjianController::class, 'store'])->name('ujian.store');
             Route::get('/ujian/detail/{id}', [UjianController::class, 'show'])->name('ujian.detail');
             Route::get('/ujian/{id}', [UjianController::class, 'edit'])->name('ujian.edit');
             Route::put('/ujian/{id}', [UjianController::class, 'update'])->name('ujian.update');
             Route::delete('/ujian/{id}', [UjianController::class, 'destroy'])->name('ujian.delete');
+            Route::get('/ujian/detail/pendaftar/{id}', [UjianController::class, 'detailPendaftar'])->name('admin.detail.pendaftaran');
+            Route::post('/ujian/detail/pendaftar/{id}', [UjianController::class, 'approve'])->name('admin.detail.pendaftaran.approve');
+            Route::put('ujian/{ujian}/close', [UjianController::class, 'close'])->name('ujian.close');
         });
     });
 
@@ -101,17 +98,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/mahasiswa/pendaftaran/{id}', [PendaftaranController::class, 'store'])->name('mahasiswa.pendaftaran.store');
         //Pengumuman
         Route::get('/mahasiswa/pengumuman', [PengumumanController::class, 'mahasiswaIndex'])->name('mahasiswa.pengumuman.index');
-    });
-
-    // Route untuk Tendik
-    Route::middleware('checkrole:TND')->group(function () {
-        Route::get('/tendik', function () {
-            return view('tendik.index');
-        })->name('tendik.index');
+        Route::get('/mahasiswa/hasil_ujian', [MahasiswaController::class, 'hasilUjian'])->name('mahasiswa.hasil_ujian.index');
     });
 });
 
-// routes/web.php
 Route::get('/get-jurusan/{kampus_id}', function ($kampus_id) {
     return \App\Models\JurusanModel::where('kampus_id', $kampus_id)->get();
 });

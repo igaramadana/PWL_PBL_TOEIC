@@ -56,7 +56,8 @@ class PengumumanController extends Controller
         $page = (object) [
             'title' => __('pengumuman.title'),
         ];
-        $headerProfile = Auth::user()->admin->admin_nama ?? 'Admin';
+
+        $headerProfile = Auth::user()->admin->admin_nama;
         $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
         return view('admin.pengumuman.edit', compact('page', 'pengumuman', 'avatar'));
     }

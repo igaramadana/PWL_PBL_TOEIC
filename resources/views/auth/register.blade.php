@@ -25,7 +25,7 @@
         <section class="flex flex-col justify-center items-center p-4 my-6 min-h-screen">
             <a href="#" class="flex items-center mb-6 text-xl font-semibold text-gray-900 dark:text-white">
                 <img src="/img/SistemLogo.png" alt="logo" style="width: 60px; height: auto;">
-                Skillify
+                TOEIC
             </a>
             <div class="w-full max-w-2xl bg-white rounded-lg border border-gray-200 shadow-lg dark:bg-gray-800 dark:border-gray-700"
                 data-aos="zoom-in-down">
@@ -79,8 +79,7 @@
                                         <input type="number" name="no_telp" id="no_telp"
                                             aria-describedby="helper-text-explanation"
                                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 ps-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890"
-                                            required />
+                                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
                                         @error('no_telp')
                                             <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
                                         @enderror
@@ -192,10 +191,10 @@
                                     class="w-4 h-4 bg-gray-50 rounded-sm border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
                                     required />
                             </div>
-                            <label for="remember"
-                                class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">I agree with
-                                the <a href="#"
-                                    class="text-blue-600 hover:underline dark:text-blue-500">terms and
+                            <label for="remember" class="text-sm font-medium text-gray-900 ms-2 dark:text-gray-300">I
+                                agree with
+                                the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms
+                                    and
                                     conditions</a>.</label>
                             @error('terms')
                                 <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
@@ -226,14 +225,17 @@
         $(document).ready(function() {
             $('#kampus_id').change(function() {
                 var kampus_id = $(this).val();
-                $('#jurusan_id').empty().append('<option value="">Pilih Jurusan</option>').prop('disabled', true);
-                $('#prodi_id').empty().append('<option value="">Pilih Program Studi</option>').prop('disabled', true);
+                $('#jurusan_id').empty().append('<option value="">Pilih Jurusan</option>').prop('disabled',
+                    true);
+                $('#prodi_id').empty().append('<option value="">Pilih Program Studi</option>').prop(
+                    'disabled', true);
 
                 if (kampus_id) {
                     $.get('/get-jurusan/' + kampus_id, function(data) {
                         $('#jurusan_id').prop('disabled', false);
                         $.each(data, function(key, value) {
-                            $('#jurusan_id').append('<option value="' + value.id + '">' + value.jurusan_nama + '</option>');
+                            $('#jurusan_id').append('<option value="' + value.id + '">' +
+                                value.jurusan_nama + '</option>');
                         });
                     });
                 }
@@ -241,13 +243,15 @@
 
             $('#jurusan_id').change(function() {
                 var jurusan_id = $(this).val();
-                $('#prodi_id').empty().append('<option value="">Pilih Program Studi</option>').prop('disabled', true);
+                $('#prodi_id').empty().append('<option value="">Pilih Program Studi</option>').prop(
+                    'disabled', true);
 
                 if (jurusan_id) {
                     $.get('/get-prodi/' + jurusan_id, function(data) {
                         $('#prodi_id').prop('disabled', false);
                         $.each(data, function(key, value) {
-                            $('#prodi_id').append('<option value="' + value.id + '">' + value.prodi_nama + '</option>');
+                            $('#prodi_id').append('<option value="' + value.id + '">' +
+                                value.prodi_nama + '</option>');
                         });
                     });
                 }

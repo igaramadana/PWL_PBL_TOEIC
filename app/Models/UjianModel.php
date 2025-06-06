@@ -16,6 +16,7 @@ class UjianModel extends Model
         'jadwal_ujian',
         'waktu_ujian',
         'kuota',
+        'ujian_status',
         'admin_id'
     ];
 
@@ -33,7 +34,7 @@ class UjianModel extends Model
     // Relasi ke admin (jika ada model admin)
     public function admin()
     {
-        return $this->belongsTo(User::class, 'admin_id');
+        return $this->belongsTo(AdminModel::class, 'admin_id');
     }
 
     // Accessor untuk format waktu ujian

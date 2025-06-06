@@ -104,7 +104,7 @@ final class PendaftarTable extends PowerGridComponent
             Button::add('detail')
                 ->slot('Detail')
                 ->class('px-3 py-1 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500')
-                ->route('ujian.detail', ['id' => $row->id]),
+                ->route('admin.detail.pendaftaran', ['id' => $row->id]),
         ];
     }
 }

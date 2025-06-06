@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\MahasiswaModel;
 use App\Models\PengumumanModel;
 use App\Models\PendaftaranModel;
+use Illuminate\Support\Facades\Auth;
 
 class MahasiswaController extends Controller
 {
@@ -49,5 +50,20 @@ class MahasiswaController extends Controller
             'pendaftaran',
             'ujian'
         ));
+    }
+
+    public function hasilUjian()
+    {
+        $page = (object) [
+            'title' => 'Hasil Ujian',
+        ];
+        // Ambil semua pendaftaran user yang sudah memiliki hasil ujian
+        $pendaftarans = PendaftaranModel::with(['ujian', 'hasilUjian'])
+            ->where('user_id', Auth::id())
+            ->whereHas('hasilUjian')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('mahasiswa.hasil_ujian.index', compact('pendaftarans', 'page'));
     }
 }

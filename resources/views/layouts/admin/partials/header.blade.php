@@ -14,11 +14,9 @@
                         </path>
                     </svg>
                 </button>
-                <a href="/home" class="flex ms-2 md:me-24">
-                    <img src="/img/SkillifyLogo.png" class="w-auto h-8 me-3" alt="SKILLIFY"
-                        style="width: 50px; height: auto";>
-                    <span
-                        class="self-center text-xl font-semibold whitespace-nowrap sm:text-2xl dark:text-white"></span>
+                <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="{{ asset('img/SistemLogo.png') }}" class="h-10" alt="SKILLIFY">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TOEIC</span>
                 </a>
             </div>
             <div class="flex items-center">
@@ -33,8 +31,7 @@
                             class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                            <img class="w-8 h-8 rounded-full" src="{{ $avatar }}" alt="user photo">
                         </button>
                     </div>
                     <div class="hidden z-50 my-4 text-base list-none bg-white rounded-sm divide-y divide-gray-100 shadow-sm dark:bg-gray-700 dark:divide-gray-600"

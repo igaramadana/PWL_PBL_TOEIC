@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\KampusModel;
+use Laravolt\Avatar\Avatar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -12,12 +14,19 @@ class KampusController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $avatar;
+    public function __construct()
+    {
+        $this->avatar = new Avatar;
+    }
     public function index()
     {
         $page = (object) [
             'title' => __('kampus.title'),
         ];
-        return view('admin.kampus.index', compact('page'));
+        $kampus = Auth::user()->admin->admin_nama;
+        $avatar = $this->avatar->create($kampus)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        return view('admin.kampus.index', compact('page', 'avatar'));
     }
     /**
      * Store a newly created resource in storage.

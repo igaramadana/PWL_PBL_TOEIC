@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProdiModel;
+use Laravolt\Avatar\Avatar;
 use App\Models\JurusanModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ProdiController extends Controller
@@ -12,13 +14,20 @@ class ProdiController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $avatar;
+    public function __construct()
+    {
+        $this->avatar = new Avatar;
+    }
     public function index()
     {
         $page = (object) [
             'title' => __('prodi.title'),
         ];
         $jurusan = JurusanModel::all();
-        return view('admin.prodi.index', compact('page', 'jurusan'));
+        $prodi = Auth::user()->admin->admin_nama;
+        $avatar = $this->avatar->create($prodi)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        return view('admin.prodi.index', compact('page', 'jurusan', 'avatar'));
     }
 
     /**
