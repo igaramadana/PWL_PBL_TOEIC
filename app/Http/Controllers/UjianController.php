@@ -65,14 +65,22 @@ class UjianController extends Controller
         $validated = $request->validate([
             'nama_ujian' => 'required|string|max:255',
             'jadwal_ujian' => 'required|date',
-            'waktu_ujian' => 'required|date_format:H:i', // Validate time format (HH:MM)
+            'waktu_ujian' => 'required|date_format:H:i',
             'kuota' => 'required|integer|min:1',
+            'ujian_status' => 'required|in:Open,Close'
         ]);
 
         $pendaftaran = UjianModel::findOrFail($id);
 
         try {
-            $pendaftaran->update($validated);
+            $pendaftaran->update([
+                'nama_ujian' => $validated['nama_ujian'],
+                'jadwal_ujian' => $validated['jadwal_ujian'],
+                'waktu_ujian' => $validated['waktu_ujian'],
+                'kuota' => $validated['kuota'],
+                'admin_id' => auth()->user()->id,
+                'ujian_status' => $validated['ujian_status'],
+            ]);
             return redirect()->route('ujian.index')->with('toast_success', __('pendaftaran.updateSuccess'));
         } catch (\Exception $e) {
             return redirect()->route('ujian.index')->with('toast_error', __('pendaftaran.updateError'));
