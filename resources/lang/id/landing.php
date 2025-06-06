@@ -23,11 +23,20 @@ return [
     'card2Title' => 'Format Tes',
     'card2Subtitle' => 'Tes selama 2 jam dengan 200 pertanyaan pilihan ganda. Bagian Mendengarkan (100 pertanyaan) dan Membaca (100 pertanyaan).',
     'card3Title' => 'Rentang Skor',
-    'card3Subtitle' => 'Scores range from 10-990 points. Most companies require 600+ for professional positions and 800+ for managerial roles.',
+    'card3Subtitle' => 'Skor berkisar dari 10-990 poin. Sebagian besar perusahaan membutuhkan 600+ untuk posisi profesional dan 800+ untuk posisi manajerial.',
 
     // Our Team
     'teamTitle' => 'Tim Kami',
     'teamSubtitle' => 'Kami adalah tim PBL Kelompok 3 dari SIB-2C',
+
+    // Announcement Section
+    'announcementTitle' => 'Pendaftaran Ujian Dibuka',
+    'announcementSubtitle' => 'Bergabunglah dengan ujian TOEIC mendatang kami. Kuota terbatas!',
+    'noExamsAvailable' => 'Belum ada ujian yang tersedia saat ini.',
+    'examSchedule' => 'Jadwal Ujian',
+    'examTime' => 'Waktu Ujian',
+    'quota' => 'Kuota',
+    'registerNow' => 'Daftar Sekarang',
 
     // Footer
     'followUs' => 'Ikuti Kami'
