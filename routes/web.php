@@ -71,7 +71,6 @@ Route::middleware('auth')->group(function () {
             // Ujian Hasil
             Route::get('/ujian_hasil', [UjianHasilController::class, 'index'])->name('ujian_hasil.index');
             Route::post('/ujian_hasil', [UjianHasilController::class, 'store'])->name('ujian_hasil.store');
-            Route::get('/ujian_hasil/{id}', [UjianHasilController::class, 'edit'])->name('ujian_hasil.edit');
             Route::put('/ujian_hasil/{id}', [UjianHasilController::class, 'update'])->name('ujian_hasil.update');
             Route::delete('/ujian_hasil/{id}', [UjianHasilController::class, 'destroy'])->name('ujian_hasil.destroy');
             Route::get('/ujian_hasil/detail/{ujian}', [UjianHasilController::class, 'detail'])->name('ujian_hasil.detail');

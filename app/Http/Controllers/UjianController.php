@@ -124,10 +124,118 @@ class UjianController extends Controller
 
     public function approve($id)
     {
-        $pendaftaran = PendaftaranModel::findOrFail($id);
-        $pendaftaran->update(['status' => 'Verified']);
+        $pendaftaran = PendaftaranModel::with(['user', 'ujian'])->findOrFail($id);
 
-        return redirect()->back()->with('toast_success', 'Pendaftaran berhasil disetujui');
+        try {
+            $pendaftaran->update(['status' => 'Verified']);
+
+            $this->sendWhatsAppNotification($pendaftaran);
+
+            return redirect()->back()->with('toast_success', 'Pendaftaran berhasil disetujui dan notifikasi WhatsApp telah dikirim');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('toast_error', 'Pendaftaran disetujui tetapi gagal mengirim notifikasi WhatsApp: ' . $e->getMessage());
+        }
+    }
+
+    private function sendWhatsAppNotification($pendaftaran)
+    {
+        $token = env('WHATSAPP_API_KEY'); // Ganti dengan token Fontee Anda
+        $url = 'https://api.fonnte.com/send';
+
+        // Format nomor WhatsApp (pastikan tanpa + dan spasi)
+        $phone = $this->formatPhoneNumber($pendaftaran->user->mahasiswa->no_telp); // Asumsi nomor ada di relasi user
+
+        // Siapkan pesan
+        $message = $this->buildApprovalMessage($pendaftaran);
+
+        // Siapkan data payload sesuai format Fontee
+        $payload = [
+            [
+                'target' => $phone,
+                'message' => $message,
+                'delay' => '1' // Delay pengiriman dalam detik
+            ]
+        ];
+
+        // Konversi ke format JSON string untuk CURLOPT_POSTFIELDS
+        $postData = http_build_query([
+            'data' => json_encode($payload)
+        ]);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => $postData,
+            CURLOPT_HTTPHEADER => [
+                'Authorization: ' . $token
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $error = curl_error($curl);
+        $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        curl_close($curl);
+
+        if ($error) {
+            throw new \Exception('cURL Error: ' . $error);
+        }
+
+        $responseData = json_decode($response, true);
+
+        if ($httpCode != 200 || !isset($responseData['status']) || $responseData['status'] != 'success') {
+            throw new \Exception($responseData['message'] ?? 'Gagal mengirim notifikasi WhatsApp');
+        }
+
+        return $responseData;
+    }
+
+    private function formatPhoneNumber($phone)
+    {
+        // Bersihkan nomor dari karakter non-digit
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        // Jika diawali 0, ganti dengan 62
+        if (str_starts_with($phone, '0')) {
+            return '62' . substr($phone, 1);
+        }
+
+        // Jika diawali +62, hilangkan +
+        if (str_starts_with($phone, '+62')) {
+            return substr($phone, 1);
+        }
+
+        // Jika diawali 62, langsung return
+        if (str_starts_with($phone, '62')) {
+            return $phone;
+        }
+
+        // Default: tambahkan 62
+        return '62' . $phone;
+    }
+
+    private function buildApprovalMessage($pendaftaran)
+    {
+        return "🎉 *PENDAFTARAN UJIAN DISETUJUI* 🎉\n\n" .
+            "Halo *{$pendaftaran->user->mahasiswa->mahasiswa_nama}*,\n\n" .
+            "Selamat! Pendaftaran ujian Anda telah *DISETUJUI*.\n\n" .
+            "📋 *Detail Ujian:*\n" .
+            "• Nama Ujian: {$pendaftaran->ujian->nama_ujian}\n" .
+            "• Tanggal: " . $pendaftaran->ujian->jadwal_ujian->format('d-m-Y') . "\n" .
+            "• Waktu: {$pendaftaran->ujian->waktu_ujian_display}\n\n" .
+            "📌 *Langkah Selanjutnya:*\n" .
+            "1. Siapkan dokumen yang diperlukan\n" .
+            "2. Hadir sesuai jadwal di lokasi ujian\n" .
+            "3. Bawa kartu identitas mahasiswa\n\n" .
+            "Terima kasih! 🙏";
     }
 
     public function close(UjianModel $ujian)
