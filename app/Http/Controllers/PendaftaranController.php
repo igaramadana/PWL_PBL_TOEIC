@@ -20,10 +20,11 @@ class PendaftaranController extends Controller
         ];
         $mahasiswa = MahasiswaModel::where('user_id', auth()->user()->id)->first();
         $checkRegist = $mahasiswa && $mahasiswa->daftar_ujian;
+        $checkAlumni = $mahasiswa && $mahasiswa->status == 'Alumni';
 
         $pendaftaran = $checkRegist ? [] : UjianModel::with('admin')->get();
         $status = PendaftaranModel::where('user_id', auth()->user()->id)->first();
-        return view('mahasiswa.pendaftaran.pendaftaran', compact('page', 'pendaftaran', 'checkRegist', 'status'));
+        return view('mahasiswa.pendaftaran.pendaftaran', compact('page', 'pendaftaran', 'checkRegist', 'status', 'checkAlumni'));
     }
 
     public function showForm($id)
@@ -64,6 +65,10 @@ class PendaftaranController extends Controller
 
             if ($mahasiswa->daftar_ujian) {
                 return back()->with('toast_error', 'Anda sudah pernah mendaftar ujian');
+            }
+
+            if ($mahasiswa->status == 'Alumni') {
+                return back()->with('toast_error', 'Alumni hanya dapat mendaftar ujian toeic secara mandiri.');
             }
 
             $existingRegistration = PendaftaranModel::where('ujian_id', $id)

@@ -3,7 +3,7 @@
 @section('content')
     <x-breadcrumb :pages="[['name' => 'Pendaftaran Ujian', 'url' => '/mahasiswa/pendaftaran']]" />
 
-    @if ($checkRegist)
+    @if ($checkRegist || $checkAlumni)
         <div class="p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
             <h1 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Anda sudah pernah mendaftar ujian 1x</h1>
             <p class="text-gray-600 dark:text-gray-300">
