@@ -94,11 +94,20 @@ class PengumumanController extends Controller
             'title' => __('pengumuman.title'),
         ];
         $pengumuman = PengumumanModel::with('admin')->latest()->get();
+        $user = Auth::user();
+        $mahasiswa = $user->mahasiswa;
+        $headerProfile = $user->mahasiswa->mahasiswa_nama;
+
+        if ($mahasiswa->foto_profile) {
+            $avatar = asset('storage/' . $mahasiswa->foto_profile);
+        } else {
+            $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->toBase64();
+        }
 
         if (view()->exists('mahasiswa.pengumuman.index')) {
-            return view('mahasiswa.pengumuman.index', compact('page', 'pengumuman'));
+            return view('mahasiswa.pengumuman.index', compact('page', 'pengumuman', 'avatar'));
         } else {
-            return view('layouts.users.pengumuman', compact('page', 'pengumuman'));
+            return view('layouts.users.pengumuman', compact('page', 'pengumuman', 'avatar'));
         }
     }
 }

@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProdiModel;
 use App\Models\UjianModel;
+use App\Models\KampusModel;
+use Laravolt\Avatar\Avatar;
+use App\Models\JurusanModel;
 use Illuminate\Http\Request;
 use App\Models\MahasiswaModel;
 use App\Models\PendaftaranModel;
-use App\Models\KampusModel;
-use App\Models\JurusanModel;
-use App\Models\ProdiModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PendaftaranController extends Controller
 {
+    protected $avatar;
+    public function __construct()
+    {
+        $this->avatar = new Avatar();
+    }
     public function index()
     {
         $page = (object) [
@@ -24,7 +31,16 @@ class PendaftaranController extends Controller
 
         $pendaftaran = $checkRegist ? [] : UjianModel::with('admin')->get();
         $status = PendaftaranModel::where('user_id', auth()->user()->id)->first();
-        return view('mahasiswa.pendaftaran.pendaftaran', compact('page', 'pendaftaran', 'checkRegist', 'status', 'checkAlumni'));
+        $user = Auth::user();
+        $mahasiswa = $user->mahasiswa;
+        $headerProfile = $user->mahasiswa->mahasiswa_nama;
+
+        if ($mahasiswa->foto_profile) {
+            $avatar = asset('storage/' . $mahasiswa->foto_profile);
+        } else {
+            $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->toBase64();
+        }
+        return view('mahasiswa.pendaftaran.pendaftaran', compact('page', 'pendaftaran', 'checkRegist', 'status', 'checkAlumni', 'avatar'));
     }
 
     public function showForm($id)

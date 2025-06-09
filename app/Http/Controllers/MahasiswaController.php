@@ -24,8 +24,15 @@ class MahasiswaController extends Controller
         ];
 
         $pengumuman = PengumumanModel::with('admin')->latest()->get();
-        $adminNama = $pengumuman->isNotEmpty() ? $pengumuman->first()->admin->admin_nama : 'Admin';
-        $avatar = $this->avatar->create($adminNama)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64();
+        $user = Auth::user();
+        $mahasiswa = $user->mahasiswa;
+        $headerProfile = $user->mahasiswa->mahasiswa_nama;
+
+        if ($mahasiswa->foto_profile) {
+            $avatar = asset('storage/' . $mahasiswa->foto_profile);
+        } else {
+            $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->toBase64();
+        }
 
         // Ambil data mahasiswa dan pendaftaran jika ada
         $mahasiswa = MahasiswaModel::where('user_id', auth()->id())->first();
@@ -48,7 +55,8 @@ class MahasiswaController extends Controller
             'avatar',
             'mahasiswa',
             'pendaftaran',
-            'ujian'
+            'ujian',
+            'avatar'
         ));
     }
 
@@ -63,7 +71,16 @@ class MahasiswaController extends Controller
             ->whereHas('hasilUjian')
             ->orderBy('created_at', 'desc')
             ->get();
+        $user = Auth::user();
+        $mahasiswa = $user->mahasiswa;
+        $headerProfile = $user->mahasiswa->mahasiswa_nama;
 
-        return view('mahasiswa.hasil_ujian.index', compact('pendaftarans', 'page'));
+        if ($mahasiswa->foto_profile) {
+            $avatar = asset('storage/' . $mahasiswa->foto_profile);
+        } else {
+            $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->toBase64();
+        }
+
+        return view('mahasiswa.hasil_ujian.index', compact('pendaftarans', 'page', 'avatar'));
     }
 }
