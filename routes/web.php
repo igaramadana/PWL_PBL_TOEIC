@@ -13,6 +13,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminMahasiswaController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\ProfileSettingController;
 
 Route::get('language/{locale}', function ($locale) {
     app()->setLocale($locale);
@@ -99,6 +100,12 @@ Route::middleware('auth')->group(function () {
         //Pengumuman
         Route::get('/mahasiswa/pengumuman', [PengumumanController::class, 'mahasiswaIndex'])->name('mahasiswa.pengumuman.index');
         Route::get('/mahasiswa/hasil_ujian', [MahasiswaController::class, 'hasilUjian'])->name('mahasiswa.hasil_ujian.index');
+
+        // Profile Setting
+        Route::get('/mahasiswa/profile', [ProfileSettingController::class, 'index'])->name('mahasiswa.profile');
+        Route::put('/profile/update', [ProfileSettingController::class, 'updateProfile'])->name('profile.update');
+        Route::put('/profile/change-password', [ProfileSettingController::class, 'changePassword'])->name('profile.password.update');
+        Route::delete('/profile/delete-photo', [ProfileSettingController::class, 'deletePhoto'])->name('profile.deletephoto');
     });
 });
 
