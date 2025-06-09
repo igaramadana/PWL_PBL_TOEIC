@@ -96,4 +96,21 @@ class ProfileSettingController extends Controller
             return back()->with('toast_error', 'Failed to change password: ' . $e->getMessage());
         }
     }
+    public function deletePhoto(Request $request)
+    {
+        try {
+            $user = auth()->user();
+            $mahasiswa = $user->mahasiswa;
+    
+            if ($mahasiswa->foto_profile) {
+                Storage::delete('public/' . $mahasiswa->foto_profile);
+                $mahasiswa->foto_profile = null;
+                $mahasiswa->save();
+            }
+    
+            return redirect()->route('mahasiswa.profile')->with('toast_success', 'Profile photo deleted successfully!');
+        } catch (\Exception $e) {
+            return back()->with('toast_error', 'Failed to delete profile photo: ' . $e->getMessage());
+        }
+    }
 }

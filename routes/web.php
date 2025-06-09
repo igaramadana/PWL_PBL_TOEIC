@@ -105,6 +105,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/mahasiswa/profile', [ProfileSettingController::class, 'index'])->name('mahasiswa.profile');
         Route::put('/profile/update', [ProfileSettingController::class, 'updateProfile'])->name('profile.update');
         Route::put('/profile/change-password', [ProfileSettingController::class, 'changePassword'])->name('profile.password.update');
+        Route::delete('/profile/delete-photo', [ProfileSettingController::class, 'deletePhoto'])->name('profile.deletephoto');
     });
 });
 
