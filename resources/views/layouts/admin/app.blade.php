@@ -10,9 +10,9 @@
     <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="92x92" href="{{ asset('favicon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="92x92" href="{{ asset('favicon/favicon-32x32.png') }}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{{ asset('favicon/web-app-manifest-192x192.png') }}">
+    <meta name="msapplication-TileImage" content="{{ asset('favicon/android-chrome-192x192.png') }}">
     <meta name="theme-color" content="#ffffff">
 
     <title>{{ $page->title }}</title>
