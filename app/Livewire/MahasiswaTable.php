@@ -53,10 +53,10 @@ final class MahasiswaTable extends PowerGridComponent
                 return $mahasiswa->user->email;
             })
             ->add('foto_profile', function (MahasiswaModel $mahasiswa) {
-                if ($mahasiswa->user->foto_profile == null) {
+                if ($mahasiswa->foto_profile == null) {
                     return '<img src="' . $this->avatar->create($mahasiswa->mahasiswa_nama)->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64() . '" alt="Avatar" class="w-10 h-10 rounded-full" />';
                 } else {
-                    return '<img src="' . asset($mahasiswa->user->foto_profile) . '" alt="Foto Profil" style="width:50px;height:50px;border-radius:50%;" />';
+                    return '<img src="' . asset('storage/' . $mahasiswa->foto_profile) . '" alt="Foto Profil" style="width:40px;height:40px;border-radius:50%;" />';
                 }
             })
             ->add('nim')
