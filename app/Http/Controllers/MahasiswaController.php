@@ -24,6 +24,15 @@ class MahasiswaController extends Controller
         ];
 
         $pengumuman = PengumumanModel::with('admin')->latest()->get();
+        $firstPengumuman = $pengumuman->first(); // ambil satu instance pertama
+        $avatarPengumuman = null;
+
+        if ($firstPengumuman && $firstPengumuman->admin) {
+            $avatarPengumuman = $this->avatar
+                ->create($firstPengumuman->admin->admin_nama)
+                ->setBackground('#4B5563')
+                ->toBase64();
+        }
         $user = Auth::user();
         $mahasiswa = $user->mahasiswa;
         $headerProfile = $user->mahasiswa->mahasiswa_nama;
@@ -52,7 +61,7 @@ class MahasiswaController extends Controller
         return view('mahasiswa.index', compact(
             'page',
             'pengumuman',
-            'avatar',
+            'avatarPengumuman',
             'mahasiswa',
             'pendaftaran',
             'ujian',

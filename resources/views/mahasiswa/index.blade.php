@@ -268,7 +268,7 @@
 
                         <div class="flex flex-col gap-2 justify-between items-start sm:flex-row sm:items-center">
                             <div class="flex items-center">
-                                <img src="{{ $avatar }}" class="mt-1 mr-1 h-6" alt="Polinema Logo" />
+                                <img src="{{ $avatarPengumuman }}" class="mt-1 mr-1 h-6" alt="Polinema Logo" />
                                 <span
                                     class="mt-1 text-gray-900 dark:text-white">{{ $item->admin->admin_nama ?? 'Admin' }}</span>
                             </div>
