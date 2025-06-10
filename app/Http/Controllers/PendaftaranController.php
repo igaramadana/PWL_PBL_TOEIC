@@ -51,11 +51,20 @@ class PendaftaranController extends Controller
 
         $ujian = UjianModel::findOrFail($id);
 
+        $user = Auth::user();
+        $mahasiswa = $user->mahasiswa;
+        $headerProfile = $user->mahasiswa->mahasiswa_nama;
+
+        if ($mahasiswa->foto_profile) {
+            $avatar = asset('storage/' . $mahasiswa->foto_profile);
+        } else {
+            $avatar = $this->avatar->create($headerProfile)->setBackground('#4B5563')->toBase64();
+        }
         $mahasiswa = MahasiswaModel::with(['prodi.jurusan.kampus'])
             ->where('user_id', auth()->id())
             ->firstOrFail();
 
-        return view('mahasiswa.pendaftaran.form', compact('page', 'ujian', 'mahasiswa'));
+        return view('mahasiswa.pendaftaran.form', compact('page', 'ujian', 'mahasiswa', 'avatar'));
     }
 
     public function store(Request $request, $id)

@@ -1,6 +1,9 @@
 @extends('layouts.users.app')
 @section('content')
-    <x-breadcrumb :pages="[['name' => 'Profile', 'url' => '/profile']]" />
+    <x-breadcrumb :pages="[
+        ['name' => 'Profile', 'url' => '/profile'],
+        ['name' => auth()->user()->mahasiswa->mahasiswa_nama, 'url' => '/profile'],
+    ]" />
 
     <!-- Hero Section with Flowbite Colors -->
     <div class="overflow-hidden relative mb-8 bg-white rounded-lg border shadow-sm dark:bg-gray-800 dark:border-gray-700">
