@@ -3,11 +3,11 @@
     <x-breadcrumb :pages="[
         ['name' => 'Data Master', 'url' => '/admin'],
         ['name' => __('ujian_hasil.title'), 'url' => '/admin/ujian_hasil'],
-        ['name' => 'Detail Hasil Ujian', 'url' => '#'],
+        ['name' => __('ujian_hasil.editTitle'), 'url' => '#'],
     ]" />
 
     <div class="mb-6">
-        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">Hasil Ujian {{ $ujian->nama_ujian }}</h2>
+        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">{{ __('ujian_hasil.title') }} {{ $ujian->nama_ujian }}</h2>
 
         <!-- Informasi Ujian -->
         <div class="p-6 mb-6 w-full bg-white rounded-lg border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
@@ -24,7 +24,7 @@
                     </div>
                     <div>
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
-                            {{ __('ujian_hasil.EnterExamName') }}</p>
+                            {{ __('ujian_hasil.exam_name') }}</p>
                         <p class="text-lg font-semibold text-gray-900 dark:text-white">
                             {{ $ujian->nama_ujian }}</p>
                     </div>
@@ -98,7 +98,7 @@
                 </div>
             @endif
             <div class="flex justify-between mb-4">
-                <h3 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Daftar Peserta dan Nilai</h3>
+                <h3 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ __('ujian_hasil.participant_name') }} {{ __('ujian_hasil.total_score') }}</h3>
                 <div class="flex space-x-2">
                     <a href="{{ route('admin.ujian_hasil.format') }}"
                         class="inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
@@ -108,7 +108,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2Z" />
                         </svg>
-                        Lihat Format
+                        {{ __('ujian_hasil.view_format') }}
                     </a>
                     <form action="{{ route('admin.ujian_hasil.import', $ujian) }}" method="POST"
                         enctype="multipart/form-data" class="inline-flex">
@@ -123,7 +123,7 @@
                                     d="M9 2.221V7H4.221a2 2 0 0 1 .365-.5L8.5 2.586A2 2 0 0 1 9 2.22ZM11 2v5a2 2 0 0 1-2 2H4v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-7Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            Import Data
+                            {{ __('ujian_hasil.import_data') }}
                         </label>
                     </form>
                 </div>
@@ -133,12 +133,12 @@
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-6 py-3">No</th>
-                            <th scope="col" class="px-6 py-3">Nama Peserta</th>
-                            <th scope="col" class="px-6 py-3">No Pendaftaran</th>
-                            <th scope="col" class="px-6 py-3">Listening</th>
-                            <th scope="col" class="px-6 py-3">Reading</th>
-                            <th scope="col" class="px-6 py-3">Total Skor</th>
+                            <th scope="col" class="px-6 py-3">{{ __('ujian_hasil.no') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('ujian_hasil.participant_name') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('ujian_hasil.registration_number') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('ujian_hasil.listening') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('ujian_hasil.reading') }}</th>
+                            <th scope="col" class="px-6 py-3">{{ __('ujian_hasil.total_score') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -163,7 +163,7 @@
 @push('scripts')
     <script>
         document.getElementById('fileImport').addEventListener('change', function(e) {
-            const fileName = e.target.files[0]?.name || 'Pilih file';
+            const fileName = e.target.files[0]?.name || '{{ __('ujian_hasil.import_data') }}';
             const label = e.target.nextElementSibling;
 
             // Update label text

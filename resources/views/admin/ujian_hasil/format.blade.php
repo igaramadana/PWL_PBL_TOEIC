@@ -4,22 +4,22 @@
     <x-breadcrumb :pages="[
         ['name' => 'Data Master', 'url' => '/admin'],
         ['name' => __('ujian_hasil.title'), 'url' => '/admin/ujian_hasil'],
-        ['name' => 'Detail Hasil Ujian', 'url' => '#'],
+        ['name' => __('ujian_hasil.editTitle'), 'url' => '#'],
     ]" />
     <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
-        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Format Import Data Hasil Ujian</h2>
+        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ __('ujian_hasil.import_format_title') }}</h2>
 
         <div class="mb-6">
-            <p class="mb-2 text-gray-600 dark:text-gray-300">Pastikan file Excel Anda mengikuti format berikut:</p>
+            <p class="mb-2 text-gray-600 dark:text-gray-300">{{ __('ujian_hasil.import_format_instruction') }}</p>
 
             <div class="overflow-x-auto">
                 <table class="min-w-full border border-gray-200 dark:border-gray-700">
                     <thead class="bg-gray-100 dark:bg-gray-700">
                         <tr>
-                            <th class="px-4 py-2 border">no_pendaftaran</th>
-                            <th class="px-4 py-2 border">listening</th>
-                            <th class="px-4 py-2 border">reading</th>
-                            <th class="px-4 py-2 border">total_skor</th>
+                            <th class="px-4 py-2 border">{{ __('ujian_hasil.registration_number') }}</th>
+                            <th class="px-4 py-2 border">{{ __('ujian_hasil.listening') }}</th>
+                            <th class="px-4 py-2 border">{{ __('ujian_hasil.reading') }}</th>
+                            <th class="px-4 py-2 border">{{ __('ujian_hasil.total_score') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,19 +41,19 @@
         </div>
 
         <div class="mb-4">
-            <h3 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Catatan:</h3>
+            <h3 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ __('ujian_hasil.import_format_note') }}</h3>
             <ul class="pl-5 list-disc text-gray-600 dark:text-gray-300">
-                <li>Pastikan No Pendaftaran sesuai dengan data yang terdaftar</li>
-                <li>Nilai Listening dan Reading harus antara 0-495</li>
-                <li>Total Skor harus antara 0-990</li>
-                <li>File harus dalam format .xlsx atau .xls</li>
-                <li>Kolom header harus persis seperti contoh di atas</li>
+                <li>{{ __('ujian_hasil.import_format_registration_match') }}</li>
+                <li>{{ __('ujian_hasil.import_format_score_range') }}</li>
+                <li>{{ __('ujian_hasil.import_format_total_range') }}</li>
+                <li>{{ __('ujian_hasil.import_format_file_types') }}</li>
+                <li>{{ __('ujian_hasil.import_format_header_required') }}</li>
             </ul>
         </div>
 
         <a href="#" onclick="window.history.back()"
             class="px-4 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Kembali
+            {{ __('ujian_hasil.btnBackTo') }}
         </a>
     </div>
 @endsection
