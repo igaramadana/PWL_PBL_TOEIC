@@ -1,9 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
-    <x-breadcrumb :pages="[
-        ['name' => 'Data Master', 'url' => '/admin'],
-        ['name' => __('pendaftaran.title'), 'url' => '/admin/pendaftaran'],
-    ]" />
+    <x-breadcrumb :pages="[['name' => __('pendaftaran.title'), 'url' => '/admin/pendaftaran']]" />
 
     <!-- Modal -->
     <div id="tambah-pendaftaran-modal" tabindex="-1" aria-hidden="true"

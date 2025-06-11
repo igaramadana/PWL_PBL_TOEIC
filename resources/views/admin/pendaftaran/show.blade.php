@@ -1,7 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
     <x-breadcrumb :pages="[
-        ['name' => 'Data Master', 'url' => '/admin'],
         ['name' => __('pendaftaran.title'), 'url' => '/admin/pendaftaran'],
         ['name' => __('pendaftaran.ExamDetail'), 'url' => '#'],
     ]" />
