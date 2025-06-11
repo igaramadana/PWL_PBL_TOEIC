@@ -14,7 +14,7 @@
                         <path
                             d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
                     </svg>
-                    <span class="ms-3">Dashboard</span>
+                    <span class="ms-3">{{ __('sidebar.dashboard') }}</span>
                 </a>
             </li>
 
@@ -27,7 +27,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                     </svg>
-                    <span class="flex-1 whitespace-nowrap ms-3">Pendaftaran Ujian</span>
+                    <span class="flex-1 whitespace-nowrap ms-3">{{ __('sidebar.pendaftaran') }}</span>
                 </a>
             </li>
 
@@ -42,7 +42,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z" />
                     </svg>
-                    <span class="flex-1 whitespace-nowrap ms-3">Hasil Ujian TOEIC</span>
+                    <span class="flex-1 whitespace-nowrap ms-3">{{ __('sidebar.hasil_ujian') }}</span>
                 </a>
             </li>
 
@@ -55,7 +55,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
-                    <span class="flex-1 whitespace-nowrap ms-3">Pengumuman</span>
+                    <span class="flex-1 whitespace-nowrap ms-3">{{ __('sidebar.pengumuman') }}</span>
                 </a>
             </li>
 
@@ -71,7 +71,7 @@
                             clip-rule="evenodd" />
                     </svg>
 
-                    <span class="flex-1 whitespace-nowrap ms-3">Profile</span>
+                    <span class="flex-1 whitespace-nowrap ms-3">{{ __('sidebar.profile') }}</span>
                 </a>
             </li>
 
@@ -85,7 +85,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
                     </svg>
-                    <span class="flex-1 text-left whitespace-nowrap ms-3">Sign Out</span>
+                    <span class="flex-1 text-left whitespace-nowrap ms-3">{{ __('sidebar.sign_out') }}</span>
                 </button>
             </li>
         </ul>
@@ -112,17 +112,17 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin ingin keluar
-                    dari sistem?</h3>
+                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+                    {{ __('sidebar.confirmationTitle') }}</h3>
                 <form action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf
                     <button type="submit"
                         class="inline-flex items-center px-5 py-2.5 mr-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800">
-                        Ya, keluar
+                        {{ __('sidebar.buttonYes') }}
                     </button>
                 </form>
                 <button data-modal-hide="popup-signout" type="button"
-                    class="px-5 py-2.5 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Batal</button>
+                    class="px-5 py-2.5 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">{{ __('sidebar.buttonNo') }}</button>
             </div>
         </div>
     </div>
