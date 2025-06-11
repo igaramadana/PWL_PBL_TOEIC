@@ -3,14 +3,14 @@
     <x-breadcrumb :pages="[
         ['name' => 'Data Master', 'url' => '/admin'],
         ['name' => __('pendaftaran.title'), 'url' => '/admin/pendaftaran'],
-        ['name' => 'Detail Pendaftaran', 'url' => '#'],
+        ['name' => __('pendaftaran.RegistrationDetail'), 'url' => '#'],
     ]" />
 
     <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Detail Pendaftaran</h2>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{{ __('pendaftaran.RegistrationDetail') }}</h2>
         <a href="{{ route('ujian.index') }}"
             class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-            Kembali
+            {{ __('pendaftaran.btnBack') }}
         </a>
     </div>
 
@@ -18,16 +18,16 @@
         <!-- Informasi Ujian -->
         <div class="col-span-1">
             <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Informasi Ujian</h3>
+                <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.ExamInformation') }}</h3>
 
                 <div class="space-y-4">
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Nama Ujian</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.ExamName') }}</p>
                         <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->ujian->nama_ujian }}</p>
                     </div>
 
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Jadwal Ujian</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.ExamSchedule') }}</p>
                         <p class="text-sm text-gray-900 dark:text-white">
                             {{ \Carbon\Carbon::parse($pendaftaran->ujian->jadwal_ujian)->format('d M Y') }}
                             pukul {{ $pendaftaran->ujian->waktu_ujian_display }}
@@ -35,19 +35,19 @@
                     </div>
 
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">No Pendaftaran</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.RegistrationNumber') }}</p>
                         <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->no_pendaftaran }}</p>
                     </div>
 
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Tanggal Pendaftaran</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.RegistrationDate') }}</p>
                         <p class="text-sm text-gray-900 dark:text-white">
                             {{ \Carbon\Carbon::parse($pendaftaran->created_at)->format('d M Y H:i') }}
                         </p>
                     </div>
 
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Status</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.Status') }}</p>
                         <span
                             class="px-2 py-1 text-xs font-medium rounded-full
                             @if ($pendaftaran->status == 'Non Verified') bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300
@@ -62,41 +62,40 @@
         <!-- Informasi Mahasiswa -->
         <div class="col-span-2">
             <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">Informasi Mahasiswa</h3>
+                <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.StudentInformation') }}</h3>
 
                 <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <!-- Data Pribadi -->
                     <div>
-                        <h4 class="mb-3 font-medium text-gray-700 dark:text-gray-300">Data Pribadi</h4>
+                        <h4 class="mb-3 font-medium text-gray-700 dark:text-gray-300">{{ __('pendaftaran.PersonalData') }}</h4>
 
                         <div class="space-y-3">
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Nama Lengkap</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.FullName') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">
                                     {{ $pendaftaran->mahasiswa->mahasiswa_nama ?? 'N/A' }}</p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">NIM</p>
-                                <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->mahasiswa->nim ?? 'N/A' }}
-                                </p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.StudentID') }}</p>
+                                <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->mahasiswa->nim ?? 'N/A' }}</p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Program Studi</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.StudyProgram') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">
                                     {{ $pendaftaran->mahasiswa->prodi->prodi_nama ?? 'N/A' }}</p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Tanggal Lahir</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.DateOfBirth') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">
                                     {{ \Carbon\Carbon::parse($pendaftaran->tanggal_lahir)->format('d M Y') }}
                                 </p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">NIK</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.NationalID') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->nik }}</p>
                             </div>
                         </div>
@@ -104,25 +103,25 @@
 
                     <!-- Alamat dan Dokumen -->
                     <div>
-                        <h4 class="mb-3 font-medium text-gray-700 dark:text-gray-300">Alamat & Dokumen</h4>
+                        <h4 class="mb-3 font-medium text-gray-700 dark:text-gray-300">{{ __('pendaftaran.AddressAndDocuments') }}</h4>
 
                         <div class="space-y-3">
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Alamat Asal</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.HomeAddress') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->alamat_asal }}</p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Alamat Sekarang</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.CurrentAddress') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->alamat_sekarang }}</p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Dokumen</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.Documents') }}</p>
                                 <div class="flex mt-1 space-x-2">
                                     @if ($pendaftaran->foto_ktp)
                                         <button type="button"
-                                            onclick="openImageModal('{{ asset('storage/' . $pendaftaran->foto_ktp) }}', 'KTP')"
+                                            onclick="openImageModal('{{ asset('storage/' . $pendaftaran->foto_ktp) }}', '{{ __('pendaftaran.IDCard') }}')"
                                             class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                             KTP
                                         </button>
@@ -130,7 +129,7 @@
 
                                     @if ($pendaftaran->foto_ktm)
                                         <button type="button"
-                                            onclick="openImageModal('{{ asset('storage/' . $pendaftaran->foto_ktm) }}', 'KTM')"
+                                            onclick="openImageModal('{{ asset('storage/' . $pendaftaran->foto_ktm) }}', '{{ __('pendaftaran.StudentCard') }}')"
                                             class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                             KTM
                                         </button>
@@ -138,7 +137,7 @@
 
                                     @if ($pendaftaran->pas_foto)
                                         <button type="button"
-                                            onclick="openImageModal('{{ asset('storage/' . $pendaftaran->pas_foto) }}', 'Pas Foto')"
+                                            onclick="openImageModal('{{ asset('storage/' . $pendaftaran->pas_foto) }}', '{{ __('pendaftaran.PassportPhoto') }}')"
                                             class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium text-center text-white bg-purple-600 rounded-lg hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
                                             Pas Foto
                                         </button>
@@ -155,7 +154,7 @@
                             @csrf
                             <button type="submit"
                                 class="px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                Approve
+                                {{ __('pendaftaran.Approve') }}
                             </button>
                         </form>
                     </div>
@@ -171,7 +170,7 @@
                 <!-- Modal Header -->
                 <div class="flex justify-between items-center p-4 rounded-t border-b dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white" id="modalTitle">
-                        Dokumen
+                        {{ __('pendaftaran.Document') }}
                     </h3>
                     <button type="button" onclick="closeImageModal()"
                         class="inline-flex justify-center items-center ml-auto w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white">
@@ -184,7 +183,7 @@
                 <!-- Modal Body -->
                 <div class="p-6">
                     <div class="flex justify-center">
-                        <img id="modalImage" src="" alt="Dokumen"
+                        <img id="modalImage" src="" alt="{{ __('pendaftaran.Document') }}"
                             class="object-contain max-w-full max-h-96 rounded-lg">
                     </div>
                 </div>
@@ -192,11 +191,11 @@
                 <div class="flex items-center p-6 space-x-3 rounded-b border-t border-gray-200 dark:border-gray-600">
                     <button type="button" onclick="closeImageModal()"
                         class="px-5 py-2.5 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                        Tutup
+                        {{ __('pendaftaran.Close') }}
                     </button>
                     <a id="downloadLink" href="" download
                         class="px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Download
+                        {{ __('pendaftaran.Download') }}
                     </a>
                 </div>
             </div>
@@ -225,14 +224,12 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Tutup modal ketika klik di luar gambar
         document.getElementById('imageModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeImageModal();
             }
         });
 
-        // Tutup modal dengan tombol ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeImageModal();

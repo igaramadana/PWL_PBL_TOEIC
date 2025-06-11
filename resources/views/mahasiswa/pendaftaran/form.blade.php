@@ -2,8 +2,8 @@
 
 @section('content')
     <x-breadcrumb :pages="[
-        ['name' => 'Pendaftaran Ujian', 'url' => '/mahasiswa/pendaftaran'],
-        ['name' => 'Form Pendaftaran', 'url' => '/mahasiswa/pendaftaran/form'],
+        ['name' => __('pendaftaran.title'), 'url' => '/mahasiswa/pendaftaran'],
+        ['name' => __('pendaftaran.RegistrationDetail'), 'url' => '/mahasiswa/pendaftaran/form'],
     ]" />
 
     <div class="mb-6 space-y-6">
@@ -11,7 +11,7 @@
         <div class="w-full bg-white rounded-lg border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700"
             data-aos="fade-down">
             <div class="p-6">
-                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Detail Ujian</h2>
+                <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ __('pendaftaran.ExamDetail') }}</h2>
                 <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                     <!-- Nama Ujian -->
                     <div
@@ -25,7 +25,7 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Nama Ujian</p>
+                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.ExamName') }}</p>
                             <p class="text-lg font-semibold text-gray-900 dark:text-white">{{ $ujian->nama_ujian }}</p>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Tanggal Ujian</p>
+                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.ExamDate') }}</p>
                             <p class="text-lg font-semibold text-gray-900 dark:text-white">
                                 {{ \Carbon\Carbon::parse($ujian->jadwal_ujian)->translatedFormat('d F Y') }}
                             </p>
@@ -60,7 +60,7 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Waktu Ujian</p>
+                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.ExamTime') }}</p>
                             <p class="text-lg font-semibold text-gray-900 dark:text-white">{{ $ujian->waktu_ujian_display }}
                             </p>
                         </div>
@@ -78,7 +78,7 @@
                             </svg>
                         </div>
                         <div>
-                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Kuota</p>
+                            <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.Quota') }}</p>
                             <p class="text-lg font-semibold text-gray-900 dark:text-white">
                                 <span
                                     class="{{ count($ujian->pendaftar) >= $ujian->kuota ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400' }}">
@@ -95,7 +95,7 @@
         <div class="w-full bg-white rounded-lg border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700"
             data-aos="fade-up">
             <div class="p-6">
-                <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Formulir Pendaftaran</h2>
+                <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-white">{{ __('pendaftaran.RegistrationDetail') }}</h2>
 
                 <form method="POST" action="{{ route('mahasiswa.pendaftaran.store', $ujian->id) }}"
                     enctype="multipart/form-data">
@@ -103,18 +103,18 @@
 
                     <!-- Student Information Section -->
                     <div class="mb-8">
-                        <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Informasi Mahasiswa</h3>
+                        <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.StudentInformation') }}</h3>
                         <div class="grid gap-6 md:grid-cols-2">
-                            <!-- NIM - hapus disabled -->
+                            <!-- NIM -->
                             <div class="relative">
                                 <input type="text" id="nim" name="nim"
                                     class="block px-2.5 pt-4 pb-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-300 appearance-none dark:bg-gray-700 border-1 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" " required value="{{ old('nim', $mahasiswa->nim ?? '') }}" />
                                 <label for="nim"
-                                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">{{ __('messages.formNim') }}</label>
+                                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">{{ __('pendaftaran.StudentID') }}</label>
                             </div>
 
-                            <!-- Phone Input tetap sama -->
+                            <!-- Phone Input -->
                             <div class="relative">
                                 <div class="flex absolute inset-y-0 top-0 items-center pointer-events-none start-0 ps-3.5">
                                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -141,9 +141,8 @@
                                     readonly />
                                 <label
                                     class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                                    Kampus
+                                    {{ __('messages.formCampus') }}
                                 </label>
-                                <!-- Perbaiki hidden input kampus_id -->
                                 <input type="hidden" name="kampus_id"
                                     value="{{ $mahasiswa->prodi->jurusan->kampus->id ?? '' }}">
                             </div>
@@ -156,9 +155,8 @@
                                     readonly />
                                 <label
                                     class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                                    Jurusan
+                                    {{ __('messages.formDepartment') }}
                                 </label>
-                                <!-- Perbaiki hidden input jurusan_id -->
                                 <input type="hidden" name="jurusan_id"
                                     value="{{ $mahasiswa->prodi->jurusan->id ?? '' }}">
                             </div>
@@ -170,7 +168,7 @@
                                     value="{{ $mahasiswa->prodi->prodi_nama ?? 'Data tidak tersedia' }}" readonly />
                                 <label
                                     class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">
-                                    Program Studi
+                                    {{ __('pendaftaran.StudyProgram') }}
                                 </label>
                                 <input type="hidden" name="prodi_id" value="{{ $mahasiswa->prodi->id }}">
                             </div>
@@ -181,7 +179,7 @@
 
                     <!-- Personal Information Section -->
                     <div class="mb-8">
-                        <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Data Diri</h3>
+                        <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.PersonalData') }}</h3>
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <!-- NIK -->
                             <div class="relative">
@@ -189,8 +187,7 @@
                                     class="block px-2.5 pt-4 pb-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-300 appearance-none dark:bg-gray-700 border-1 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                     placeholder=" " required value="{{ old('nik') }}" />
                                 <label for="nik"
-                                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nomor
-                                    Induk Kependudukan</label>
+                                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">{{ __('pendaftaran.NationalID') }}</label>
                             </div>
 
                             <!-- Nama Lengkap -->
@@ -200,8 +197,7 @@
                                     placeholder=" " required
                                     value="{{ old('mahasiswa_nama', $mahasiswa->mahasiswa_nama ?? '') }}" />
                                 <label for="mahasiswa_nama"
-                                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Nama
-                                    Lengkap</label>
+                                    class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">{{ __('pendaftaran.FullName') }}</label>
                             </div>
                         </div>
                         <!-- Tanggal Lahir -->
@@ -210,8 +206,7 @@
                                 class="block px-2.5 pt-4 pb-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-300 appearance-none dark:bg-gray-700 border-1 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder=" " required value="{{ old('tanggal_lahir') }}" />
                             <label for="tanggal_lahir"
-                                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Tanggal
-                                Lahir</label>
+                                class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-700 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">{{ __('pendaftaran.DateOfBirth') }}</label>
                         </div>
                     </div>
 
@@ -219,23 +214,22 @@
 
                     <!-- Address Information Section -->
                     <div class="mb-8">
-                        <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Data Alamat Tinggal</h3>
+                        <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.AddressAndDocuments') }}</h3>
                         <div class="mb-6">
                             <label for="alamat_sekarang"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat
-                                Sekarang</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('pendaftaran.CurrentAddress') }}</label>
                             <textarea id="alamat_sekarang" name="alamat_sekarang" rows="4"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukkan Alamat" required>{{ old('alamat_sekarang') }}</textarea>
+                                placeholder="{{ __('messages.formCurrentAddressPlaceholder') }}" required>{{ old('alamat_sekarang') }}</textarea>
                         </div>
 
-                        <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Data Alamat Asal</h3>
+                        <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.HomeAddress') }}</h3>
                         <div class="mb-6">
                             <label for="alamat_asal"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat Asal</label>
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('pendaftaran.HomeAddress') }}</label>
                             <textarea id="alamat_asal" name="alamat_asal" rows="4"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukkan Alamat" required>{{ old('alamat_asal') }}</textarea>
+                                placeholder="{{ __('messages.formHomeAddressPlaceholder') }}" required>{{ old('alamat_asal') }}</textarea>
                         </div>
                     </div>
 
@@ -243,13 +237,13 @@
 
                     <!-- Document Upload Section -->
                     <div class="mb-8">
-                        <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">Upload Dokumen</h3>
+                        <h3 class="mb-4 text-xl font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.Documents') }}</h3>
 
                         <div class="grid gap-6 md:grid-cols-2">
                             <!-- KTP Upload -->
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="foto_ktp">Foto KTP</label>
+                                    for="foto_ktp">{{ __('pendaftaran.IDCard') }}</label>
                                 <div class="flex justify-center items-center w-full">
                                     <label for="foto_ktp"
                                         class="flex relative flex-col justify-center items-center w-full h-32 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-gray-700 dark:bg-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
@@ -257,7 +251,7 @@
                                         <div id="ktp-preview-container"
                                             class="hidden overflow-hidden absolute inset-0 w-full h-full bg-gray-100 rounded-lg dark:bg-gray-700">
                                             <img id="ktp-preview" class="object-contain w-full h-full" src=""
-                                                alt="KTP preview">
+                                                alt="{{ __('pendaftaran.IDCard') }} preview">
                                             <button type="button"
                                                 class="absolute top-2 right-2 p-1 text-white bg-red-500 rounded-full hover:bg-red-600"
                                                 onclick="removeImage('foto_ktp', 'ktp-preview-container', 'ktp-upload-ui')">
@@ -279,8 +273,8 @@
                                                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                             </svg>
                                             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                    class="font-semibold">Klik untuk upload</span> atau drag & drop</p>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400">JPG, PNG (MAX. 2MB)</p>
+                                                    class="font-semibold">{{ __('messages.formUploadClick') }}</span> {{ __('messages.formUploadDragDrop') }}</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">{{ __('messages.formUploadFileTypes') }}</p>
                                         </div>
                                         <input id="foto_ktp" name="foto_ktp" type="file" class="hidden" required
                                             accept="image/*" />
@@ -291,7 +285,7 @@
                             <!-- KTM Upload -->
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="foto_ktm">Foto KTM</label>
+                                    for="foto_ktm">{{ __('pendaftaran.StudentCard') }}</label>
                                 <div class="flex justify-center items-center w-full">
                                     <label for="foto_ktm"
                                         class="flex relative flex-col justify-center items-center w-full h-32 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-gray-700 dark:bg-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
@@ -299,7 +293,7 @@
                                         <div id="ktm-preview-container"
                                             class="hidden overflow-hidden absolute inset-0 w-full h-full bg-gray-100 rounded-lg dark:bg-gray-700">
                                             <img id="ktm-preview" class="object-contain w-full h-full" src=""
-                                                alt="KTM preview">
+                                                alt="{{ __('pendaftaran.StudentCard') }} preview">
                                             <button type="button"
                                                 class="absolute top-2 right-2 p-1 text-white bg-red-500 rounded-full hover:bg-red-600"
                                                 onclick="removeImage('foto_ktm', 'ktm-preview-container', 'ktm-upload-ui')">
@@ -321,8 +315,8 @@
                                                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                             </svg>
                                             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                    class="font-semibold">Klik untuk upload</span> atau drag & drop</p>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400">JPG, PNG (MAX. 2MB)</p>
+                                                    class="font-semibold">{{ __('messages.formUploadClick') }}</span> {{ __('messages.formUploadDragDrop') }}</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">{{ __('messages.formUploadFileTypes') }}</p>
                                         </div>
                                         <input id="foto_ktm" name="foto_ktm" type="file" class="hidden" required
                                             accept="image/*" />
@@ -333,7 +327,7 @@
                             <!-- Pas Foto Upload -->
                             <div>
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                    for="pas_foto">Pas Foto</label>
+                                    for="pas_foto">{{ __('pendaftaran.PassportPhoto') }}</label>
                                 <div class="flex justify-center items-center w-full">
                                     <label for="pas_foto"
                                         class="flex relative flex-col justify-center items-center w-full h-32 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-gray-700 dark:bg-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
@@ -341,7 +335,7 @@
                                         <div id="pasfoto-preview-container"
                                             class="hidden overflow-hidden absolute inset-0 w-full h-full bg-gray-100 rounded-lg dark:bg-gray-700">
                                             <img id="pasfoto-preview" class="object-contain w-full h-full" src=""
-                                                alt="Pas Foto preview">
+                                                alt="{{ __('pendaftaran.PassportPhoto') }} preview">
                                             <button type="button"
                                                 class="absolute top-2 right-2 p-1 text-white bg-red-500 rounded-full hover:bg-red-600"
                                                 onclick="removeImage('pas_foto', 'pasfoto-preview-container', 'pasfoto-upload-ui')">
@@ -363,8 +357,8 @@
                                                     d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                             </svg>
                                             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                                                    class="font-semibold">Klik untuk upload</span> atau drag & drop</p>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400">JPG, PNG (MAX. 2MB)</p>
+                                                    class="font-semibold">{{ __('messages.formUploadClick') }}</span> {{ __('messages.formUploadDragDrop') }}</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">{{ __('messages.formUploadFileTypes') }}</p>
                                         </div>
                                         <input id="pas_foto" name="pas_foto" type="file" class="hidden" required
                                             accept="image/*" />
@@ -377,7 +371,7 @@
                     <!-- Submit Button -->
                     <button type="submit"
                         class="px-5 py-3 w-full text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Daftar Ujian
+                        {{ __('pendaftaran.Save') }}
                     </button>
                 </form>
             </div>

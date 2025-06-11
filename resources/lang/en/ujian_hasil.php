@@ -2,11 +2,21 @@
 
 return [
     'title' => 'Exam Results',
+    'my_exam_results' => 'My Exam Results',
+    'no_results_available' => 'No exam results are available yet.',
+    'no' => 'No',
+    'exam_name' => 'Exam Name',
+    'exam_date' => 'Exam Date',
+    'listening' => 'Listening',
+    'reading' => 'Reading',
+    'total_score' => 'Total Score',
+    'status' => 'Status',
+    'status_passed' => 'Passed',
+    'status_failed' => 'Failed',
     'EnterExamName' => 'Enter exam name',
     'ExamSchedule' => 'Exam Schedule',
     'ExamTime' => 'Exam Time',
     'Quota' => 'Quota',
-    'Status' => 'Status',
     'StatusOptions' => [
         'NotHeld' => 'Not Held Yet',
         'Held' => 'Already Held'
@@ -15,22 +25,31 @@ return [
     'Cancel' => 'Cancel',
     'Close' => 'Close',
     'addBtn' => 'Add Exam Result',
-
     'createSuccess' => 'Exam result successfully added',
     'createError' => 'Failed to add exam result',
-
     'editTitle' => 'Edit Exam Result',
     'btnUpdate' => 'Update',
     'btnDelete' => 'Delete',
     'btnBack' => 'Back',
-
     'updateSuccess' => 'Exam result successfully updated',
     'updateError' => 'Failed to update exam result',
-
     'deleteConfirmation' => 'Are you sure you want to delete this exam result?',
     'btnYesDelete' => 'Yes, Delete',
     'btnNoCancel' => 'No, Cancel',
-
     'deleteSuccess' => 'Exam result successfully deleted',
     'deleteError' => 'Failed to delete exam result',
+    'participant_name' => 'Participant Name',
+    'registration_number' => 'Registration Number',
+    'view_format' => 'View Format',
+    'import_data' => 'Import Data',
+    'import_format_title' => 'Import Exam Result Data Format',
+    'import_format_instruction' => 'Ensure your Excel file follows the format below:',
+    'import_format_note' => 'Notes:',
+    'import_format_registration_match' => 'Ensure the Registration Number matches the registered data',
+    'import_format_score_range' => 'Listening and Reading scores must be between 0-495',
+    'import_format_total_range' => 'Total score must be between 0-990',
+    'import_format_file_types' => 'File must be in .xlsx or .xls format',
+    'import_format_header_required' => 'Column headers must match the example above',
+    'btnBackTo' => 'Back',
+    'my_exam_results_notice' => 'No exam results are available yet.',
 ];

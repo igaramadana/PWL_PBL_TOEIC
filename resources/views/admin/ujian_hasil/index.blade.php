@@ -6,7 +6,7 @@
     ]" />
 
     @if ($ujian->isEmpty())
-        <h1 class="text-gray-900 dark:text-white">{{ __('ujian_hasil.no_data') }} belum tersedia</h1>
+        <h1 class="text-gray-900 dark:text-white">{{ __('ujian_hasil.no_results_available') }}</h1>
     @else
         @foreach ($ujian as $item)
             <div class="mb-2">
@@ -26,15 +26,15 @@
                                 {{ $item->nama_ujian }}
                             </h5>
                             <div class="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                                <span class="font-medium">{{ __('pendaftaran.ExamSchedule') }}:</span>
+                                <span class="font-medium">{{ __('ujian_hasil.ExamSchedule') }}:</span>
                                 {{ \Carbon\Carbon::parse($item->jadwal_ujian)->format('d M Y') }}
                             </div>
                             <div class="text-sm text-gray-600 dark:text-gray-300">
-                                <span class="font-medium">{{ __('pendaftaran.ExamTime') }}:</span>
+                                <span class="font-medium">{{ __('ujian_hasil.ExamTime') }}:</span>
                                 {{ $item->waktu_ujian_display }}
                             </div>
                             <div class="text-sm text-gray-600 dark:text-gray-300">
-                                <span class="font-medium">{{ __('pendaftaran.Quota') }}:</span>
+                                <span class="font-medium">{{ __('ujian_hasil.Quota') }}:</span>
                                 {{ $item->pendaftar_count }}/{{ $item->kuota }}
                             </div>
                         </div>

@@ -1,24 +1,22 @@
 @extends('layouts.users.app')
 
 @section('content')
-    <x-breadcrumb :pages="[['name' => 'Pendaftaran Ujian', 'url' => '/mahasiswa/pendaftaran']]" />
+    <x-breadcrumb :pages="[['name' => __('pendaftaran.title'), 'url' => '/mahasiswa/pendaftaran']]" />
 
     @if ($checkRegist || $checkAlumni)
         <div class="p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
-            <h1 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Anda sudah pernah mendaftar ujian 1x</h1>
+            <h1 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ __('pendaftaran.AlreadyRegistered') }}</h1>
             <p class="text-gray-600 dark:text-gray-300">
-                Anda tidak dapat mendaftar ujian lagi karena sudah pernah mendaftar sebelumnya. Jika ingin mengikuti ujian
-                kembali, silakan daftar melalui jalur ujian mandiri
+                {{ __('pendaftaran.CannotRegisterAgain') }}
             </p>
             <div class="mt-4">
-                <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Ujian Mandiri</h2>
+                <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.IndependentExam') }}</h2>
                 <p class="mb-4 text-gray-600 dark:text-gray-300">
-                    Untuk Ujian Mandiri, Anda dapat melakukan pendaftaran dan pembayaran melalui ITC.
-                    Harga untuk TOEIC Listening and Reading adalah <strong>Rp. 675,000</strong>.
+                    {!! __('pendaftaran.IndependentExamInfo') !!}
                 </p>
                 <a href="https://smartcart.id/product/toeic-listening-reading"
                     class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Daftar Ujian Mandiri
+                    {{ __('pendaftaran.RegisterIndependentExam') }}
                 </a>
             </div>
         </div>
@@ -30,9 +28,8 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <h3 class="mt-4 text-lg font-medium text-gray-900 dark:text-white">{{ __('pendaftaran.title') }} belum
-                    tersedia</h3>
-                <p class="mt-1 text-gray-500 dark:text-gray-400">Silakan tunggu ujian baru dibuka oleh admin.</p>
+                <h3 class="mt-4 text-lg font-medium text-gray-900 dark:text-white">{{ __('pendaftaran.title') }} {{ __('pendaftaran.NoExamsAvailable') }}</h3>
+                <p class="mt-1 text-gray-500 dark:text-gray-400">{{ __('pendaftaran.NoExamsAvailableMessage') }}</p>
             </div>
         @else
             <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -66,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-1">
-                                    <h3 class="mb-1 text-xl font-bold text-gray-900 dark:text-white">{{ $item->nama_ujian }}
+                                    <h3 class=".mb-1 text-xl font-bold text-gray-900 dark:text-white">{{ $item->nama_ujian }}
                                     </h3>
                                     <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('pendaftaran.ExamID') }}:
                                         {{ $item->id }}</p>
@@ -126,8 +123,7 @@
                                 @else
                                     <div
                                         class="flex flex-col justify-center items-center px-4 py-3 w-full bg-red-50 rounded-lg border border-red-200 dark:bg-red-900 dark:border-red-700">
-                                        <span class="text-base font-semibold text-red-700 dark:text-red-200">Ujian Telah
-                                            Ditutup</span>
+                                        <span class="text-base font-semibold text-red-700 dark:text-red-200">{{ __('pendaftaran.ExamClosed') }}</span>
                                     </div>
                                 @endif
                             </div>
