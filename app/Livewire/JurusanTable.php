@@ -58,7 +58,6 @@ final class JurusanTable extends PowerGridComponent
                 ->title('No')
                 ->field('row_number')
                 ->index(),
-            Column::make('Jurusan Id', 'id')->sortable(),
             Column::make('Jurusan kode', 'jurusan_kode')
                 ->sortable()
                 ->searchable(),

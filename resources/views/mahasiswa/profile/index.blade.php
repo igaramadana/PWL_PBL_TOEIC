@@ -1,7 +1,10 @@
 @extends('layouts.users.app')
 
 @section('content')
-    <x-breadcrumb :pages="[['name' => __('profile.title'), 'url' => '/profile']]" />
+    <x-breadcrumb :pages="[
+        ['name' => __('profile.title'), 'url' => '/profile'],
+        ['name' => auth()->user()->mahasiswa->mahasiswa_nama, 'url' => '/profile'],
+    ]" />
 
     <!-- Hero Section with Flowbite Colors -->
     <div class="overflow-hidden relative mb-8 bg-white rounded-lg border shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -10,7 +13,8 @@
                 <!-- Profile Avatar -->
                 <div class="relative">
                     <div class="overflow-hidden w-32 h-32 rounded-full ring-4 md:w-40 md:h-40 ring-white/50">
-                        <img class="object-cover w-full h-full" src="{{ $avatar }}" alt="{{ __('profile.title') }} image" />
+                        <img class="object-cover w-full h-full" src="{{ $avatar }}"
+                            alt="{{ __('profile.title') }} image" />
                         @if (auth()->user()->mahasiswa->foto_profile)
                             <button type="button" data-modal-target="deletePhotoModal" data-modal-toggle="deletePhotoModal"
                                 class="absolute right-0 bottom-0 p-2 text-white bg-red-600 rounded-full cursor-pointer hover:bg-red-700">
@@ -26,7 +30,7 @@
                 </div>
 
                 <!-- Profile Info -->
-                <div class="text-center text-white md:text-left">
+                <div class="text-center text-gray-900 dark:text-white md:text-left">
                     <h1 class="mb-2 text-3xl font-bold md:text-4xl">
                         {{ auth()->user()->mahasiswa->mahasiswa_nama }}
                     </h1>
@@ -73,7 +77,8 @@
                                 d="M10 3v4a1 1 0 0 1-1 1H5m8-2h3m-3 3h3m-6 3v4a1 1 0 0 1-1 1H5m11-4h3m-6 0h3M7 3L4 6v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9h-3a1 1 0 0 1-1-1V3H7Z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{ __('profile.academic_information') }}</h3>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{ __('profile.academic_information') }}
+                    </h3>
                 </div>
             </div>
 
@@ -90,7 +95,8 @@
                     </div>
                     <div>
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('profile.student_id') }}</p>
-                        <p class="text-lg font-semibold text-gray-900 dark:text-white">{{ auth()->user()->mahasiswa->nim }}</p>
+                        <p class="text-lg font-semibold text-gray-900 dark:text-white">{{ auth()->user()->mahasiswa->nim }}
+                        </p>
                     </div>
                 </div>
 
@@ -104,7 +110,8 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('profile.study_program') }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('profile.study_program') }}
+                        </p>
                         <p class="text-lg font-semibold text-gray-900 dark:text-white">
                             {{ auth()->user()->mahasiswa->prodi->prodi_nama ?? 'N/A' }}</p>
                         @if (auth()->user()->mahasiswa->prodi)
@@ -116,7 +123,8 @@
 
                 <!-- Angkatan -->
                 <div class="flex items-center p-4 bg-gray-50 rounded-lg dark:bg-gray-700">
-                    <div class="flex justify-center items-center w-10 h-10 bg-purple-100 rounded-lg dark:bg-purple-900 me-3">
+                    <div
+                        class="flex justify-center items-center w-10 h-10 bg-purple-100 rounded-lg dark:bg-purple-900 me-3">
                         <svg class="w-5 h-5 text-purple-500 dark:text-purple-300" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -124,7 +132,8 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('profile.academic_year') }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('profile.academic_year') }}
+                        </p>
                         <p class="text-lg font-semibold text-gray-900 dark:text-white">
                             {{ auth()->user()->mahasiswa->angkatan }}</p>
                     </div>
@@ -144,7 +153,8 @@
                                 d="m16.344 12.168-1.4-1.4a1.98 1.98 0 0 0-2.8 0l-.7.7a1.98 1.98 0 0 1-2.8 0l-2.1-2.1a1.98 1.98 0 0 1 0-2.8l.7-.7a1.98 1.98 0 0 0 0-2.8l-1.4-1.4a1.828 1.828 0 0 0-2.59 0L-.99 5.168a3.988 3.988 0 0 0 0 5.64l2.1 2.1a6.793 6.793 0 0 0 9.6 0l2.1-2.1a3.988 3.988 0 0 0 0-5.64Z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{ __('profile.contact_status') }}</h3>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{ __('profile.contact_status') }}
+                    </h3>
                 </div>
             </div>
 
@@ -160,7 +170,8 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('profile.phone_number') }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('profile.phone_number') }}
+                        </p>
                         <p class="text-lg font-semibold text-gray-900 dark:text-white">+62
                             {{ auth()->user()->mahasiswa->no_telp ?? __('profile.not_provided') }}</p>
                     </div>
@@ -168,7 +179,8 @@
 
                 <!-- Status -->
                 <div class="flex items-center p-4 bg-gray-50 rounded-lg dark:bg-gray-700">
-                    <div class="flex justify-center items-center w-10 h-10 bg-yellow-100 rounded-lg dark:bg-yellow-900 me-3">
+                    <div
+                        class="flex justify-center items-center w-10 h-10 bg-yellow-100 rounded-lg dark:bg-yellow-900 me-3">
                         <svg class="w-5 h-5 text-yellow-500 dark:text-yellow-300" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -176,7 +188,8 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('profile.student_status') }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('profile.student_status') }}
+                        </p>
                         <span
                             class="px-2.5 py-0.5 text-xs font-medium text-green-800 bg-green-100 rounded dark:bg-green-900 dark:text-green-300">
                             {{ auth()->user()->mahasiswa->status }}
@@ -186,7 +199,8 @@
 
                 <!-- Exam Registration -->
                 <div class="flex items-center p-4 bg-gray-50 rounded-lg dark:bg-gray-700">
-                    <div class="flex justify-center items-center w-10 h-10 bg-indigo-100 rounded-lg dark:bg-indigo-900 me-3">
+                    <div
+                        class="flex justify-center items-center w-10 h-10 bg-indigo-100 rounded-lg dark:bg-indigo-900 me-3">
                         <svg class="w-5 h-5 text-indigo-500 dark:text-indigo-300" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -194,7 +208,8 @@
                         </svg>
                     </div>
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('profile.exam_registration') }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            {{ __('profile.exam_registration') }}</p>
                         @if (auth()->user()->mahasiswa->daftar_ujian)
                             <span
                                 class="inline-flex items-center px-2.5 py-0.5 text-xs font-medium text-green-800 bg-green-100 rounded dark:bg-green-900 dark:text-green-300">
@@ -269,7 +284,8 @@
                                         accept="image/*">
                                 </label>
                             </div>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('profile.profile_picture_instruction') }}</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                {{ __('profile.profile_picture_instruction') }}</p>
                         </div>
 
                         <!-- Name -->
@@ -300,14 +316,16 @@
 
                         <!-- Academic Information (readonly) -->
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('profile.student_id') }}</label>
+                            <label
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('profile.student_id') }}</label>
                             <input type="text" value="{{ auth()->user()->mahasiswa->nim }}"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400"
                                 readonly>
                         </div>
 
                         <div class="mb-4">
-                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('profile.study_program') }}</label>
+                            <label
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('profile.study_program') }}</label>
                             <input type="text" value="{{ auth()->user()->mahasiswa->prodi->prodi_nama ?? 'N/A' }}"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400"
                                 readonly>
@@ -475,7 +493,8 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
-                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-900">{{ __('profile.delete_photo_confirmation') }}</h3>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-900">
+                        {{ __('profile.delete_photo_confirmation') }}</h3>
                     <form action="{{ route('profile.deletephoto') }}" method="POST">
                         @csrf
                         @method('POST')

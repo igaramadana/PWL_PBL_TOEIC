@@ -36,7 +36,7 @@ class ProdiController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'prodi_kode' => 'required|min:3|unique:prodi,prodi_kode',
+            'prodi_kode' => 'required|min:2|unique:prodi,prodi_kode',
             'prodi_nama' => 'required',
             'jurusan_id' => 'required|exists:jurusan,id'
         ]);
@@ -80,7 +80,7 @@ class ProdiController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-            'prodi_kode' => 'required|min:3|unique:prodi,prodi_kode,' . $id,
+            'prodi_kode' => 'required|min:2|unique:prodi,prodi_kode,' . $id,
             'prodi_nama' => 'required',
             'jurusan_id' => 'required|exists:jurusan,id'
         ]);

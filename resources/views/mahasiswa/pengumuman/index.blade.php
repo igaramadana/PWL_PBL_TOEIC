@@ -1,10 +1,7 @@
 @extends('layouts.users.app')
 
 @section('content')
-    <x-breadcrumb :pages="[
-        ['name' => 'Dashboard', 'url' => route('mahasiswa.index')],
-        ['name' => __('pengumuman.title'), 'url' => '#']
-    ]" />
+    <x-breadcrumb :pages="[['name' => __('pengumuman.title'), 'url' => '#']]" />
 
     <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ __('pengumuman.title') }}</h2>
@@ -16,7 +13,8 @@
         @else
             @foreach ($pengumuman as $item)
                 <div class="mb-4">
-                    <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                    <div
+                        class="p-4 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                         <div class="flex items-start">
                             <div class="flex-shrink-0 items-center p-3 mt-1 bg-blue-100 rounded-full dark:bg-blue-900">
                                 <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor"
@@ -31,7 +29,7 @@
                                     {{ $item->judul }}
                                 </h5>
                                 <div class="flex items-center mt-1">
-                                    <img src="{{ (new \Laravolt\Avatar\Avatar)->create($item->admin->admin_nama ?? 'Admin')->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64() }}"
+                                    <img src="{{ (new \Laravolt\Avatar\Avatar())->create($item->admin->admin_nama ?? 'Admin')->setBackground('#4B5563')->setBorder(4, '#1C64F2')->toBase64() }}"
                                         class="mr-1 w-5 h-5" alt="Admin Avatar" />
                                     <p class="font-normal text-gray-700 dark:text-gray-400">
                                         {{ __('pengumuman.publishedBy') }}: {{ $item->admin->admin_nama ?? 'Admin' }}
@@ -39,7 +37,7 @@
                                 </div>
                                 <p class="mt-2 text-gray-600 dark:text-gray-300">{{ $item->isi }}</p>
                                 <div class="mt-3 text-sm text-gray-500 dark:text-gray-400">
-                                    <i class="fas fa-clock mr-1"></i>
+                                    <i class="mr-1 fas fa-clock"></i>
                                     {{ __('pengumuman.publishedAt') }}: {{ $item->created_at->format('d M Y, H:i') }}
                                 </div>
                             </div>

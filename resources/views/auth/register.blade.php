@@ -72,27 +72,56 @@
                                 @enderror
                             </div>
                             <div>
-                                <div class="mx-auto max-w-sm">
-                                    <label for="no_telp"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formPhone') }}</label>
-                                    <div class="relative">
-                                        <div
-                                            class="flex absolute inset-y-0 top-0 items-center pointer-events-none start-0 ps-3.5">
-                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                viewBox="0 0 19 18">
-                                                <path
-                                                    d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z" />
-                                            </svg>
+                                <label for="no_telp"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('register.formPhone') }}</label>
+                                <div class="flex">
+                                    <div class="relative w-32">
+                                        <button id="dropdown-phone-button" data-dropdown-toggle="dropdown-phone"
+                                            class="inline-flex z-10 items-center px-4 py-2.5 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 shrink-0 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                                            type="button">
+                                            <img src="{{ asset('img/indoFlag.svg') }}" class="w-4 h-4 me-2"
+                                                alt="indo flag">
+                                            +62
+                                        </button>
+                                        <div id="dropdown-phone"
+                                            class="hidden z-10 w-52 bg-white rounded-lg divide-y divide-gray-100 shadow-sm dark:bg-gray-700">
+                                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                                aria-labelledby="dropdown-phone-button">
+                                                <li>
+                                                    <button type="button"
+                                                        class="inline-flex px-4 py-2 w-full text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                                                        role="menuitem">
+                                                        <span class="inline-flex items-center">
+                                                            <svg fill="none" aria-hidden="true" class="w-4 h-4 me-2"
+                                                                viewBox="0 0 20 15">
+                                                                <rect width="19.6" height="14" y=".5"
+                                                                    fill="#fff" rx="2" />
+                                                                <mask id="a" style="mask-type:luminance"
+                                                                    width="20" height="15" x="0" y="0"
+                                                                    maskUnits="userSpaceOnUse">
+                                                                    <rect width="19.6" height="14" y=".5"
+                                                                        fill="#fff" rx="2" />
+                                                                </mask>
+                                                                <g mask="url(#a)">
+                                                                    <path fill="#D02F44" fill-rule="evenodd"
+                                                                        d="M19.6.5H0v.933h19.6V.5zm0 1.867H0V3.3h19.6v-.933zM0 4.233h19.6v.934H0v-.934zM19.6 6.1H0v.933h19.6V6.1zM0 7.967h19.6V8.9H0v-.933zm19.6 1.866H0v.934h19.6v-.934zM0 11.7h19.6v.933H0V11.7zm19.6 1.867H0v.933h19.6v-.933z"
+                                                                        clip-rule="evenodd" />
+                                                                    <path fill="#46467F" d="M0 .5h8.4v6.533H0z" />
+                                                                </g>
+                                                            </svg>
+                                                            Indonesia (+62)
+                                                        </span>
+                                                    </button>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <input type="number" name="no_telp" id="no_telp"
-                                            aria-describedby="helper-text-explanation"
-                                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 ps-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
-                                        @error('no_telp')
-                                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                                        @enderror
                                     </div>
+                                    <input type="number" name="no_telp" id="no_telp"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-e-lg focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="81234567890" required />
+                                    @error('no_telp')
+                                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

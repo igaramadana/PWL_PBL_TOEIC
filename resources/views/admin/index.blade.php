@@ -215,7 +215,7 @@
             // Konfigurasi grafik
             const ctx = document.getElementById('registrationChart').getContext('2d');
             let chart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: chartData.monthly.labels,
                     datasets: [{

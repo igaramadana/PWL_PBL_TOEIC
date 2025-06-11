@@ -7,7 +7,8 @@
     ]" />
 
     <div class="mb-6">
-        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">{{ __('ujian_hasil.title') }} {{ $ujian->nama_ujian }}</h2>
+        <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">{{ __('ujian_hasil.title') }}
+            {{ $ujian->nama_ujian }}</h2>
 
         <!-- Informasi Ujian -->
         <div class="p-6 mb-6 w-full bg-white rounded-lg border border-gray-200 shadow dark:bg-gray-800 dark:border-gray-700">
@@ -98,13 +99,13 @@
                 </div>
             @endif
             <div class="flex justify-between mb-4">
-                <h3 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ __('ujian_hasil.participant_name') }} {{ __('ujian_hasil.total_score') }}</h3>
+                <h3 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ __('ujian_hasil.participant_name') }}
+                    {{ __('ujian_hasil.total_score') }}</h3>
                 <div class="flex space-x-2">
                     <a href="{{ route('admin.ujian_hasil.format') }}"
                         class="inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                        <svg class="mr-2 w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
+                        <svg class="mr-2 w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2Z" />
                         </svg>
@@ -116,9 +117,8 @@
                         <input type="file" name="file" id="fileImport" class="hidden" accept=".xlsx,.xls" required>
                         <label for="fileImport"
                             class="inline-flex items-center px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            <svg class="mr-2 w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                viewBox="0 0 24 24">
+                            <svg class="mr-2 w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd"
                                     d="M9 2.221V7H4.221a2 2 0 0 1 .365-.5L8.5 2.586A2 2 0 0 1 9 2.22ZM11 2v5a2 2 0 0 1-2 2H4v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-7Z"
                                     clip-rule="evenodd" />
