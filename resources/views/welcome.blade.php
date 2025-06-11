@@ -36,7 +36,8 @@
             {{-- Navbar --}}
             <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                 <a href="{{ url('/') }}" class="flex items-center">
-                    <img src="{{ asset('img/SistemLogo.png') }}" class="mr-2" style="width: 50px; height: auto;" alt="SKILLIFY">
+                    <img src="{{ asset('img/SistemLogo.png') }}" class="mr-2" style="width: 50px; height: auto;"
+                        alt="SKILLIFY">
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TOEIC</span>
                 </a>
                 <div class="flex items-center lg:order-2">
@@ -138,14 +139,16 @@
                         class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         aria-controls="mobile-menu-2" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                                 clip-rule="evenodd"></path>
                         </svg>
                     </button>
                 </div>
-                <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
+                <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+                    id="mobile-menu-2">
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                         <li>
                             <a href="{{ url('/') }}"
@@ -168,457 +171,416 @@
     {{-- End Header --}}
 
     <main>
-    {{-- content --}}
-    {{-- Hero Section --}}
-    <section class="bg-white dark:bg-gray-900">
-        <div class="grid px-4 py-8 mx-auto max-w-screen-xl lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12" data-aos="fade-right">
-            <div class="place-self-center mr-auto lg:col-span-7">
-                <h1 class="mb-4 max-w-2xl text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">
-                    {{ __('landing.heroTitle') }}</h1>
-                <p class="mb-6 max-w-2xl font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-                    {{ __('landing.heroSubtitle') }}</p>
-                <a href="/register"
-                    class="inline-flex justify-center items-center px-5 py-3 mr-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-                    {{{ __('landing.heroButton') }}}
-                    <svg class="-mr-1 ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
-                <a href="#test-info"
-                    class="inline-flex justify-center items-center px-5 py-3 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
-                    {{ __('landing.heroButton2') }}
-                </a>
-            </div>
-            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex" data-aos="fade-left">
-                <img src="/img/illustrations1.svg" alt="mockup">
-            </div>
-        </div>
-    </section>
-
-    <!-- Announcement Section -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-900">
-        <div class="px-4 mx-auto max-w-screen-xl" data-aos="fade-up">
-            <div class="mb-12 text-center">
-                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-                    {{ __('landing.announcementTitle') }}
-                </h2>
-                <p class="mx-auto mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400">
-                    {{ __('landing.announcementSubtitle') }}
-                </p>
-            </div>
-
-            @php
-                $ujian = App\Models\UjianModel::with('pendaftar')->get();
-            @endphp
-
-            @if ($ujian->isEmpty())
-                <div class="text-center text-gray-500 dark:text-gray-400">
-                    {{ __('landing.noExamsAvailable') }}
+        {{-- content --}}
+        {{-- Hero Section --}}
+        <section class="bg-white dark:bg-gray-900">
+            <div class="grid px-4 py-8 mx-auto max-w-screen-xl lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12"
+                data-aos="fade-right">
+                <div class="place-self-center mr-auto lg:col-span-7">
+                    <h1
+                        class="mb-4 max-w-2xl text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">
+                        {{ __('landing.heroTitle') }}</h1>
+                    <p
+                        class="mb-6 max-w-2xl font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                        {{ __('landing.heroSubtitle') }}</p>
+                    <a href="/register"
+                        class="inline-flex justify-center items-center px-5 py-3 mr-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                        {{ __('landing.heroButton') }}
+                        <svg class="-mr-1 ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </a>
+                    <a href="#test-info"
+                        class="inline-flex justify-center items-center px-5 py-3 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                        {{ __('landing.heroButton2') }}
+                    </a>
                 </div>
-            @else
-                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                    @foreach ($ujian as $item)
-                        <div class="block p-6 bg-white rounded-lg border border-gray-200 shadow-sm transition-all duration-300 ease-in-out hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                            data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
-                            <div class="flex items-center mb-4">
-                                <div class="flex flex-shrink-0 justify-center items-center w-12 h-12 bg-blue-600 rounded-full">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-                                    </svg>
+                <div class="hidden lg:mt-0 lg:col-span-5 lg:flex" data-aos="fade-left">
+                    <img src="/img/illustrations1.svg" alt="mockup">
+                </div>
+            </div>
+        </section>
+
+        <!-- Announcement Section -->
+        <section class="py-16 bg-gray-50 dark:bg-gray-900">
+            <div class="px-4 mx-auto max-w-screen-xl" data-aos="fade-up">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                        {{ __('landing.announcementTitle') }}
+                    </h2>
+                    <p class="mx-auto mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400">
+                        {{ __('landing.announcementSubtitle') }}
+                    </p>
+                </div>
+
+                @php
+                    $ujian = App\Models\UjianModel::with('pendaftar')->get();
+                @endphp
+
+                @if ($ujian->isEmpty())
+                    <div class="text-center text-gray-500 dark:text-gray-400">
+                        {{ __('landing.noExamsAvailable') }}
+                    </div>
+                @else
+                    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        @foreach ($ujian as $item)
+                            <div class="block p-6 bg-white rounded-lg border border-gray-200 shadow-sm transition-all duration-300 ease-in-out hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                                data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+                                <div class="flex items-center mb-4">
+                                    <div
+                                        class="flex flex-shrink-0 justify-center items-center w-12 h-12 bg-blue-600 rounded-full">
+                                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="ml-6 text-xl font-bold text-gray-900 dark:text-white">
+                                        {{ $item->nama_ujian }}
+                                    </h3>
                                 </div>
-                                <h3 class="ml-6 text-xl font-bold text-gray-900 dark:text-white">
-                                    {{ $item->nama_ujian }}
-                                </h3>
+                                <div class="text-gray-500 dark:text-gray-400">
+                                    <p class="mb-2">
+                                        <span class="font-medium">{{ __('landing.examSchedule') }}:</span>
+                                        {{ \Carbon\Carbon::parse($item->jadwal_ujian)->format('d M Y') }}
+                                    </p>
+                                    <p class="mb-2">
+                                        <span class="font-medium">{{ __('landing.examTime') }}:</span>
+                                        {{ \Carbon\Carbon::parse($item->waktu_ujian)->format('H:i') }}
+                                    </p>
+                                    <p class="mb-4">
+                                        <span class="font-medium">{{ __('landing.quota') }}:</span>
+                                        {{ count($item->pendaftar) }}/{{ $item->kuota }}
+                                    </p>
+                                    <a href="{{ route('register') }}"
+                                        class="inline-flex justify-center items-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                                        {{ __('landing.registerNow') }}
+                                        <svg class="-mr-1 ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="text-gray-500 dark:text-gray-400">
-                                <p class="mb-2">
-                                    <span class="font-medium">{{ __('landing.examSchedule') }}:</span>
-                                    {{ \Carbon\Carbon::parse($item->jadwal_ujian)->format('d M Y') }}
-                                </p>
-                                <p class="mb-2">
-                                    <span class="font-medium">{{ __('landing.examTime') }}:</span>
-                                    {{ \Carbon\Carbon::parse($item->waktu_ujian)->format('H:i') }}
-                                </p>
-                                <p class="mb-4">
-                                    <span class="font-medium">{{ __('landing.quota') }}:</span>
-                                    {{ count($item->pendaftar) }}/{{ $item->kuota }}
-                                </p>
-                                <a href="{{ route('register') }}"
-                                    class="inline-flex justify-center items-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-                                    {{ __('landing.registerNow') }}
-                                    <svg class="-mr-1 ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                </a>
-                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        </section>
+
+        {{-- About --}}
+        <section id="test-info" class="py-16 bg-gray-50 dark:bg-gray-900">
+            <div class="px-4 mx-auto max-w-screen-xl" data-aos="fade-up">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                        {{ __('landing.aboutTitle') }}
+                    </h2>
+                    <p class="mx-auto mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400">
+                        {{ __('landing.aboutSubtitle') }}
+                    </p>
+                </div>
+
+                <div class="grid gap-8 md:grid-cols-3">
+                    <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-sm transition-all duration-300 ease-in-out hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                        data-aos="fade-right">
+                        <div
+                            class="flex justify-center items-center mb-4 w-12 h-12 bg-blue-100 rounded-full transition-colors duration-300 dark:bg-blue-900">
+                            <svg class="w-6 h-6 text-blue-600 transition-colors duration-300 dark:text-blue-300"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
                         </div>
-                    @endforeach
-                </div>
-            @endif
-        </div>
-    </section>
-
-    {{-- About --}}
-    <section id="test-info" class="py-16 bg-gray-50 dark:bg-gray-900">
-        <div class="px-4 mx-auto max-w-screen-xl" data-aos="fade-up">
-            <div class="mb-12 text-center">
-                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-                    {{ __('landing.aboutTitle') }}
-                </h2>
-                <p class="mx-auto mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400">
-                    {{ __('landing.aboutSubtitle') }}
-                </p>
-            </div>
-
-            <div class="grid gap-8 md:grid-cols-3">
-                <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-sm transition-all duration-300 ease-in-out hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                    data-aos="fade-right">
-                    <div
-                        class="flex justify-center items-center mb-4 w-12 h-12 bg-blue-100 rounded-full transition-colors duration-300 dark:bg-blue-900">
-                        <svg class="w-6 h-6 text-blue-600 transition-colors duration-300 dark:text-blue-300" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
+                        <h3 class="mb-2 text-xl font-bold transition-colors duration-300 dark:text-white">
+                            {{ __('landing.card1Title') }}
+                        </h3>
+                        <p class="text-gray-500 transition-colors duration-300 dark:text-gray-400">
+                            {{ __('landing.card1Subtitle') }}
+                        </p>
                     </div>
-                    <h3 class="mb-2 text-xl font-bold transition-colors duration-300 dark:text-white">
-                        {{ __('landing.card1Title') }}
-                    </h3>
-                    <p class="text-gray-500 transition-colors duration-300 dark:text-gray-400">
-                        {{ __('landing.card1Subtitle') }}
+
+                    <!-- Card 2 -->
+                    <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                        data-aos="fade-up">
+                        <div
+                            class="flex justify-center items-center mb-4 w-12 h-12 bg-blue-100 rounded-full dark:bg-blue-900">
+                            <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="mb-2 text-xl font-bold dark:text-white">{{ __('landing.card2Title') }}</h3>
+                        <p class="text-gray-500 dark:text-gray-400">
+                            {{ __('landing.card2Subtitle') }}
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                        data-aos="fade-left">
+                        <div
+                            class="flex justify-center items-center mb-4 w-12 h-12 bg-blue-100 rounded-full dark:bg-blue-900">
+                            <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="mb-2 text-xl font-bold dark:text-white">{{ __('landing.card3Title') }}</h3>
+                        <p class="text-gray-500 dark:text-gray-400">
+                            {{ __('landing.card3Subtitle') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{-- Our Teams --}}
+        <section class="bg-white dark:bg-gray-900" id="our-team">
+            <div class="px-4 py-8 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+                <div class="mx-auto mb-8 max-w-screen-sm text-center lg:mb-16">
+                    <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+                        {{ __('landing.teamTitle') }}
+                    </h2>
+                    <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">
+                        {{ __('landing.teamSubtitle') }}
                     </p>
                 </div>
-
-                <!-- Card 2 -->
-                <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                    data-aos="fade-up">
-                    <div class="flex justify-center items-center mb-4 w-12 h-12 bg-blue-100 rounded-full dark:bg-blue-900">
-                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
+                <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
+                    <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
+                        data-aos="fade-right">
+                        <a href="#">
+                            <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                                src="{{ asset('img/IgaRamadana.png') }}" alt="Iga Avatar">
+                        </a>
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                <a href="#">Iga Ramadana Sahputra</a>
+                            </h3>
+                            <span class="text-gray-500 dark:text-gray-400">Fullstack Developer</span>
+                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Saya adalah Fullstack
+                                Developer untuk PBL TOEIC kelompok 3</p>
+                            <ul class="flex space-x-4 sm:mt-0">
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <h3 class="mb-2 text-xl font-bold dark:text-white">{{ __('landing.card2Title') }}</h3>
-                    <p class="text-gray-500 dark:text-gray-400">
-                        {{ __('landing.card2Subtitle') }}
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-                    data-aos="fade-left">
-                    <div class="flex justify-center items-center mb-4 w-12 h-12 bg-blue-100 rounded-full dark:bg-blue-900">
-                        <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
-                            </path>
-                        </svg>
+                    <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
+                        data-aos="fade-left">
+                        <a href="#">
+                            <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                                src="{{ asset('img/Bhima.png') }}" alt="Jese Avatar">
+                        </a>
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                <a href="#">Bhimantara Wira Eka</a>
+                            </h3>
+                            <span class="text-gray-500 dark:text-gray-400">UI/UX Designer</span>
+                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Saya adalah UI/UX Designer
+                                untuk PBL Kelompok 3</p>
+                            <ul class="flex space-x-4 sm:mt-0">
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <h3 class="mb-2 text-xl font-bold dark:text-white">{{ __('landing.card3Title') }}</h3>
-                    <p class="text-gray-500 dark:text-gray-400">
-                        {{ __('landing.card3Subtitle') }}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    {{-- Our Teams --}}
-    <section class="bg-white dark:bg-gray-900" id="our-team">
-        <div class="px-4 py-8 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-            <div class="mx-auto mb-8 max-w-screen-sm text-center lg:mb-16">
-                <h2 class="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                    {{ __('landing.teamTitle') }}
-                </h2>
-                <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">
-                    {{ __('landing.teamSubtitle') }}
-                </p>
-            </div>
-            <div class="flex justify-center items-center mx-auto mb-8 max-w-screen-sm">
-                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
-                    data-aos="zoom-in">
-                    <a href="#">
-                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
-                            alt="Bonnie Avatar">
-                    </a>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Bonnie Green</a>
-                        </h3>
-                        <span class="text-gray-500 dark:text-gray-400">CEO & Web Developer</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Bonnie drives the technical
-                            strategy of
-                            the flowbite platform and brand.</p>
-                        <ul class="flex space-x-4 sm:mt-0">
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path
-                                            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
+                        data-aos="fade-right">
+                        <a href="#">
+                            <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                                src="{{ asset('img/Dipa.png') }}" alt="Dipa Avatar">
+                        </a>
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                <a href="#">Dipa Praja</a>
+                            </h3>
+                            <span class="text-gray-500 dark:text-gray-400">Front-end Developer</span>
+                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Saya adalah Front-End
+                                Developer untuk PBL Kelompok 3</p>
+                            <ul class="flex space-x-4 sm:mt-0">
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
-                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
-                    data-aos="fade-right">
-                    <a href="#">
-                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/bonnie-green.png"
-                            alt="Bonnie Avatar">
-                    </a>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Bonnie Green</a>
-                        </h3>
-                        <span class="text-gray-500 dark:text-gray-400">CEO & Web Developer</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Bonnie drives the technical
-                            strategy of
-                            the flowbite platform and brand.</p>
-                        <ul class="flex space-x-4 sm:mt-0">
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path
-                                            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
-                    data-aos="fade-left">
-                    <a href="#">
-                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                            alt="Jese Avatar">
-                    </a>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Jese Leos</a>
-                        </h3>
-                        <span class="text-gray-500 dark:text-gray-400">CTO</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Jese drives the technical strategy
-                            of
-                            the flowbite platform and brand.</p>
-                        <ul class="flex space-x-4 sm:mt-0">
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path
-                                            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
-                    data-aos="fade-right">
-                    <a href="#">
-                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png"
-                            alt="Michael Avatar">
-                    </a>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Michael Gough</a>
-                        </h3>
-                        <span class="text-gray-500 dark:text-gray-400">Senior Front-end Developer</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Michael drives the technical
-                            strategy
-                            of the flowbite platform and brand.</p>
-                        <ul class="flex space-x-4 sm:mt-0">
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path
-                                            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
-                    data-aos="fade-left">
-                    <a href="#">
-                        <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/sofia-mcguire.png"
-                            alt="Sofia Avatar">
-                    </a>
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            <a href="#">Lana Byrd</a>
-                        </h3>
-                        <span class="text-gray-500 dark:text-gray-400">Marketing & Sale</span>
-                        <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Lana drives the technical strategy
-                            of
-                            the flowbite platform and brand.</p>
-                        <ul class="flex space-x-4 sm:mt-0">
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path
-                                            d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </li>
-                        </ul>
+                    <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700"
+                        data-aos="fade-left">
+                        <a href="#">
+                            <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
+                                src="{{ asset('img/Meisy.png') }}" alt="Sofia Avatar">
+                        </a>
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                <a href="#">Meisy Nadia</a>
+                            </h3>
+                            <span class="text-gray-500 dark:text-gray-400">Project Manager & Front-end Developer</span>
+                            <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">Saya adalah Project
+                                Manager dan Front-end Developer untuk PBL Kelompok 3</p>
+                            <ul class="flex space-x-4 sm:mt-0">
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
+                                            aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </main>
 
     {{-- footer --}}
@@ -644,10 +606,12 @@
                         </ul>
                     </div>
                     <div>
-                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">{{ __('landing.followUs') }}</h2>
+                        <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                            {{ __('landing.followUs') }}</h2>
                         <ul class="text-gray-600 dark:text-gray-400">
                             <li class="mb-4">
-                                <a href="https://github.com/igaramadana/PWL_PBL-TOEIC" class="hover:underline">Github</a>
+                                <a href="https://github.com/igaramadana/PWL_PBL-TOEIC"
+                                    class="hover:underline">Github</a>
                             </li>
                         </ul>
                     </div>
@@ -655,11 +619,17 @@
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <div class="sm:flex sm:items-center sm:justify-between">
-                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="#" class="hover:underline">SIB 2C - GROUP 3 PBL</a>. All Rights Reserved.
+                <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 <a href="#"
+                        class="hover:underline">SIB 2C - GROUP 3 PBL</a>. All Rights Reserved.
                 </span>
                 <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
-                    <a href="https://github.com/igaramadana/PWL_PBL-TOEIC" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+                    <a href="https://github.com/igaramadana/PWL_PBL-TOEIC"
+                        class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                clip-rule="evenodd" />
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -670,7 +640,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-      AOS.init();
+        AOS.init();
     </script>
     <script>
         var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
