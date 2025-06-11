@@ -53,7 +53,6 @@ final class KampusTable extends PowerGridComponent
                 ->title('No')
                 ->field('row_number')
                 ->index(),
-            Column::make('Kampus id', 'id')->sortable(),
             Column::make('Kampus nama', 'kampus_nama')
                 ->sortable()
                 ->searchable(),

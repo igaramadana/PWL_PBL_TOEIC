@@ -35,7 +35,7 @@ class JurusanController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'jurusan_kode' => 'required|min:3|unique:jurusan,jurusan_kode',
+            'jurusan_kode' => 'required|min:2|unique:jurusan,jurusan_kode',
             'jurusan_nama' => 'required',
             'kampus_id' => 'required|exists:kampus,id'
         ]);
@@ -84,7 +84,7 @@ class JurusanController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-            'jurusan_kode' => 'required|min:3|unique:jurusan,jurusan_kode,' . $id,
+            'jurusan_kode' => 'required|min:2|unique:jurusan,jurusan_kode,' . $id,
             'jurusan_nama' => 'required',
             'kampus_id' => 'required|exists:kampus,id'
         ]);

@@ -1,7 +1,7 @@
 @extends('layouts.users.app')
 
 @section('content')
-    <x-breadcrumb :pages="[['name' => 'Dashboard', 'url' => route('mahasiswa.index')], ['name' => __('ujian_hasil.title'), 'url' => '#']]" />
+    <x-breadcrumb :pages="[['name' => __('ujian_hasil.title'), 'url' => '#']]" />
 
     <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800">
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">{{ __('ujian_hasil.my_exam_results') }}</h2>
@@ -42,7 +42,10 @@
                                 <td class="px-6 py-4">
                                     @php
                                         $total = $pendaftaran->hasilUjian->total_skor;
-                                        $status = $total >= 550 ? __('ujian_hasil.status_passed') : __('ujian_hasil.status_failed');
+                                        $status =
+                                            $total >= 550
+                                                ? __('ujian_hasil.status_passed')
+                                                : __('ujian_hasil.status_failed');
                                         $color = $total >= 550 ? 'green' : 'red';
                                     @endphp
                                     <span

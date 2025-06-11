@@ -58,7 +58,6 @@ final class ProdiTable extends PowerGridComponent
                 ->title('No')
                 ->field('row_number')
                 ->index(),
-            Column::make('Jurusan Id', 'id'),
             Column::make('Prodi kode', 'prodi_kode')
                 ->sortable()
                 ->searchable(),

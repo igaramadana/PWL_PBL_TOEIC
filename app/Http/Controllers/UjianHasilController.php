@@ -36,7 +36,7 @@ class UjianHasilController extends Controller
     public function detail(UjianModel $ujian)
     {
         $page = (object) [
-            'title' => __('ujian_hasil.detail'),
+            'title' => __('ujian_hasil.title'),
         ];
 
         // Ambil semua pendaftar untuk ujian ini, termasuk yang belum memiliki hasil ujian
@@ -81,7 +81,7 @@ class UjianHasilController extends Controller
     public function formatPage()
     {
         $page = (object) [
-            'title' => __('ujian_hasil.format'),
+            'title' => __('ujian_hasil.title'),
         ];
         $headerProfile = Auth::user()->admin->admin_nama;
         $avatar = $this->avatar->create($headerProfile)

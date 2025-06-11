@@ -1,7 +1,7 @@
 <div>
     <button data-modal-target="detail-modal-{{ $jurusan_id }}" data-modal-toggle="detail-modal-{{ $jurusan_id }}"
         type="button"
-        class="p-2 text-gray-900 bg-blue-600 rounded-lg dark:text-gray-50 dark:bg-blue-600 hover:text-white hover:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:hover:text-white dark:hover:bg-blue-500">
+        class="p-2 text-white bg-blue-600 rounded-lg dark:text-gray-50 dark:bg-blue-600 hover:text-white hover:bg-blue-600 focus:ring-2 focus:ring-blue-300 dark:hover:text-white dark:hover:bg-blue-500">
         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M8 9h2v5m-2 0h4M9.408 5.5h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />

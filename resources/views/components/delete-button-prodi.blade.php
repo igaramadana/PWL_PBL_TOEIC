@@ -1,7 +1,7 @@
 <div>
     <button data-modal-target="popup-modal-{{ $prodi_id }}" data-modal-toggle="popup-modal-{{ $prodi_id }}"
         type="button"
-        class="p-2 text-gray-900 bg-red-700 rounded-lg dark:text-gray-50 dark:bg-red-600 hover:text-white hover:bg-red-600 focus:ring-2 focus:ring-red-300 dark:hover:text-white dark:hover:bg-red-500">
+        class="p-2 text-white bg-red-700 rounded-lg dark:text-gray-50 dark:bg-red-600 hover:text-white hover:bg-red-600 focus:ring-2 focus:ring-red-300 dark:hover:text-white dark:hover:bg-red-500">
         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />

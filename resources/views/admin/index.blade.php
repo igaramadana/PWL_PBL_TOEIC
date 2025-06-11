@@ -5,7 +5,7 @@
         <!-- Header -->
         <div class="flex justify-between items-center mb-6" data-aos="fade-down">
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
-                Selamat Datang, {{ auth()->user()->admin->admin_nama }}
+                {{ __('admin_dashboard.welcome') }}, {{ auth()->user()->admin->admin_nama }}
             </h1>
         </div>
 
@@ -15,7 +15,7 @@
             <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800" data-aos="fade-up" data-aos-delay="100">
                 <div class="flex justify-between items-center">
                     <div>
-                        <p class="text-gray-500 dark:text-gray-400">Total Mahasiswa</p>
+                        <p class="text-gray-500 dark:text-gray-400">{{ __('admin_dashboard.total_students') }}</p>
                         <h3 class="text-2xl font-bold dark:text-white">{{ $mahasiswaCount }}</h3>
                     </div>
                     <div class="p-3 bg-blue-100 rounded-full dark:bg-blue-900">
@@ -32,7 +32,7 @@
             <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800" data-aos="fade-up" data-aos-delay="200">
                 <div class="flex justify-between items-center">
                     <div>
-                        <p class="text-gray-500 dark:text-gray-400">Total Ujian</p>
+                        <p class="text-gray-500 dark:text-gray-400">{{ __('admin_dashboard.total_exam') }}</p>
                         <h3 class="text-2xl font-bold dark:text-white">{{ $ujianCount }}</h3>
                     </div>
                     <div class="p-3 bg-green-100 rounded-full dark:bg-green-900">
@@ -49,7 +49,7 @@
             <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800" data-aos="fade-up" data-aos-delay="300">
                 <div class="flex justify-between items-center">
                     <div>
-                        <p class="text-gray-500 dark:text-gray-400">Pendaftar Ujian Approved</p>
+                        <p class="text-gray-500 dark:text-gray-400">{{ __('admin_dashboard.total_regist') }}</p>
                         <h3 class="text-2xl font-bold dark:text-white">{{ $approveCount }}</h3>
                     </div>
                     <div class="p-3 bg-orange-100 rounded-full dark:bg-orange-900">
@@ -65,7 +65,7 @@
             <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800" data-aos="fade-up" data-aos-delay="400">
                 <div class="flex justify-between items-center">
                     <div>
-                        <p class="text-gray-500 dark:text-gray-400">Pendaftar Ujian Pending</p>
+                        <p class="text-gray-500 dark:text-gray-400">{{ __('admin_dashboard.total_pending') }}</p>
                         <h3 class="text-2xl font-bold dark:text-white">{{ $pendingCount }}</h3>
                     </div>
                     <div class="p-3 bg-purple-100 rounded-full dark:bg-purple-900">
@@ -84,17 +84,18 @@
             <!-- Daftar Peserta Terbaru -->
             <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800" data-aos="fade-right">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold dark:text-white">Peserta Terbaru</h2>
-                    <a href="{{ route('ujian.index') }}" class="text-sm text-blue-600 hover:underline">Lihat Semua</a>
+                    <h2 class="text-lg font-semibold dark:text-white">{{ __('admin_dashboard.new_regist') }}</h2>
+                    <a href="{{ route('ujian.index') }}"
+                        class="text-sm text-blue-600 hover:underline">{{ __('admin_dashboard.see_all') }}</a>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-4 py-3">Nama</th>
-                                <th scope="col" class="px-4 py-3">Prodi</th>
-                                <th scope="col" class="px-4 py-3">Nama Ujian</th>
-                                <th scope="col" class="px-4 py-3">Tanggal Daftar</th>
+                                <th scope="col" class="px-4 py-3">{{ __('admin_dashboard.name') }}</th>
+                                <th scope="col" class="px-4 py-3">{{ __('admin_dashboard.prodi') }}</th>
+                                <th scope="col" class="px-4 py-3">{{ __('admin_dashboard.ujian') }}</th>
+                                <th scope="col" class="px-4 py-3">{{ __('admin_dashboard.tanggal') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -116,7 +117,9 @@
                                 </tr>
                             @empty
                                 <tr data-aos="fade-right">
-                                    <td colspan="4" class="px-4 py-3 text-center">Tidak ada data pendaftaran</td>
+                                    <td colspan="4" class="px-4 py-3 text-center">
+                                        {{ __('admin_dashboard.daftar_kosong') }}
+                                    </td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -127,8 +130,9 @@
             <!-- Jadwal Ujian Mendatang -->
             <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800" data-aos="fade-left">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-semibold dark:text-white">Jadwal Ujian</h2>
-                    <a href="{{ route('ujian.index') }}" class="text-sm text-blue-600 hover:underline">Lihat Semua</a>
+                    <h2 class="text-lg font-semibold dark:text-white">{{ __('admin_dashboard.jadwal') }}</h2>
+                    <a href="{{ route('ujian.index') }}"
+                        class="text-sm text-blue-600 hover:underline">{{ __('admin_dashboard.see_all') }}</a>
                 </div>
                 <div class="space-y-4">
                     @forelse ($ujianOpen as $item)
@@ -144,11 +148,11 @@
                                 </div>
                                 @if ($item->pendaftar_count < $item->kuota)
                                     <span class="text-xs text-green-700 dark:text-green-500">
-                                        Tersedia
+                                        {{ __('admin_dashboard.tersedia') }}
                                     </span>
                                 @else
                                     <span class="text-xs text-yellow-800 dark:text-yellow-200">
-                                        Penuh
+                                        {{ __('admin_dashboard.penuh') }}
                                     </span>
                                 @endif
                             </div>
@@ -160,7 +164,7 @@
                                         d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
                                 </svg>
                                 <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">
-                                    {{ $item->pendaftar_count }}/{{ $item->kuota }} peserta
+                                    {{ $item->pendaftar_count }}/{{ $item->kuota }} {{ __('admin_dashboard.peserta') }}
                                     <div class="mt-1 w-full h-2 bg-gray-200 rounded-full dark:bg-gray-700">
                                         @php
                                             $percentage =
@@ -176,7 +180,7 @@
                         </div>
                     @empty
                         <div class="p-4 text-center text-gray-500 dark:text-gray-400" data-aos="fade-left">
-                            Tidak ada ujian tersedia saat ini
+                            {{ __('admin_dashboard.ujian_kosong') }}
                         </div>
                     @endforelse
                 </div>
@@ -186,12 +190,12 @@
         <!-- Grafik Pendaftaran -->
         <div class="p-6 mb-6 bg-white rounded-lg shadow dark:bg-gray-800" data-aos="fade-up">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-semibold dark:text-white">Statistik Pendaftaran</h2>
+                <h2 class="text-lg font-semibold dark:text-white">{{ __('admin_dashboard.stat_regist') }}</h2>
                 <div class="flex space-x-2">
                     <button id="monthlyBtn"
-                        class="px-3 py-1 text-sm text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-200">Bulanan</button>
+                        class="px-3 py-1 text-sm text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-200">{{ __('admin_dashboard.bulanan') }}</button>
                     <button id="weeklyBtn"
-                        class="px-3 py-1 text-sm text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Mingguan</button>
+                        class="px-3 py-1 text-sm text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">{{ __('admin_dashboard.mingguan') }}</button>
                 </div>
             </div>
             <div class="h-64">
@@ -211,7 +215,7 @@
             // Konfigurasi grafik
             const ctx = document.getElementById('registrationChart').getContext('2d');
             let chart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: chartData.monthly.labels,
                     datasets: [{
