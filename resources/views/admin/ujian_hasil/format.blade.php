@@ -2,7 +2,6 @@
 
 @section('content')
     <x-breadcrumb :pages="[
-        ['name' => 'Data Master', 'url' => '/admin'],
         ['name' => __('ujian_hasil.title'), 'url' => '/admin/ujian_hasil'],
         ['name' => __('ujian_hasil.editTitle'), 'url' => '#'],
     ]" />

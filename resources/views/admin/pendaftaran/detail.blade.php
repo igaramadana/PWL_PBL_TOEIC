@@ -1,7 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
     <x-breadcrumb :pages="[
-        ['name' => 'Data Master', 'url' => '/admin'],
         ['name' => __('pendaftaran.title'), 'url' => '/admin/pendaftaran'],
         ['name' => __('pendaftaran.RegistrationDetail'), 'url' => '#'],
     ]" />
@@ -18,7 +17,8 @@
         <!-- Informasi Ujian -->
         <div class="col-span-1">
             <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.ExamInformation') }}</h3>
+                <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.ExamInformation') }}
+                </h3>
 
                 <div class="space-y-4">
                     <div>
@@ -27,7 +27,8 @@
                     </div>
 
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.ExamSchedule') }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.ExamSchedule') }}
+                        </p>
                         <p class="text-sm text-gray-900 dark:text-white">
                             {{ \Carbon\Carbon::parse($pendaftaran->ujian->jadwal_ujian)->format('d M Y') }}
                             pukul {{ $pendaftaran->ujian->waktu_ujian_display }}
@@ -35,12 +36,14 @@
                     </div>
 
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.RegistrationNumber') }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            {{ __('pendaftaran.RegistrationNumber') }}</p>
                         <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->no_pendaftaran }}</p>
                     </div>
 
                     <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.RegistrationDate') }}</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                            {{ __('pendaftaran.RegistrationDate') }}</p>
                         <p class="text-sm text-gray-900 dark:text-white">
                             {{ \Carbon\Carbon::parse($pendaftaran->created_at)->format('d M Y H:i') }}
                         </p>
@@ -62,40 +65,48 @@
         <!-- Informasi Mahasiswa -->
         <div class="col-span-2">
             <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">{{ __('pendaftaran.StudentInformation') }}</h3>
+                <h3 class="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                    {{ __('pendaftaran.StudentInformation') }}</h3>
 
                 <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <!-- Data Pribadi -->
                     <div>
-                        <h4 class="mb-3 font-medium text-gray-700 dark:text-gray-300">{{ __('pendaftaran.PersonalData') }}</h4>
+                        <h4 class="mb-3 font-medium text-gray-700 dark:text-gray-300">{{ __('pendaftaran.PersonalData') }}
+                        </h4>
 
                         <div class="space-y-3">
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.FullName') }}</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    {{ __('pendaftaran.FullName') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">
                                     {{ $pendaftaran->mahasiswa->mahasiswa_nama ?? 'N/A' }}</p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.StudentID') }}</p>
-                                <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->mahasiswa->nim ?? 'N/A' }}</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    {{ __('pendaftaran.StudentID') }}</p>
+                                <p class="text-sm text-gray-900 dark:text-white">
+                                    {{ $pendaftaran->mahasiswa->nim ?? 'N/A' }}</p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.StudyProgram') }}</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    {{ __('pendaftaran.StudyProgram') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">
                                     {{ $pendaftaran->mahasiswa->prodi->prodi_nama ?? 'N/A' }}</p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.DateOfBirth') }}</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    {{ __('pendaftaran.DateOfBirth') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">
                                     {{ \Carbon\Carbon::parse($pendaftaran->tanggal_lahir)->format('d M Y') }}
                                 </p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.NationalID') }}</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    {{ __('pendaftaran.NationalID') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->nik }}</p>
                             </div>
                         </div>
@@ -103,21 +114,25 @@
 
                     <!-- Alamat dan Dokumen -->
                     <div>
-                        <h4 class="mb-3 font-medium text-gray-700 dark:text-gray-300">{{ __('pendaftaran.AddressAndDocuments') }}</h4>
+                        <h4 class="mb-3 font-medium text-gray-700 dark:text-gray-300">
+                            {{ __('pendaftaran.AddressAndDocuments') }}</h4>
 
                         <div class="space-y-3">
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.HomeAddress') }}</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    {{ __('pendaftaran.HomeAddress') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->alamat_asal }}</p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.CurrentAddress') }}</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    {{ __('pendaftaran.CurrentAddress') }}</p>
                                 <p class="text-sm text-gray-900 dark:text-white">{{ $pendaftaran->alamat_sekarang }}</p>
                             </div>
 
                             <div>
-                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ __('pendaftaran.Documents') }}</p>
+                                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                    {{ __('pendaftaran.Documents') }}</p>
                                 <div class="flex mt-1 space-x-2">
                                     @if ($pendaftaran->foto_ktp)
                                         <button type="button"

@@ -1,9 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
-    <x-breadcrumb :pages="[
-        ['name' => 'Data Master', 'url' => '/admin'],
-        ['name' => __('ujian_hasil.title'), 'url' => '/admin/ujian_hasil'],
-    ]" />
+    <x-breadcrumb :pages="[['name' => __('ujian_hasil.title'), 'url' => '/admin/ujian_hasil']]" />
 
     @if ($ujian->isEmpty())
         <h1 class="text-gray-900 dark:text-white">{{ __('ujian_hasil.no_results_available') }}</h1>
