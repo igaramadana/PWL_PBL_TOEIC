@@ -29,7 +29,7 @@ return [
     'EditExam' => 'Edit Ujian',
     'CloseRegistration' => 'Tutup Pendaftaran',
     'ConfirmCloseRegistration' => 'Apakah Anda yakin ingin menutup pendaftaran ini?',
-    'deleteExam' => 'Hapus Ujian',
+    'DeleteExam' => 'Hapus Ujian',
     'ConfirmDeleteExam' => 'Apakah Anda yakin ingin menghapus ujian ini?',
     'RegistrationClosed' => 'Pendaftaran Ditutup',
     'ExamName' => 'Nama Ujian',
@@ -65,4 +65,13 @@ return [
     'IndependentExamInfo' => 'Untuk Ujian Mandiri, Anda dapat melakukan pendaftaran dan pembayaran melalui ITC. Harga untuk TOEIC Listening and Reading adalah <strong>Rp. 675,000</strong>.',
     'RegisterIndependentExam' => 'Daftar Ujian Mandiri',
     'NoExamsAvailableMessage' => 'Silakan tunggu ujian baru dibuka oleh admin.',
+
+    'formCurrentAddressPlaceholder' => 'Alamat Sekarang',
+    'formHomeAddressPlaceholder' => 'Alamat Asal',
+    'formUploadClick' => 'Klik untuk mengunggah atau, ',
+    'formUploadDragDrop' => 'Drag and Drop',
+    'formUploadFileTypes' => 'Tipe File: JPG, JPEG, PNG, PDF Max: 2MB',
+    'formCampus' => 'Kampus',
+    'formPhone' => 'Nomor Telepon',
+    'formDepartment' => 'Jurusan',
 ];

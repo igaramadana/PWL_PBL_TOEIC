@@ -29,7 +29,7 @@ return [
     'EditExam' => 'Edit Exam',
     'CloseRegistration' => 'Close Registration',
     'ConfirmCloseRegistration' => 'Are you sure you want to close this registration?',
-    'deleteExam' => 'Delete Exam',
+    'DeleteExam' => 'Delete Exam',
     'ConfirmDeleteExam' => 'Are you sure you want to delete this exam?',
     'RegistrationClosed' => 'Registration Closed',
     'ExamName' => 'Exam Name',
@@ -65,4 +65,13 @@ return [
     'IndependentExamInfo' => 'For the Independent Exam, you can register and make payments through ITC. The price for TOEIC Listening and Reading is <strong>Rp. 675,000</strong>.',
     'RegisterIndependentExam' => 'Register for Independent Exam',
     'NoExamsAvailableMessage' => 'Please wait for a new exam to be opened by the admin.',
+
+    'formCurrentAddressPlaceholder' => 'Current Address',
+    'formHomeAddressPlaceholder' => 'Home Address',
+    'formUploadClick' => 'Click to upload or, ',
+    'formUploadDragDrop' => 'Drag and drop files here',
+    'formUploadFileTypes' => 'File types: JPG, JPEG, PNG, PDF Max: 2MB',
+    'formCampus' => 'Campus',
+    'formPhone' => 'Phone Number',
+    'formDepartment' => 'Major',
 ];
