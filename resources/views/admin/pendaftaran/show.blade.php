@@ -84,7 +84,7 @@
                                 clip-rule="evenodd" />
                         </svg>
 
-                        {{ __('pendaftaran.deleteExam') }}
+                        {{ __('pendaftaran.DeleteExam') }}
                     </button>
                     <!-- Delete Modal -->
                     <div id="deleteModal" tabindex="-1" aria-hidden="true"
