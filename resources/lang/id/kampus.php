@@ -30,4 +30,10 @@ return [
 
     'modalDetailHeader' => 'Detail Data Kampus',
     'modalDetailClose' => 'Tutup',
+
+    'nameMin' => 'Nama kampus minimal 5 karakter',
+    'nameMax' => 'Nama kampus maksimal 255 karakter',
+    'nameUnique' => 'Nama kampus harus unik',
+    'alamatRequired' => 'Alamat kampus wajib diisi',
+    'alamatMin' => 'Alamat kampus minimal 5 karakter',
 ];

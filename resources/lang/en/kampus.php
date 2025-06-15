@@ -30,4 +30,10 @@ return [
 
     'modalDetailHeader' => 'Detail Campus Data',
     'modalDetailClose' => 'Close',
+
+    'nameMin' => 'Campus name must be at least 5 characters',
+    'nameMax' => 'Campus name must be less than 255 characters',
+    'nameUnique' => 'Campus name must be unique',
+    'alamatRequired' => 'Campus address is required',
+    'alamatMin' => 'Campus address must be at least 5 characters',
 ];

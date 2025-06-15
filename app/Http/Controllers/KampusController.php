@@ -35,8 +35,8 @@ class KampusController extends Controller
     {
         try {
             $request->validate([
-                'kampus_nama' => 'required|string|max:255|unique:kampus,kampus_nama',
-                'kampus_alamat' => 'required|string',
+                'kampus_nama' => 'required|string|max:255|min:5|unique:kampus,kampus_nama',
+                'kampus_alamat' => 'required|min:5|string',
             ]);
 
             KampusModel::create([
