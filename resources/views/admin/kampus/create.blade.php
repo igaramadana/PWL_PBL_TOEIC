@@ -79,7 +79,12 @@
 
         const errorMessages = {
             namaRequired: '{{ __('kampus.nameRequired') }}',
-            alamatRequired: '{{ __('kampus.addressRequired') }}'
+            namaMax: '{{ __('kampus.nameMax') }}',
+            namaMin: '{{__('kampus.nameMin')}}',
+            namaUnique: '{{ __('kampus.nameUnique') }}',
+            alamatRequired: '{{ __('kampus.addressRequired') }}',
+            alamatMin: '{{__('kampus.alamatMin')}}',
+
         };
 
         function showError(element, message) {
@@ -103,10 +108,19 @@
             if (!namaInput.value.trim()) {
                 showError(namaError, errorMessages.namaRequired);
                 isValid = false;
+            } else if (namaInput.value.length > 255) {
+                showError(namaError, errorMessages.namaMax);
+                isValid = false;
+            } else if (namaInput.value.length <= 5) {
+                showError(namaError, errorMessages.namaMin);
+                isValid = false;
             }
 
             if (!alamatInput.value.trim()) {
                 showError(alamatError, errorMessages.alamatRequired);
+                isValid = false;
+            } else if (alamatInput.value.length <= 5) {
+                showError(alamatError, errorMessages.alamatMin);
                 isValid = false;
             }
 
