@@ -90,4 +90,15 @@ class UjianHasilController extends Controller
             ->toBase64();
         return view('admin.ujian_hasil.format', compact('page', 'avatar'));
     }
+
+    public function downloadTemplate()
+    {
+        $filePath = public_path('templates/template_ujian_hasil.xlsx');
+
+        if (!file_exists($filePath)) {
+            return back()->with('toast_error', __('ujian_hasil.template_not_found'));
+        }
+
+        return response()->download($filePath, 'template_ujian_hasil.xlsx');
+    }
 }

@@ -52,4 +52,7 @@ return [
     'import_format_header_required' => 'Column headers must match the example above',
     'btnBackTo' => 'Back',
     'my_exam_results_notice' => 'No exam results are available yet.',
+    'download_template' => 'Download Template (XLSX)',
+    'template_not_found' => 'Template Not Found',
+    'template_download_success' => 'Template successfully downloaded',
 ];

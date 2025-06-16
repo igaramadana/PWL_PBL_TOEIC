@@ -92,7 +92,10 @@
 
             const errorMessages = {
                 namaRequired: '{{ __('kampus.nameRequired') }}',
-                alamatRequired: '{{ __('kampus.addressRequired') }}'
+                alamatRequired: '{{ __('kampus.addressRequired') }}',
+                namaMin: '{{__('kampus.nameMin')}}',
+                namaMax: '{{__('kampus.nameMax')}}',
+                alamatMin: '{{__('kampus.alamatMin')}}'
             };
 
             function showError(element, message) {
@@ -111,6 +114,9 @@
 
                 if (!namaInput.value.trim()) {
                     showError(namaError, errorMessages.namaRequired);
+                    isValid = false;
+                } else if (namaInput.value.length <= 5) {
+                    showError(namaError, errorMessages.namaMin);
                     isValid = false;
                 } else {
                     clearError(namaError);
