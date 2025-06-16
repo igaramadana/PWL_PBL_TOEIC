@@ -81,8 +81,8 @@ class KampusController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), [
-            'kampus_nama' => 'required|string|max:255|unique:kampus,kampus_nama,' . $id,
-            'kampus_alamat' => 'required|string',
+            'kampus_nama' => 'required|string|max:255|min:5|unique:kampus,kampus_nama,' . $id,
+            'kampus_alamat' => 'required|min:5|string',
         ]);
 
         if ($validator->fails()) {
