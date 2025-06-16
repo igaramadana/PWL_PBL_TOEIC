@@ -52,4 +52,7 @@ return [
     'import_format_header_required' => 'Kolom header harus persis seperti contoh di atas',
     'btnBackTo' => 'Kembali',
     'my_exam_results_notice' => 'Belum ada hasil ujian yang tersedia.',
+    'download_template' => 'Unduh Template (XLSX)',
+    'template_not_found' => 'Template tidak tersedia, silahkan hubungi admin.',
+    'template_download_success' => 'Template berhasil didownload.'
 ];

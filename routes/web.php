@@ -77,6 +77,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/ujian_hasil/detail/{ujian}', [UjianHasilController::class, 'detail'])->name('ujian_hasil.detail');
             Route::post('/ujian_hasil/{ujian}/import', [UjianHasilController::class, 'import'])->name('admin.ujian_hasil.import');
             Route::get('/ujian_hasil/format', [UjianHasilController::class, 'formatPage'])->name('admin.ujian_hasil.format');
+            Route::get('/ujian_hasil/template', [UjianHasilController::class, 'downloadTemplate'])->name('admin.ujian_hasil.template');
 
             // Ujian
             Route::get('/ujian', [UjianController::class, 'index'])->name('ujian.index');
