@@ -74,4 +74,6 @@ return [
     'formCampus' => 'Kampus',
     'formPhone' => 'Nomor Telepon',
     'formDepartment' => 'Jurusan',
+
+    'register' => 'Daftar Sekarang'
 ];

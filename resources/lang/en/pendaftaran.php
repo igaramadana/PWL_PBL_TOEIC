@@ -74,4 +74,6 @@ return [
     'formCampus' => 'Campus',
     'formPhone' => 'Phone Number',
     'formDepartment' => 'Major',
+
+    'register' => 'Register Now'
 ];
